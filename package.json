@@ -1,0 +1,19 @@
+{
+  "name": "sudoku",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kripple/sudoku.git"
+  },
+  "license": "MIT",
+  "author": "Kelly Ripple",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "@vitejs/plugin-react": "^4.5.1",
+    "rollup-plugin-visualizer": "^6.0.3",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}

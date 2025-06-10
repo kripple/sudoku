@@ -17,6 +17,7 @@
   align-items: center;
   aspect-ratio: 1;
   box-sizing: border-box;
+  cursor: pointer;
   display: flex;
   flex-shrink: 0;
   height: var(--game-cell-size);
@@ -25,11 +26,19 @@
   max-width: var(--game-cell-size-max);
   min-height: var(--game-cell-size-min);
   min-width: var(--game-cell-size-min);
+  transition: filter 100ms ease;
+  transition-delay: 50ms;
   width: var(--game-cell-size);
 }
-
 .cursor-option .token {
   transform: scale(0.8);
+  transition: transform 150ms ease-in;
+}
+.cursor-option:hover .token {
+  transform: scale(0.9) translateX(-2px) translateY(-2px);
+}
+.cursor-option:hover {
+  filter: drop-shadow(4px 4px 2px #00000099);
 }
 
 @media screen and (max-width: 100vh) {

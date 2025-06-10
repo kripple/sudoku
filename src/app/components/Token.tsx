@@ -9,7 +9,7 @@ const tokens = {
   '4': 'grass',
   '5': 'ice',
   '6': 'water',
-  '7': 'water',
+  '7': 'flying',
   '8': 'water',
   '9': 'water',
 } as const;

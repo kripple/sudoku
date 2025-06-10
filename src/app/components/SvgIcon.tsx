@@ -4,6 +4,7 @@ import { grass } from '@/app/assets/grass';
 import { ice } from '@/app/assets/ice';
 import { electric } from '@/app/assets/electric';
 import { water } from '@/app/assets/water';
+import { flying } from '@/app/assets/flying';
 
 const icons = {
   fairy,
@@ -12,6 +13,7 @@ const icons = {
   grass,
   ice,
   water,
+  flying,
 } as const;
 type Icon = keyof typeof icons;
 

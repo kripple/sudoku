@@ -21,6 +21,10 @@
 
 .game-cell.highlight {
   background-color: var(--highlight);
+  cursor: pointer;
+}
+.game-cell.highlight .token {
+  background-color: transparent;
 }
 
 .game-cell.lowlight {

@@ -10,13 +10,17 @@ export function Cell({
   initialValue,
   currentValue,
   solution,
+  selected,
   setInput,
+  setSelected,
 }: {
   index: number;
   initialValue: string;
   currentValue: string;
   solution: string;
+  selected: boolean;
   setInput: SetState<string>;
+  setSelected: SetState<number>;
 }) {
   const cursor = useCursor();
   const rowId = (index % gameSize) + 1;
@@ -36,6 +40,7 @@ export function Cell({
     currentValue !== solution
       ? 'incorrect'
       : false,
+    selected ? 'highlight' : false,
   ]
     .filter(Boolean)
     .join(' ');
@@ -47,9 +52,9 @@ export function Cell({
       onClick={
         initialValue === emptyCell
           ? () => {
-              setInput((draft) =>
-                cursor ? replaceAt(draft, index, cursor) : draft,
-              );
+              cursor
+                ? setInput((draft) => replaceAt(draft, index, cursor))
+                : setSelected(index);
             }
           : undefined
       }

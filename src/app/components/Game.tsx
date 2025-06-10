@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { getSudoku } from 'sudoku-gen';
 
 import { Cell } from '@/app/components/Cell';
+import { emptyCell } from '@/constants/config';
 
 import '@/app/components/Game.css';
 
@@ -13,6 +14,10 @@ export function Game() {
   const [input, setInput] = useState<string>(sudoku.puzzle);
   const inputs = input.split('');
 
+  const [selected, setSelected] = useState<number>(
+    cells.findIndex((value) => value === emptyCell),
+  );
+
   return (
     <div className="game">
       {inputs.map((input, i) => {
@@ -22,7 +27,9 @@ export function Game() {
             index={i}
             initialValue={cells[i]}
             key={i}
+            selected={i === selected}
             setInput={setInput}
+            setSelected={setSelected}
             solution={solution[i]}
           />
         );

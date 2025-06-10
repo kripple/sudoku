@@ -15,10 +15,9 @@ export function Game() {
           const rowId = x + 1;
           const columnId = y + 1;
 
-          const specialCell = Math.sqrt(gameSize);
-          const rowBorder = rowId % specialCell === 0 ? 'border-bottom' : false;
-          const columnBorder =
-            columnId % specialCell === 0 ? 'border-right' : false;
+          const isBorderCell = (id: number) => id % Math.sqrt(gameSize) === 0;
+          const rowBorder = isBorderCell(rowId) ? 'border-bottom' : false;
+          const columnBorder = isBorderCell(columnId) ? 'border-right' : false;
 
           const classNames = [
             'game-cell',

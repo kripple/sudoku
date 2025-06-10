@@ -1,22 +1,45 @@
+:root {
+  --cursor-select-padding: 6px;
+  --cursor-select-option-size: calc(
+    var(--game-cell-size-min) + (2 * var(--cursor-select-padding))
+  );
+}
+
 .cursor-select {
+  background-color: #00000066;
+  border-radius: 2px;
+  box-sizing: border-box;
   display: flex;
+  max-width: calc(var(--game-cell-size-max) * var(--game-columns));
 }
 
 .cursor-option {
-  padding: 4px;
+  align-items: center;
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  display: flex;
+  flex-shrink: 0;
+  height: var(--game-cell-size);
+  justify-content: center;
+  max-height: var(--game-cell-size-max);
+  max-width: var(--game-cell-size-max);
+  min-height: var(--game-cell-size-min);
+  min-width: var(--game-cell-size-min);
+  width: var(--game-cell-size);
+}
+
+.cursor-option .token {
+  transform: scale(0.8);
 }
 
 @media screen and (max-width: 100vh) {
   .cursor-select {
-    flex-wrap: nowrap;
+    flex-direction: row;
   }
 }
 
 @media screen and (max-height: 100vw) {
   .cursor-select {
-    flex-wrap: wrap;
-    max-width: var(--game-cell-size-max);
-    min-width: var(--game-cell-size-min);
-    width: var(--game-cell-size);
+    flex-direction: column;
   }
 }

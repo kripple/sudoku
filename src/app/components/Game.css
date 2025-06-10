@@ -6,11 +6,14 @@
   --lowlight: #f9eac2;
 }
 
-.game {
-  --columns: 9;
+:root {
+  --game-columns: 9;
   --game-cell-size-min: 32px;
   --game-cell-size-max: 64px;
-  --game-cell-size: calc(90vmin / var(--columns));
+  --game-cell-size: calc(90vmin / var(--game-columns));
+}
+
+.game {
   align-content: center;
   align-items: center;
   aspect-ratio: 1;
@@ -21,13 +24,13 @@
   display: flex;
   flex-shrink: 0;
   flex-wrap: wrap;
-  height: calc(var(--game-cell-size) * var(--columns));
+  height: calc(var(--game-cell-size) * var(--game-columns));
   justify-content: center;
-  max-height: calc(var(--game-cell-size-max) * var(--columns));
-  max-width: calc(var(--game-cell-size-max) * var(--columns));
-  min-height: calc(var(--game-cell-size-min) * var(--columns));
-  min-width: calc(var(--game-cell-size-min) * var(--columns));
-  width: calc(var(--game-cell-size) * var(--columns));
+  max-height: calc(var(--game-cell-size-max) * var(--game-columns));
+  max-width: calc(var(--game-cell-size-max) * var(--game-columns));
+  min-height: calc(var(--game-cell-size-min) * var(--game-columns));
+  min-width: calc(var(--game-cell-size-min) * var(--game-columns));
+  width: calc(var(--game-cell-size) * var(--game-columns));
 }
 
 .game-cell {

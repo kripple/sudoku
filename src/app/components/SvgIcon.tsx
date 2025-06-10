@@ -7,8 +7,9 @@ import { grass } from '@/app/assets/grass';
 import { ice } from '@/app/assets/ice';
 import { poison } from '@/app/assets/poison';
 import { water } from '@/app/assets/water';
+import { type TokenIcon } from '@/constants/tokens';
 
-const icons = {
+const icons: { [token in TokenIcon]: SvgProps } = {
   fairy,
   fire,
   electric,
@@ -18,10 +19,15 @@ const icons = {
   flying,
   poison,
   ghost,
-} as const;
-type Icon = keyof typeof icons;
+};
 
-export function SvgIcon({ icon: key, color }: { icon: Icon; color?: string }) {
+export function SvgIcon({
+  icon: key,
+  color,
+}: {
+  icon: TokenIcon;
+  color?: string;
+}) {
   const icon = icons[key];
 
   (async () => {
@@ -36,9 +42,7 @@ export function SvgIcon({ icon: key, color }: { icon: Icon; color?: string }) {
     <svg
       className={`${key}-icon`}
       fill="currentColor"
-      style={{
-        color,
-      }}
+      style={{ color }}
       viewBox={icon.viewBox}
       xmlns="http://www.w3.org/2000/svg"
     >

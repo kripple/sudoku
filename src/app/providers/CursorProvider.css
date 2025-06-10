@@ -8,3 +8,8 @@
   width: 32px;
   z-index: 999;
 }
+
+.cursor-icon .token {
+  height: inherit;
+  width: inherit;
+}

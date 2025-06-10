@@ -16,7 +16,7 @@ export function Game() {
   const [sudoku] = useState<ReturnType<typeof getSudoku>>(getSudoku('easy'));
   const cells = sudoku.puzzle.split('');
 
-  setCursor('1');
+  // setCursor('1');
 
   return (
     <div className="game">

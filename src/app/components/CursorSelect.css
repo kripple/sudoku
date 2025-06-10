@@ -1,0 +1,22 @@
+.cursor-select {
+  display: flex;
+}
+
+.cursor-option {
+  padding: 4px;
+}
+
+@media screen and (max-width: 100vh) {
+  .cursor-select {
+    flex-wrap: nowrap;
+  }
+}
+
+@media screen and (max-height: 100vw) {
+  .cursor-select {
+    flex-wrap: wrap;
+    max-width: var(--game-cell-size-max);
+    min-width: var(--game-cell-size-min);
+    width: var(--game-cell-size);
+  }
+}

@@ -10,11 +10,14 @@
   --token-ghost: #923fdf;
 }
 
+:root {
+  --token-margin: 9px;
+  --token-size: calc(var(--game-cell-size) - var(--token-margin));
+  --token-size-max: calc(var(--game-cell-size-max) - var(--token-margin));
+  --token-size-min: calc(var(--game-cell-size-min) - var(--token-margin));
+}
+
 .token {
-  --pad: 9px;
-  --token-size: calc(var(--game-cell-size) - var(--pad));
-  --token-size-max: calc(var(--game-cell-size-max) - var(--pad));
-  --token-size-min: calc(var(--game-cell-size-min) - var(--pad));
   aspect-ratio: 1;
   background-color: var(--empty);
   border-radius: var(--token-size-max);

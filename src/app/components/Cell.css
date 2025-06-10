@@ -1,0 +1,51 @@
+.game-cell {
+  align-items: center;
+  aspect-ratio: 1;
+  background-color: var(--empty);
+  border: 0.5px solid var(--border-color);
+  box-sizing: border-box;
+  display: flex;
+  flex-shrink: 0;
+  height: var(--game-cell-size);
+  justify-content: center;
+  max-height: var(--game-cell-size-max);
+  max-width: var(--game-cell-size-max);
+  min-height: var(--game-cell-size-min);
+  min-width: var(--game-cell-size-min);
+  width: var(--game-cell-size);
+}
+
+.game-cell.filled {
+  background-color: var(--filled);
+}
+
+.game-cell.highlight {
+  background-color: var(--highlight);
+}
+
+.game-cell.lowlight {
+  background-color: var(--lowlight);
+}
+
+.game-cell.border-right {
+  border-right: 2px solid var(--border-color);
+}
+
+.game-cell.border-bottom {
+  border-bottom: 2px solid var(--border-color);
+}
+
+.game-cell.incorrect {
+  overflow: hidden;
+  position: relative;
+}
+.game-cell.incorrect::after {
+  background-color: #ff4b56;
+  content: '';
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  width: 150%;
+}

@@ -8,6 +8,7 @@
   --token-flying: #9fa1f2;
   --token-poison: #c772ff;
   --token-ghost: #923fdf;
+  --stroke-color: #444444;
 }
 
 :root {
@@ -33,7 +34,7 @@
   aspect-ratio: 1;
   margin: -1px; /* prevent edge bleed from subpixel rendering */
   overflow: visible;
-  stroke: #444444;
+  stroke: var(--stroke-color);
   stroke-linecap: round;
   stroke-miterlimit: 0;
   stroke-width: 0.5px;

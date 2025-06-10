@@ -1,45 +1,30 @@
 import { useState } from 'react';
 import { getSudoku } from 'sudoku-gen';
 
-import { Token } from '@/app/components/Token';
-import { useCursor, useSetCursor } from '@/app/providers/CursorProvider';
+import { Cell } from '@/app/components/Cell';
 
 import '@/app/components/Game.css';
 
-const gameSize = 9 as const;
-
 export function Game() {
-  const cursor = useCursor();
-  console.log({ cursor });
-
-  const setCursor = useSetCursor();
   const [sudoku] = useState<ReturnType<typeof getSudoku>>(getSudoku('easy'));
   const cells = sudoku.puzzle.split('');
+  const solution = sudoku.solution.split('');
 
-  // setCursor('1');
+  const [input, setInput] = useState<string>(sudoku.puzzle);
+  const inputs = input.split('');
 
   return (
     <div className="game">
-      {cells.map((cell, i) => {
-        const rowId = (i % gameSize) + 1;
-        const columnId = Math.floor(i / gameSize) + 1;
-
-        const isBorderCell = (id: number) => id % Math.sqrt(gameSize) === 0;
-        const classNames = [
-          'game-cell',
-          `row-${rowId}`,
-          `col-${columnId}`,
-          isBorderCell(rowId) ? 'border-right' : false,
-          isBorderCell(columnId) ? 'border-bottom' : false,
-          cell === '-' ? 'empty' : 'filled',
-        ]
-          .filter(Boolean)
-          .join(' ');
-
+      {inputs.map((input, i) => {
         return (
-          <div className={classNames} key={`row-${rowId}-col-${columnId}`}>
-            <Token token={cell} />
-          </div>
+          <Cell
+            currentValue={input}
+            index={i}
+            initialValue={cells[i]}
+            key={i}
+            setInput={setInput}
+            solution={solution[i]}
+          />
         );
       })}
     </div>

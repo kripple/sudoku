@@ -1,0 +1,27 @@
+.symbol-x {
+  background-color: red;
+  border-radius: 6px;
+  height: 40px;
+  position: relative;
+  width: 40px;
+}
+
+.symbol-x:before,
+.symbol-x:after {
+  background-color: white;
+  border-radius: 2px;
+  content: '';
+  height: 4px;
+  position: absolute;
+  top: 16px;
+  width: 36px;
+}
+
+.symbol-x:before {
+  left: 2px;
+  transform: rotate(45deg);
+}
+.symbol-x:after {
+  right: 2px;
+  transform: rotate(-45deg);
+}

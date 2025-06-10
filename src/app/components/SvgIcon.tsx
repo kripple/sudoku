@@ -13,14 +13,9 @@ const icons = {
   ice,
   water,
 } as const;
+type Icon = keyof typeof icons;
 
-export function SvgIcon({
-  icon: key,
-  color,
-}: {
-  icon: keyof typeof icons;
-  color?: string;
-}) {
+export function SvgIcon({ icon: key, color }: { icon: Icon; color?: string }) {
   const icon = icons[key];
 
   (async () => {

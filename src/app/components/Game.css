@@ -10,7 +10,7 @@
   --columns: 9;
   --game-cell-size-min: 32px;
   --game-cell-size-max: 64px;
-  --game-cell-size: calc(99vmin / var(--columns));
+  --game-cell-size: calc(90vmin / var(--columns));
   align-items: center;
   align-content: center;
   aspect-ratio: 1;

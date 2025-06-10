@@ -1,5 +1,6 @@
 import { getSudoku } from 'sudoku-gen';
 import { useState } from 'react';
+import { Token } from '@/app/components/Token';
 
 import '@/app/components/Game.css';
 
@@ -28,9 +29,10 @@ export function Game() {
         ]
           .filter(Boolean)
           .join(' ');
+
         return (
           <div key={`row-${rowId}-col-${columnId}`} className={classNames}>
-            {cell}
+            <Token token={cell} />
           </div>
         );
       })}

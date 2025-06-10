@@ -1,0 +1,32 @@
+:root {
+  --token-1: #f25555;
+  --token-2: #f89d4a;
+  --token-3: #aee84f;
+  --token-4: #4be95e;
+  --token-5: #4ae6b7;
+  --token-6: #6fc7f2;
+  --token-7: #9fa1f2;
+  --token-8: #c27cf2;
+  --token-9: #f26fb1;
+}
+
+.token {
+  --pad: 9px;
+  --token-size: calc(var(--game-cell-size) - var(--pad));
+  --token-size-max: calc(var(--game-cell-size-max) - var(--pad));
+  --token-size-min: calc(var(--game-cell-size-min) - var(--pad));
+  aspect-ratio: 1;
+  background-color: var(--empty);
+  border-radius: var(--token-size-max);
+  min-height: var(--token-size-min);
+  min-width: var(--token-size-min);
+  max-height: var(--token-size-max);
+  max-width: var(--token-size-max);
+  height: var(--token-size);
+  width: var(--token-size);
+}
+
+.token svg {
+  aspect-ratio: 1;
+  margin: -1px; /* prevent edge bleed from subpixel rendering */
+}

@@ -1,0 +1,48 @@
+.game {
+  --columns: 9;
+  --game-cell-size-min: 32px;
+  --game-cell-size-max: 64px;
+  --game-cell-size: calc(99vmin / var(--columns));
+  align-items: center;
+  align-content: center;
+  aspect-ratio: 1;
+  border-bottom: 1px solid black;
+  border-left: 2.5px solid black;
+  border-right: 1px solid black;
+  border-top: 2.5px solid black;
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  min-height: calc(var(--game-cell-size-min) * var(--columns));
+  max-height: calc(var(--game-cell-size-max) * var(--columns));
+  height: calc(var(--game-cell-size) * var(--columns));
+  justify-content: center;
+  min-width: calc(var(--game-cell-size-min) * var(--columns));
+  max-width: calc(var(--game-cell-size-max) * var(--columns));
+  width: calc(var(--game-cell-size) * var(--columns));
+}
+
+.game-cell {
+  align-items: center;
+  aspect-ratio: 1;
+  background-color: white;
+  border: 0.5px solid black;
+  box-sizing: border-box;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  min-height: var(--game-cell-size-min);
+  min-width: var(--game-cell-size-min);
+  max-height: var(--game-cell-size-max);
+  max-width: var(--game-cell-size-max);
+  height: var(--game-cell-size);
+  width: var(--game-cell-size);
+}
+
+.game-cell.border-right {
+  border-right: 2px solid black;
+}
+
+.game-cell.border-bottom {
+  border-bottom: 2px solid black;
+}

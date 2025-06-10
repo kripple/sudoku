@@ -10,6 +10,7 @@
   "type": "module",
   "scripts": {
     "start": "vite",
+    "lint": "eslint . && stylelint '**/*.css' && prettier --check .",
     "optimize": "svgo src/app/assets --config src/app/config/svgo.config.mjs"
   },
   "dependencies": {
@@ -25,8 +26,20 @@
     "@types/node": "^22.15.30",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.1",
+    "@typescript-eslint/eslint-plugin": "7.16.1",
+    "@typescript-eslint/parser": "7.16.1",
     "@vitejs/plugin-react": "^4.5.1",
+    "eslint": "8.56.0",
+    "eslint-config-prettier": "10.1.1",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-react": "7.37.4",
+    "eslint-plugin-react-hooks": "5.2.0",
+    "eslint-plugin-react-refresh": "0.4.19",
+    "prettier": "^3.5.3",
     "rollup-plugin-visualizer": "^6.0.3",
+    "stylelint": "^16.18.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-prettier": "^5.0.3",
     "svgo": "^3.3.2",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",

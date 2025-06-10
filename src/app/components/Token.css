@@ -1,13 +1,13 @@
 :root {
-  --token-1: #f25555;
-  --token-2: #f89d4a;
-  --token-3: #aee84f;
-  --token-4: #4be95e;
-  --token-5: #4ae6b7;
-  --token-6: #6fc7f2;
-  --token-7: #9fa1f2;
-  --token-8: #c27cf2;
-  --token-9: #f26fb1;
+  --token-fairy: #ff359a;
+  --token-fire: #ff5100;
+  --token-electric: #ffe600;
+  --token-grass: #00e41b;
+  --token-water: #1e90ff;
+  --token-ice: #00ffff;
+  --token-flying: #9fa1f2;
+  --token-poison: #c772ff;
+  --token-ghost: #923fdf;
 }
 
 .token {
@@ -29,4 +29,9 @@
 .token svg {
   aspect-ratio: 1;
   margin: -1px; /* prevent edge bleed from subpixel rendering */
+  overflow: visible;
+  stroke: #444444;
+  stroke-width: 0.5px;
+  stroke-linecap: round;
+  stroke-miterlimit: 0;
 }

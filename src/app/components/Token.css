@@ -18,11 +18,11 @@
   aspect-ratio: 1;
   background-color: var(--empty);
   border-radius: var(--token-size-max);
-  min-height: var(--token-size-min);
-  min-width: var(--token-size-min);
+  height: var(--token-size);
   max-height: var(--token-size-max);
   max-width: var(--token-size-max);
-  height: var(--token-size);
+  min-height: var(--token-size-min);
+  min-width: var(--token-size-min);
   width: var(--token-size);
 }
 
@@ -31,7 +31,7 @@
   margin: -1px; /* prevent edge bleed from subpixel rendering */
   overflow: visible;
   stroke: #444444;
-  stroke-width: 0.5px;
   stroke-linecap: round;
   stroke-miterlimit: 0;
+  stroke-width: 0.5px;
 }

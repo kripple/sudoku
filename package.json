@@ -9,7 +9,8 @@
   "author": "Kelly Ripple",
   "type": "module",
   "scripts": {
-    "start": "vite"
+    "start": "vite",
+    "optimize": "svgo src/app/assets --config src/app/config/svgo.config.mjs"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
@@ -26,6 +27,7 @@
     "@types/react-dom": "^19.1.1",
     "@vitejs/plugin-react": "^4.5.1",
     "rollup-plugin-visualizer": "^6.0.3",
+    "svgo": "^3.3.2",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "vite": "^6.3.5"

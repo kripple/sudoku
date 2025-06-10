@@ -10,7 +10,6 @@ export function Game() {
     getSudoku('easy'),
   );
   const cells = sudoku.puzzle.split('');
-  console.log(sudoku.puzzle)
 
   return (
     <div className="game">
@@ -19,14 +18,13 @@ export function Game() {
         const columnId = Math.floor(i / gameSize) + 1;
 
         const isBorderCell = (id: number) => id % Math.sqrt(gameSize) === 0;
-        const rowBorder = isBorderCell(rowId) ? 'border-right' : false;
-        const columnBorder = isBorderCell(columnId) ? 'border-bottom' : false;
         const classNames = [
           'game-cell',
           `row-${rowId}`,
           `col-${columnId}`,
-          rowBorder,
-          columnBorder,
+          isBorderCell(rowId) ? 'border-right' : false,
+          isBorderCell(columnId) ? 'border-bottom' : false,
+          cell === '-' ? 'empty' : 'filled',
         ]
           .filter(Boolean)
           .join(' ');

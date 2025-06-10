@@ -1,3 +1,11 @@
+:root {
+  --border-color: #000000;
+  --filled: #dfdfdf;
+  --empty: #ffffff;
+  --highlight: #fec468;
+  --lowlight: #f9eac2;
+}
+
 .game {
   --columns: 9;
   --game-cell-size-min: 32px;
@@ -6,10 +14,10 @@
   align-items: center;
   align-content: center;
   aspect-ratio: 1;
-  border-bottom: 1px solid black;
-  border-left: 2.5px solid black;
-  border-right: 1px solid black;
-  border-top: 2.5px solid black;
+  border-bottom: 1px solid var(--border-color);
+  border-left: 2.5px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  border-top: 2.5px solid var(--border-color);
   display: flex;
   flex-shrink: 0;
   flex-wrap: wrap;
@@ -25,8 +33,8 @@
 .game-cell {
   align-items: center;
   aspect-ratio: 1;
-  background-color: white;
-  border: 0.5px solid black;
+  background-color: var(--empty);
+  border: 0.5px solid var(--border-color);
   box-sizing: border-box;
   display: flex;
   flex-shrink: 0;
@@ -39,10 +47,22 @@
   width: var(--game-cell-size);
 }
 
+.game-cell.filled {
+  background-color: var(--filled);
+}
+
+.game-cell.highlight {
+  background-color: var(--highlight);
+}
+
+.game-cell.lowlight {
+  background-color: var(--lowlight);
+}
+
 .game-cell.border-right {
-  border-right: 2px solid black;
+  border-right: 2px solid var(--border-color);
 }
 
 .game-cell.border-bottom {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--border-color);
 }

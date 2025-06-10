@@ -11,15 +11,12 @@ https://sudokutodo.com/
 - use arrow keys to navigte cells
 - don't use tab to navigate (number/icon) options, only use number key inputs or clicks
 
-## 4x4
+## 9x9
 
 Fairy - Pink-Red
 Fire - Orange
 Electric - Yellow
 Grass - Green
-
-## 9x9
-
 Ice - Light Blue
 Flying - White/Light Blue
 Water - Blue

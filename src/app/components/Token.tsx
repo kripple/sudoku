@@ -26,7 +26,7 @@ export function Token({
 
   return (
     <div className="token" ref={cursorRef}>
-      {icon ? <SvgIcon icon={icon} color={`var(--token-${icon})`} /> : null}
+      {icon ? <SvgIcon color={`var(--token-${icon})`} icon={icon} /> : null}
     </div>
   );
 }

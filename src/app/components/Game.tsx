@@ -1,5 +1,6 @@
-import { getSudoku } from 'sudoku-gen';
 import { useState } from 'react';
+import { getSudoku } from 'sudoku-gen';
+
 import { Token } from '@/app/components/Token';
 import { useCursor, useSetCursor } from '@/app/providers/CursorProvider';
 
@@ -9,10 +10,10 @@ const gameSize = 9 as const;
 
 export function Game() {
   const cursor = useCursor();
+  console.log({ cursor });
+
   const setCursor = useSetCursor();
-  const [sudoku, setSudoku] = useState<ReturnType<typeof getSudoku>>(
-    getSudoku('easy'),
-  );
+  const [sudoku] = useState<ReturnType<typeof getSudoku>>(getSudoku('easy'));
   const cells = sudoku.puzzle.split('');
 
   setCursor('1');
@@ -36,7 +37,7 @@ export function Game() {
           .join(' ');
 
         return (
-          <div key={`row-${rowId}-col-${columnId}`} className={classNames}>
+          <div className={classNames} key={`row-${rowId}-col-${columnId}`}>
             <Token token={cell} />
           </div>
         );

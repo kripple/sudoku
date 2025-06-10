@@ -1,12 +1,12 @@
+import { electric } from '@/app/assets/electric';
 import { fairy } from '@/app/assets/fairy';
 import { fire } from '@/app/assets/fire';
+import { flying } from '@/app/assets/flying';
+import { ghost } from '@/app/assets/ghost';
 import { grass } from '@/app/assets/grass';
 import { ice } from '@/app/assets/ice';
-import { electric } from '@/app/assets/electric';
-import { water } from '@/app/assets/water';
-import { flying } from '@/app/assets/flying';
 import { poison } from '@/app/assets/poison';
-import { ghost } from '@/app/assets/ghost';
+import { water } from '@/app/assets/water';
 
 const icons = {
   fairy,

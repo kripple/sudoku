@@ -1,11 +1,12 @@
 import {
   createContext,
-  useContext,
-  useState,
   useCallback,
+  useContext,
+  // useEffect,
   useRef,
-  useEffect,
+  useState,
 } from 'react';
+
 import { Token, TokenKey } from '@/app/components/Token';
 
 import '@/app/providers/CursorProvider.css';
@@ -26,7 +27,7 @@ export const useSetCursor = () => {
 export function CursorProvider({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const [cursor, _setCursor] = useState<TokenKey>();
-  const icon = cursor ? <Token token={cursor} cursorRef={ref} /> : null;
+  const icon = cursor ? <Token cursorRef={ref} token={cursor} /> : null;
 
   // useEffect(() => {
   //   const handleMouseMove = (e: MouseEvent) => {

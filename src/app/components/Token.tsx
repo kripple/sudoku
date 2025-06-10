@@ -13,13 +13,19 @@ const tokens = {
   '8': 'poison',
   '9': 'fairy',
 } as const;
-type Token = keyof typeof tokens;
+export type TokenKey = keyof typeof tokens;
 
-export function Token({ token }: { token: Token | string }) {
-  const icon = token in tokens ? tokens[token as Token] : undefined;
+export function Token({
+  token,
+  cursorRef,
+}: {
+  token: TokenKey | string;
+  cursorRef?: Ref<HTMLDivElement>;
+}) {
+  const icon = token in tokens ? tokens[token as TokenKey] : undefined;
 
   return (
-    <div className="token">
+    <div className="token" ref={cursorRef}>
       {icon ? <SvgIcon icon={icon} color={`var(--token-${icon})`} /> : null}
     </div>
   );

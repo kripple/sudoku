@@ -8,9 +8,10 @@
 
 :root {
   --game-columns: 9;
+  --game-size: 90vmin;
   --game-cell-size-min: 32px;
   --game-cell-size-max: 64px;
-  --game-cell-size: calc(90vmin / var(--game-columns));
+  --game-cell-size: calc(var(--game-size) / var(--game-columns));
 }
 
 .game {

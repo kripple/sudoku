@@ -1,8 +1,8 @@
 :root {
-  --cursor-select-padding: 6px;
-  --cursor-select-option-size: calc(
-    var(--game-cell-size-min) + (2 * var(--cursor-select-padding))
-  );
+  --select-options: 10;
+  --select-options-size-min: 18px;
+  --select-options-size-max: 48px;
+  --select-options-size: calc(var(--game-size) / var(--select-options));
 }
 
 .cursor-select {
@@ -10,40 +10,33 @@
   border-radius: 2px;
   box-sizing: border-box;
   display: flex;
-  max-width: calc(var(--game-cell-size-max) * var(--game-columns));
+  max-width: var(--game-size);
 }
 
 .cursor-option {
-  align-items: center;
-  aspect-ratio: 1;
-  box-sizing: border-box;
   cursor: pointer;
   display: flex;
-  flex-shrink: 0;
-  height: var(--game-cell-size);
-  justify-content: center;
-  max-height: var(--game-cell-size-max);
-  max-width: var(--game-cell-size-max);
-  min-height: var(--game-cell-size-min);
-  min-width: var(--game-cell-size-min);
+  max-height: var(--select-options-size-max);
+  max-width: var(--select-options-size-max);
   transition: filter 100ms ease;
   transition-delay: 50ms;
-  width: var(--game-cell-size);
+  width: var(--select-options-size);
 }
-.cursor-option .token {
+.cursor-option:hover {
+  filter: drop-shadow(4px 4px 2px #00000099);
+}
+
+.cursor-option > * {
+  display: flex;
+  height: 100%;
   transform: scale(0.8);
   transition: transform 150ms ease-in;
 }
 .cursor-option:hover .token {
   transform: scale(0.8) translateX(-2px) translateY(-2px);
 }
-.cursor-option:hover {
-  filter: drop-shadow(4px 4px 2px #00000099);
-}
-
 .cursor-option .symbol {
   transform: scale(0.65);
-  transition: transform 150ms ease-in;
 }
 .cursor-option:hover .symbol {
   transform: scale(0.65) translateX(-2px) translateY(-2px);

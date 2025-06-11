@@ -1,3 +1,5 @@
+import '@/app/components/Symbol.css';
+
 export function Symbol() {
-  return <i className="symbol-x" />;
+  return <div className="symbol symbol-x" />;
 }

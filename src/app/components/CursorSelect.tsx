@@ -1,3 +1,4 @@
+import { Symbol } from '@/app/components/Symbol';
 import { Token } from '@/app/components/Token';
 import { useSetCursor } from '@/app/providers/CursorProvider';
 import { tokenKeys } from '@/constants/tokens';
@@ -21,6 +22,13 @@ export function CursorSelect() {
           </div>
         );
       })}
+      <div
+        className="cursor-option"
+        onClick={() => setCursor(undefined)}
+        role="radio"
+      >
+        <Symbol />
+      </div>
     </div>
   );
 }

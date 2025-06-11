@@ -35,10 +35,18 @@
   transition: transform 150ms ease-in;
 }
 .cursor-option:hover .token {
-  transform: scale(0.9) translateX(-2px) translateY(-2px);
+  transform: scale(0.8) translateX(-2px) translateY(-2px);
 }
 .cursor-option:hover {
   filter: drop-shadow(4px 4px 2px #00000099);
+}
+
+.cursor-option .symbol {
+  transform: scale(0.65);
+  transition: transform 150ms ease-in;
+}
+.cursor-option:hover .symbol {
+  transform: scale(0.65) translateX(-2px) translateY(-2px);
 }
 
 @media screen and (max-width: 100vh) {

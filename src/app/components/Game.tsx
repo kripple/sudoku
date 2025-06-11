@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getSudoku } from 'sudoku-gen';
 
 import { Cell } from '@/app/components/Cell';
+import { useConfetti } from '@/app/hooks/useConfetti';
 import { useStateRef } from '@/app/hooks/useStateRef';
 import { emptyCell, gameSize } from '@/constants/config';
 import { replaceAt } from '@/utils/string-replace';
@@ -17,6 +18,9 @@ export function Game() {
 
   const [input, setInput] = useState<string>(sudoku.puzzle);
   const inputs = input.split('');
+
+  const win = sudoku.solution === input;
+  useConfetti(win);
 
   const [selected, setSelected, selectedRef] = useStateRef<number>(
     cells.findIndex((value) => value === emptyCell),
@@ -71,6 +75,7 @@ export function Game() {
     };
     document.body.addEventListener('keydown', handleKeyDown);
     return () => document.body.removeEventListener('keydown', handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

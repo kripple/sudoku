@@ -29,7 +29,11 @@ const importSortingRules = {
 const defaultRules = {
   '@typescript-eslint/no-unused-vars': [
     'warn',
-    { argsIgnorePattern: '^_', ignoreRestSiblings: true },
+    {
+      argsIgnorePattern: '^_',
+      varsIgnorePattern: '^_',
+      ignoreRestSiblings: true,
+    },
   ],
   'react/jsx-sort-props': 'warn',
   'react/prop-types': 'off',

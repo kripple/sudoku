@@ -27,20 +27,22 @@ export function Cell({
   const colId = Math.floor(index / gameSize) + 1;
 
   const isBorderCell = (id: number) => id % Math.sqrt(gameSize) === 0;
+  const initiallyEmpty = initialValue === emptyCell;
+  const incorrect =
+    initiallyEmpty && currentValue !== emptyCell && currentValue !== solution
+      ? 'incorrect'
+      : false;
+  const highlight = selected ? 'highlight' : false;
+
   const classNames = [
     'game-cell',
     `row-${rowId}`,
     `col-${colId}`,
     isBorderCell(rowId) ? 'border-right' : false,
     isBorderCell(colId) ? 'border-bottom' : false,
-    initialValue === emptyCell ? 'empty' : 'filled',
-    currentValue === emptyCell ? 'unfilled' : false,
-    initialValue === emptyCell &&
-    currentValue !== emptyCell &&
-    currentValue !== solution
-      ? 'incorrect'
-      : false,
-    selected ? 'highlight' : false,
+    initiallyEmpty ? 'empty' : 'filled',
+    incorrect,
+    highlight,
   ]
     .filter(Boolean)
     .join(' ');
@@ -49,15 +51,16 @@ export function Cell({
     <div
       className={classNames}
       key={`row-${rowId}-col-${colId}`}
-      onClick={
-        initialValue === emptyCell
-          ? () => {
-              cursor
-                ? setInput((draft) => replaceAt(draft, index, cursor))
-                : setSelected(index);
-            }
-          : undefined
-      }
+      onClick={() => {
+        cursor
+          ? initiallyEmpty &&
+            setInput((draft) =>
+              currentValue === emptyCell
+                ? replaceAt(draft, index, cursor)
+                : replaceAt(draft, index, emptyCell),
+            )
+          : setSelected(index);
+      }}
     >
       <Token token={currentValue} />
     </div>

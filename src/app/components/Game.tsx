@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getSudoku } from 'sudoku-gen';
 
 import { Cell } from '@/app/components/Cell';
 import { useConfetti } from '@/app/hooks/useConfetti';
+import { useKeyboard } from '@/app/hooks/useKeyboard';
 import { useStateRef } from '@/app/hooks/useStateRef';
-import { emptyCell, gameSize } from '@/constants/config';
-import { replaceAt } from '@/utils/string-replace';
+import { emptyCell } from '@/constants/config';
 
 import '@/app/components/Game.css';
 
@@ -25,58 +25,7 @@ export function Game() {
   const [selected, setSelected, selectedRef] = useStateRef<number>(
     cells.findIndex((value) => value === emptyCell),
   );
-
-  const handleArrowUp = () => {
-    setSelected((current) => {
-      const colId = Math.floor(current / gameSize) + 1;
-      return colId === 1 ? current : current - gameSize;
-    });
-  };
-
-  const handleArrowDown = () => {
-    setSelected((current) => {
-      const colId = Math.floor(current / gameSize) + 1;
-      return colId === gameSize ? current : current + gameSize;
-    });
-  };
-
-  const handleArrowRight = () => {
-    setSelected((current) => {
-      const rowId = (current % gameSize) + 1;
-      return rowId === gameSize ? current : current + 1;
-    });
-  };
-
-  const handleArrowLeft = () => {
-    setSelected((current) => {
-      const rowId = (current % gameSize) + 1;
-      return rowId === 1 ? current : current - 1;
-    });
-  };
-
-  const handleBackspace = () => {
-    const readonlyCells = sudokuRef.current.puzzle.split('');
-    const isEditable = readonlyCells[selectedRef.current] === emptyCell;
-    setInput((draft) =>
-      isEditable ? replaceAt(draft, selectedRef.current, emptyCell) : draft,
-    );
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      const keys = {
-        ArrowUp: handleArrowUp,
-        ArrowDown: handleArrowDown,
-        ArrowRight: handleArrowRight,
-        ArrowLeft: handleArrowLeft,
-        Backspace: handleBackspace,
-      };
-      if (event.key in keys) keys[event.key as keyof typeof keys]();
-    };
-    document.body.addEventListener('keydown', handleKeyDown);
-    return () => document.body.removeEventListener('keydown', handleKeyDown);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  useKeyboard({ sudokuRef, indexRef: selectedRef, setInput, setSelected });
 
   return (
     <div className="game">

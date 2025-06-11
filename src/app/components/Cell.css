@@ -12,23 +12,9 @@
   max-width: var(--game-cell-size-max);
   min-height: var(--game-cell-size-min);
   min-width: var(--game-cell-size-min);
+  overflow: hidden;
+  position: relative;
   width: var(--game-cell-size);
-}
-
-.game-cell.filled {
-  background-color: var(--filled);
-}
-
-.game-cell.highlight {
-  background-color: var(--highlight);
-  cursor: pointer;
-}
-.game-cell.highlight .token {
-  background-color: transparent;
-}
-
-.game-cell.lowlight {
-  background-color: var(--lowlight);
 }
 
 .game-cell.border-right {
@@ -39,10 +25,18 @@
   border-bottom: 2px solid var(--border-color);
 }
 
-.game-cell.incorrect {
-  overflow: hidden;
-  position: relative;
+.game-cell.highlight .token {
+  background-color: transparent;
 }
+
+.game-cell.filled {
+  background-color: var(--filled);
+}
+
+.game-cell.highlight {
+  background-color: var(--highlight);
+}
+
 .game-cell.incorrect::after {
   background-color: #ff4b56;
   content: '';

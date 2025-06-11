@@ -1,3 +1,7 @@
+:root {
+  --stroke-color: #444444;
+}
+
 .main {
   align-content: center;
   align-items: center;

@@ -11,6 +11,9 @@ declare type ClickEvent = import('@/types/react').ReactMouseEvent<
   MouseEvent
 >;
 
+declare type KeyboardEvent =
+  import('@/types/react').ReactKeyboardEvent<HTMLBodyElement>;
+
 declare type SetState<T> = import('@/types/react').SetState<T>;
 
 declare type Ref<T> = import('@/types/react').Ref<T>;

@@ -1,5 +1,4 @@
 import { type RefObject, useEffect } from 'react';
-import type { getSudoku } from 'sudoku-gen';
 
 import { emptyCell, gameSize } from '@/constants/config';
 import { replaceAt } from '@/utils/string-replace';
@@ -10,7 +9,11 @@ export function useKeyboard({
   setInput,
   setSelected,
 }: {
-  sudokuRef: RefObject<ReturnType<typeof getSudoku>>;
+  sudokuRef: RefObject<{
+    puzzle: string;
+    solution: string;
+    difficulty: string;
+  }>;
   indexRef: RefObject<number>;
   setInput: SetState<string>;
   setSelected: SetState<number>;

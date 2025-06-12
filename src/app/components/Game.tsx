@@ -1,18 +1,16 @@
 import { useState } from 'react';
-import { getSudoku } from 'sudoku-gen';
 
 import { Cell } from '@/app/components/Cell';
 import { useConfetti } from '@/app/hooks/useConfetti';
 import { useKeyboard } from '@/app/hooks/useKeyboard';
 import { useStateRef } from '@/app/hooks/useStateRef';
+import { useStorage } from '@/app/hooks/useStorage';
 import { emptyCell } from '@/constants/config';
 
 import '@/app/components/Game.css';
 
 export function Game() {
-  const [sudoku, _setSudoku, sudokuRef] = useStateRef<
-    ReturnType<typeof getSudoku>
-  >(getSudoku('easy'));
+  const [sudoku, sudokuRef] = useStorage();
   const cells = sudoku.puzzle.split('');
   const solution = sudoku.solution.split('');
 

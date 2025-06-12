@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { Cell } from '@/app/components/Cell';
 import { useConfetti } from '@/app/hooks/useConfetti';
 import { useKeyboard } from '@/app/hooks/useKeyboard';
@@ -10,11 +8,9 @@ import { emptyCell } from '@/constants/config';
 import '@/app/components/Game.css';
 
 export function Game() {
-  const [sudoku, sudokuRef] = useStorage();
+  const [sudoku, sudokuRef, input, setInput] = useStorage();
   const cells = sudoku.puzzle.split('');
   const solution = sudoku.solution.split('');
-
-  const [input, setInput] = useState<string>(sudoku.puzzle);
   const inputs = input.split('');
 
   const win = sudoku.solution === input;

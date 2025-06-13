@@ -12,6 +12,8 @@
   --game-cell-size: calc(var(--game-size) / var(--game-columns));
   --game-size-min: calc(var(--game-cell-size-min) * var(--game-columns));
   --game-size-max: calc(var(--game-cell-size-max) * var(--game-columns));
+  --token-scale: scale(0.75);
+  --candidate-tokens-size: 115%;
 }
 
 .game {

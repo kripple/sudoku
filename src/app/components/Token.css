@@ -15,7 +15,6 @@
   aspect-ratio: 1;
   border-radius: var(--game-cell-size-max);
   display: flex;
-
   height: var(--game-cell-size);
   justify-content: center;
   max-height: var(--game-cell-size-max);

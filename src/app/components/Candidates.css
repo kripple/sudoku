@@ -1,17 +1,26 @@
 .candidates {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
+  height: var(--candidate-tokens-size);
+  justify-content: center;
   position: relative;
-  width: 100%;
+  width: var(--candidate-tokens-size);
+}
+
+.candidates .token::before {
+  content: none;
 }
 
 .candidate {
+  display: flex;
   height: 33%;
   width: 33%;
 }
 
 .candidate-label {
+  align-items: center;
+  aspect-ratio: 1;
   cursor: pointer;
   display: flex;
   height: 100%;
@@ -20,15 +29,12 @@
 }
 
 .candidate-label .token {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: center;
+  height: inherit;
   max-height: unset;
   max-width: unset;
   min-height: unset;
   min-width: unset;
-  width: 100%;
+  width: inherit;
 }
 
 .candidate-input:disabled ~ .candidate-label {
@@ -41,7 +47,7 @@
 
 .candidate-input ~ .candidate-label .token {
   opacity: 0;
-  transition: opacity 500ms ease;
+  transition: opacity 400ms ease;
 }
 
 .candidate-input ~ .candidate-label:hover .token {
@@ -54,9 +60,4 @@
 
 .candidate-input:checked ~ .candidate-label .token {
   opacity: 1;
-}
-
-.candidate-label .token svg {
-  height: 75%;
-  width: 75%;
 }

@@ -46,11 +46,12 @@ export function useKeyboard({
     });
   };
 
-  const handleBackspace = () => {
+  const setCellValue = (key?: string) => () => {
     const readonlyCells = sudokuRef.current.puzzle.split('');
     const isEditable = readonlyCells[indexRef.current] === emptyCell;
+    const value = key === undefined ? emptyCell : key;
     setInput((draft) =>
-      isEditable ? replaceAt(draft, indexRef.current, emptyCell) : draft,
+      isEditable ? replaceAt(draft, indexRef.current, value) : draft,
     );
   };
 
@@ -61,7 +62,16 @@ export function useKeyboard({
         ArrowDown: handleArrowDown,
         ArrowRight: handleArrowRight,
         ArrowLeft: handleArrowLeft,
-        Backspace: handleBackspace,
+        Backspace: setCellValue(),
+        1: setCellValue('1'),
+        2: setCellValue('2'),
+        3: setCellValue('3'),
+        4: setCellValue('4'),
+        5: setCellValue('5'),
+        6: setCellValue('6'),
+        7: setCellValue('7'),
+        8: setCellValue('8'),
+        9: setCellValue('9'),
       };
       if (event.key in keys) keys[event.key as keyof typeof keys]();
     };

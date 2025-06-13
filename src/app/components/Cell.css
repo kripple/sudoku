@@ -25,16 +25,15 @@
   border-bottom: 2px solid var(--border-color);
 }
 
-.game-cell.highlight .token {
-  background-color: transparent;
-}
-
 .game-cell.filled {
   background-color: var(--filled);
 }
 
 .game-cell.highlight {
-  background-color: var(--highlight);
+  border-radius: 4px;
+  filter: drop-shadow(0px 0px 2px #00000099);
+  transform: scale(1.2);
+  z-index: 10;
 }
 
 .game-cell.incorrect::after {

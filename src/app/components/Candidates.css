@@ -33,23 +33,30 @@
 
 .candidate-input:disabled ~ .candidate-label {
   cursor: default;
+  pointer-events: none;
 }
-
 .candidate-input ~ .candidate-label {
-  /* visibility: hidden; */
+  pointer-events: all;
 }
 
-.candidate-input:checked ~ .candidate-label,
-.candidate-input ~ .candidate-label:hover {
-  visibility: visible;
+.candidate-input ~ .candidate-label .token {
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.candidate-input ~ .candidate-label:hover .token {
+  opacity: 0.5;
+}
+
+.candidate-input:disabled ~ .candidate-label .token {
+  opacity: 0;
+}
+
+.candidate-input:checked ~ .candidate-label .token {
+  opacity: 1;
 }
 
 .candidate-label .token svg {
-  height: 70%;
-  width: 70%;
+  height: 75%;
+  width: 75%;
 }
-
-/* .candidate-label .token svg {
-  height: 80%;
-  width: 80%;
-} */

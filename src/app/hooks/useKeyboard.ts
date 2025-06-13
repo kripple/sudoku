@@ -72,6 +72,7 @@ export function useKeyboard({
         7: setCellValue('7'),
         8: setCellValue('8'),
         9: setCellValue('9'),
+        // TODO: escape key clears cursor value
       };
       if (event.key in keys) keys[event.key as keyof typeof keys]();
     };

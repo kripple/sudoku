@@ -11,7 +11,9 @@
   "scripts": {
     "start": "vite",
     "lint": "eslint . && stylelint '**/*.css' && prettier --check .",
-    "optimize": "svgo src/app/assets --config src/app/config/svgo.config.mjs"
+    "optimize": "svgo src/app/assets --config src/app/config/svgo.config.mjs",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",

@@ -31,7 +31,6 @@
 
 .token svg {
   aspect-ratio: 1;
-  margin: -1px; /* prevent edge bleed from subpixel rendering */
   overflow: visible;
   stroke: var(--stroke-color);
   stroke-linecap: round;

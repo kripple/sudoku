@@ -18,7 +18,7 @@ export function Game() {
   useConfetti(win);
 
   const [selected, setSelected, selectedRef] = useStateRef<number>(
-    cells.findIndex((value) => value === emptyCell),
+    inputs.findIndex((value) => value === emptyCell),
   );
   const initiallyEmpty = cells[selected] === emptyCell;
   useKeyboard({ sudokuRef, indexRef: selectedRef, setInput, setSelected });

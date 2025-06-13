@@ -16,7 +16,7 @@ export function TokenSelect({
   setInput: SetState<string>;
 }) {
   return (
-    <div className="token-select" role="radiogroup">
+    <div className="token-select">
       {tokenKeys.map((key) => {
         return (
           <div
@@ -26,7 +26,6 @@ export function TokenSelect({
               initiallyEmpty &&
                 setInput((draft) => replaceAt(draft, index, key));
             }}
-            role="radio"
           >
             <Token token={key} />
           </div>
@@ -38,7 +37,6 @@ export function TokenSelect({
           initiallyEmpty &&
             setInput((draft) => replaceAt(draft, index, emptyCell));
         }}
-        role="radio"
       >
         <Symbol />
       </div>

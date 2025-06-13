@@ -1,7 +1,6 @@
 import { Candidates } from '@/app/components/Candidates';
 import { Token } from '@/app/components/Token';
 import { emptyCell, gameSize } from '@/constants/config';
-import { replaceAt } from '@/utils/string-replace';
 
 import '@/app/components/Cell.css';
 

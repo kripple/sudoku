@@ -10,23 +10,31 @@
   --token-ghost: #923fdf;
 }
 
-:root {
-  --token-margin: 9px;
-  --token-size: calc(var(--game-cell-size) - var(--token-margin));
-  --token-size-max: calc(var(--game-cell-size-max) - var(--token-margin));
-  --token-size-min: calc(var(--game-cell-size-min) - var(--token-margin));
-}
-
 .token {
+  align-items: center;
   aspect-ratio: 1;
-  background-color: var(--empty);
-  border-radius: var(--token-size-max);
-  height: var(--token-size);
-  max-height: var(--token-size-max);
-  max-width: var(--token-size-max);
-  min-height: var(--token-size-min);
-  min-width: var(--token-size-min);
-  width: var(--token-size);
+  border-radius: var(--game-cell-size-max);
+  display: flex;
+
+  height: var(--game-cell-size);
+  justify-content: center;
+  max-height: var(--game-cell-size-max);
+  max-width: var(--game-cell-size-max);
+  min-height: var(--game-cell-size-min);
+  min-width: var(--game-cell-size-min);
+  position: relative;
+  transform: var(--token-scale);
+  transform-style: preserve-3d;
+  transition: transform 150ms ease-in;
+  width: var(--game-cell-size);
+}
+.token::before {
+  background-color: var(--white);
+  content: '';
+  height: 100%;
+  position: absolute;
+  transform: translateZ(-1px);
+  width: 100%;
 }
 
 .token svg {

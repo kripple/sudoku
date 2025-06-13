@@ -1,4 +1,3 @@
-import { Symbol } from '@/app/components/Symbol';
 import { Token } from '@/app/components/Token';
 import { emptyCell } from '@/constants/config';
 import { tokenKeys } from '@/constants/tokens';
@@ -31,7 +30,7 @@ export function TokenSelect({
           </div>
         );
       })}
-      <div
+      {/* <div
         className="token-option"
         onClick={() => {
           initiallyEmpty &&
@@ -39,7 +38,7 @@ export function TokenSelect({
         }}
       >
         <Symbol />
-      </div>
+      </div> */}
     </div>
   );
 }

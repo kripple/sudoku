@@ -1,39 +1,30 @@
+:root {
+  --game-inner-border: 2px solid var(--border-color);
+  --game-border: 3px solid var(--border-color);
+}
+
 .game-cell {
+  background-color: var(--white);
+  border: 0.5px solid var(--border-color);
+}
+
+.game-cell,
+.token-option {
   align-items: center;
   aspect-ratio: 1;
-  background-color: var(--empty);
-  border: 0.5px solid var(--border-color);
-  box-sizing: border-box;
   display: flex;
-  flex-shrink: 0;
   height: var(--game-cell-size);
   justify-content: center;
   max-height: var(--game-cell-size-max);
   max-width: var(--game-cell-size-max);
   min-height: var(--game-cell-size-min);
   min-width: var(--game-cell-size-min);
-  overflow: hidden;
   position: relative;
   width: var(--game-cell-size);
 }
 
-.game-cell.border-right {
-  border-right: 2px solid var(--border-color);
-}
-
-.game-cell.border-bottom {
-  border-bottom: 2px solid var(--border-color);
-}
-
 .game-cell.filled {
   background-color: var(--filled);
-}
-
-.game-cell.highlight {
-  border-radius: 4px;
-  filter: drop-shadow(0px 0px 2px #00000099);
-  transform: scale(1.15);
-  z-index: 10;
 }
 
 .game-cell.incorrect::after {
@@ -45,4 +36,30 @@
   top: 50%;
   transform: translate(-50%, -50%) rotate(-45deg);
   width: 150%;
+}
+
+.game-cell.inner-border-bottom {
+  border-bottom: var(--game-inner-border);
+}
+.game-cell.inner-border-right {
+  border-right: var(--game-inner-border);
+}
+.game-cell.outer-border-top {
+  border-top: var(--game-border);
+}
+.game-cell.outer-border-bottom {
+  border-bottom: var(--game-border);
+}
+.game-cell.outer-border-left {
+  border-left: var(--game-border);
+}
+.game-cell.outer-border-right {
+  border-right: var(--game-border);
+}
+
+.game-cell.selected {
+  border-radius: 4px;
+  filter: drop-shadow(0px 0px 2px #00000099);
+  transform: scale(1.15);
+  z-index: 10;
 }

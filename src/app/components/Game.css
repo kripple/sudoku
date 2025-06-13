@@ -1,7 +1,7 @@
 :root {
   --border-color: #000000;
   --filled: #dfdfdf;
-  --empty: #ffffff;
+  --white: #ffffff;
 }
 
 :root {
@@ -10,6 +10,8 @@
   --game-cell-size-min: 32px;
   --game-cell-size-max: 64px;
   --game-cell-size: calc(var(--game-size) / var(--game-columns));
+  --game-size-min: calc(var(--game-cell-size-min) * var(--game-columns));
+  --game-size-max: calc(var(--game-cell-size-max) * var(--game-columns));
 }
 
 .game {
@@ -23,22 +25,49 @@
   width: 100%;
 }
 
-.game-board {
+.game-board,
+.token-select {
   align-content: center;
   align-items: center;
   aspect-ratio: 1;
-  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.game-board {
+  /* border-bottom: 1px solid var(--border-color);
   border-left: 2.5px solid var(--border-color);
   border-right: 1px solid var(--border-color);
-  border-top: 2.5px solid var(--border-color);
-  display: flex;
-  flex-shrink: 0;
-  flex-wrap: wrap;
-  height: calc(var(--game-cell-size) * var(--game-columns));
-  justify-content: center;
-  max-height: calc(var(--game-cell-size-max) * var(--game-columns));
-  max-width: calc(var(--game-cell-size-max) * var(--game-columns));
-  min-height: calc(var(--game-cell-size-min) * var(--game-columns));
-  min-width: calc(var(--game-cell-size-min) * var(--game-columns));
-  width: calc(var(--game-cell-size) * var(--game-columns));
+  border-top: 2.5px solid var(--border-color); */
+  height: var(--game-size);
+  max-height: var(--game-size-max);
+  max-width: var(--game-size-max);
+  min-height: var(--game-size-min);
+  min-width: var(--game-size-min);
+  width: var(--game-size);
+}
+
+@media screen and (max-height: 100vw) {
+  .token-select {
+    flex-direction: column;
+    height: var(--game-size);
+    max-height: var(--game-size-max);
+    max-width: var(--game-cell-size-max);
+    min-height: var(--game-size-min);
+    min-width: var(--game-cell-size-min);
+    width: var(--game-cell-size);
+  }
+}
+
+@media screen and (max-width: 100vh) {
+  .token-select {
+    flex-direction: row;
+    height: var(--game-cell-size);
+    max-height: var(--game-cell-size-max);
+    max-width: var(--game-size-max);
+    min-height: var(--game-cell-size-min);
+    min-width: var(--game-size-min);
+    width: var(--game-size);
+  }
 }

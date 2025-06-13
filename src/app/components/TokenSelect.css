@@ -1,55 +1,23 @@
 :root {
-  --select-options: 10;
-  --select-options-size-min: 18px;
-  --select-options-size-max: 48px;
-  --select-options-size: calc(var(--game-size) / var(--select-options));
+  --token-scale: scale(0.8);
 }
 
 .token-select {
   background-color: #00000066;
   border-radius: 2px;
-  box-sizing: border-box;
-  display: flex;
-  max-width: var(--game-size);
 }
 
 .token-option {
-  cursor: pointer;
-  display: flex;
-  max-height: var(--select-options-size-max);
-  max-width: var(--select-options-size-max);
   transition: filter 100ms ease;
   transition-delay: 50ms;
-  width: var(--select-options-size);
 }
-.token-option:hover {
+.token-option:not(.complete) {
+  cursor: pointer;
+}
+.token-option:not(.complete):hover {
   filter: drop-shadow(4px 4px 2px #00000099);
 }
 
-.token-option > * {
-  display: flex;
-  height: 100%;
-  transform: scale(0.8);
-  transition: transform 150ms ease-in;
-}
-.token-option:hover .token {
-  transform: scale(0.8) translateX(-2px) translateY(-2px);
-}
-.token-option .symbol {
-  transform: scale(0.65);
-}
-.token-option:hover .symbol {
-  transform: scale(0.65) translateX(-2px) translateY(-2px);
-}
-
-@media screen and (max-width: 100vh) {
-  .token-select {
-    flex-direction: row;
-  }
-}
-
-@media screen and (max-height: 100vw) {
-  .token-select {
-    flex-direction: column;
-  }
+.token-option:not(.complete):hover .token {
+  transform: var(--token-scale) translateX(-2px) translateY(-2px);
 }

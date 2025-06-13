@@ -45,7 +45,7 @@
 }
 
 .candidate-input ~ .candidate-label:hover .token {
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .candidate-input:disabled ~ .candidate-label .token {

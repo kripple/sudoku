@@ -5,6 +5,8 @@ import { tokenKeys } from '@/constants/tokens';
 
 import '@/app/components/Candidates.css';
 
+// TODO: save candidates state to local storage
+
 export function Candidates({ readOnly }: { readOnly: boolean }) {
   const componentId = useId();
 

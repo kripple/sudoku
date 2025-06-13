@@ -5,7 +5,7 @@
   --select-options-size: calc(var(--game-size) / var(--select-options));
 }
 
-.cursor-select {
+.token-select {
   background-color: #00000066;
   border-radius: 2px;
   box-sizing: border-box;
@@ -13,7 +13,7 @@
   max-width: var(--game-size);
 }
 
-.cursor-option {
+.token-option {
   cursor: pointer;
   display: flex;
   max-height: var(--select-options-size-max);
@@ -22,34 +22,34 @@
   transition-delay: 50ms;
   width: var(--select-options-size);
 }
-.cursor-option:hover {
+.token-option:hover {
   filter: drop-shadow(4px 4px 2px #00000099);
 }
 
-.cursor-option > * {
+.token-option > * {
   display: flex;
   height: 100%;
   transform: scale(0.8);
   transition: transform 150ms ease-in;
 }
-.cursor-option:hover .token {
+.token-option:hover .token {
   transform: scale(0.8) translateX(-2px) translateY(-2px);
 }
-.cursor-option .symbol {
+.token-option .symbol {
   transform: scale(0.65);
 }
-.cursor-option:hover .symbol {
+.token-option:hover .symbol {
   transform: scale(0.65) translateX(-2px) translateY(-2px);
 }
 
 @media screen and (max-width: 100vh) {
-  .cursor-select {
+  .token-select {
     flex-direction: row;
   }
 }
 
 @media screen and (max-height: 100vw) {
-  .cursor-select {
+  .token-select {
     flex-direction: column;
   }
 }

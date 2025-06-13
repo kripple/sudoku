@@ -1,4 +1,5 @@
 import { Cell } from '@/app/components/Cell';
+import { TokenSelect } from '@/app/components/TokenSelect';
 import { useConfetti } from '@/app/hooks/useConfetti';
 import { useKeyboard } from '@/app/hooks/useKeyboard';
 import { useStateRef } from '@/app/hooks/useStateRef';
@@ -19,22 +20,29 @@ export function Game() {
   const [selected, setSelected, selectedRef] = useStateRef<number>(
     cells.findIndex((value) => value === emptyCell),
   );
+  const initiallyEmpty = cells[selected] === emptyCell;
   useKeyboard({ sudokuRef, indexRef: selectedRef, setInput, setSelected });
 
   return (
     <div className="game">
-      {inputs.map((input, i) => (
-        <Cell
-          currentValue={input}
-          index={i}
-          initialValue={cells[i]}
-          key={i}
-          selected={i === selected}
-          setInput={setInput}
-          setSelected={setSelected}
-          solution={solution[i]}
-        />
-      ))}
+      <div className="game-board">
+        {inputs.map((input, i) => (
+          <Cell
+            currentValue={input}
+            index={i}
+            initialValue={cells[i]}
+            key={i}
+            selected={i === selected}
+            setSelected={setSelected}
+            solution={solution[i]}
+          />
+        ))}
+      </div>
+      <TokenSelect
+        initiallyEmpty={initiallyEmpty}
+        selectedIndex={selected}
+        setInput={setInput}
+      />
     </div>
   );
 }

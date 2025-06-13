@@ -1,6 +1,5 @@
 import { Candidates } from '@/app/components/Candidates';
 import { Token } from '@/app/components/Token';
-import { useCursor } from '@/app/providers/CursorProvider';
 import { emptyCell, gameSize } from '@/constants/config';
 import { replaceAt } from '@/utils/string-replace';
 
@@ -12,7 +11,6 @@ export function Cell({
   currentValue,
   solution,
   selected,
-  setInput,
   setSelected,
 }: {
   index: number;
@@ -20,14 +18,13 @@ export function Cell({
   currentValue: string;
   solution: string;
   selected: boolean;
-  setInput: SetState<string>;
   setSelected: SetState<number>;
 }) {
-  const cursor = useCursor();
   const rowId = (index % gameSize) + 1;
   const colId = Math.floor(index / gameSize) + 1;
 
-  const isBorderCell = (id: number) => id % Math.sqrt(gameSize) === 0;
+  const isBorderCell = (id: number) =>
+    !selected && id % Math.sqrt(gameSize) === 0;
   const initiallyEmpty = initialValue === emptyCell;
   const incorrect =
     initiallyEmpty && currentValue !== emptyCell && currentValue !== solution
@@ -52,16 +49,7 @@ export function Cell({
     <div
       className={classNames}
       key={`row-${rowId}-col-${colId}`}
-      onClick={() => {
-        cursor
-          ? initiallyEmpty &&
-            setInput((draft) =>
-              currentValue === emptyCell
-                ? replaceAt(draft, index, cursor)
-                : replaceAt(draft, index, emptyCell),
-            )
-          : setSelected(index);
-      }}
+      onClick={() => setSelected(index)}
     >
       <Token token={currentValue}>
         <Candidates readOnly={!selected} />

@@ -3,12 +3,18 @@ import { type Token as TokenKey, tokens } from '@/constants/tokens';
 
 import '@/app/components/Token.css';
 
-export function Token({ token }: { token: TokenKey | string }) {
+export function Token({
+  children,
+  token,
+}: {
+  children?: ReactNode;
+  token: TokenKey | string;
+}) {
   const icon = token in tokens ? tokens[token as TokenKey] : undefined;
 
   return (
     <div className="token">
-      {icon ? <SvgIcon color={`var(--token-${icon})`} icon={icon} /> : null}
+      {icon ? <SvgIcon color={`var(--token-${icon})`} icon={icon} /> : children}
     </div>
   );
 }

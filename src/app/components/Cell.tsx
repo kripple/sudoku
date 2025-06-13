@@ -1,3 +1,4 @@
+import { Candidates } from '@/app/components/Candidates';
 import { Token } from '@/app/components/Token';
 import { useCursor } from '@/app/providers/CursorProvider';
 import { emptyCell, gameSize } from '@/constants/config';
@@ -62,7 +63,9 @@ export function Cell({
           : setSelected(index);
       }}
     >
-      <Token token={currentValue} />
+      <Token token={currentValue}>
+        <Candidates readOnly={!selected} />
+      </Token>
     </div>
   );
 }

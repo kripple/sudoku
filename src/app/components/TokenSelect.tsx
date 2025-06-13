@@ -1,5 +1,4 @@
 import { Token } from '@/app/components/Token';
-import { emptyCell } from '@/constants/config';
 import { tokenKeys } from '@/constants/tokens';
 import { replaceAt } from '@/utils/string-replace';
 

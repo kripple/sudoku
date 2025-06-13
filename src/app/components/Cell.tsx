@@ -1,4 +1,3 @@
-import { Candidates } from '@/app/components/Candidates';
 import { Token } from '@/app/components/Token';
 import { emptyCell, gameSize } from '@/constants/config';
 
@@ -10,6 +9,7 @@ export function Cell({
   currentValue,
   solution,
   selected,
+  children,
   setSelected,
 }: {
   index: number;
@@ -17,6 +17,7 @@ export function Cell({
   currentValue: string;
   solution: string;
   selected: boolean;
+  children?: ReactNode;
   setSelected: SetState<number>;
 }) {
   const colId = (index % gameSize) + 1;
@@ -64,9 +65,7 @@ export function Cell({
       key={`row-${rowId}-col-${colId}`}
       onClick={() => setSelected(index)}
     >
-      <Token token={currentValue}>
-        <Candidates readOnly={!selected} />
-      </Token>
+      <Token token={currentValue}>{children}</Token>
     </div>
   );
 }

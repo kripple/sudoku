@@ -1,3 +1,4 @@
+import { Candidates } from '@/app/components/Candidates';
 import { Cell } from '@/app/components/Cell';
 import { TokenSelect } from '@/app/components/TokenSelect';
 import { useConfetti } from '@/app/hooks/useConfetti';
@@ -9,7 +10,8 @@ import { emptyCell } from '@/constants/config';
 import '@/app/components/Game.css';
 
 export function Game() {
-  const [sudoku, sudokuRef, input, setInput] = useStorage();
+  const [sudoku, sudokuRef, input, setInput, candidates, setCandidates] =
+    useStorage();
   const cells = sudoku.puzzle.split('');
   const solution = sudoku.solution.split('');
   const inputs = input.split('');
@@ -17,10 +19,10 @@ export function Game() {
   const win = sudoku.solution === input;
   useConfetti(win);
 
-  const [selected, setSelected, selectedRef] = useStateRef<number>(
+  const [selectedIndex, setSelected, selectedRef] = useStateRef<number>(
     inputs.findIndex((value) => value === emptyCell),
   );
-  const initiallyEmpty = cells[selected] === emptyCell;
+  const initiallyEmpty = cells[selectedIndex] === emptyCell;
   useKeyboard({ sudokuRef, indexRef: selectedRef, setInput, setSelected });
 
   return (
@@ -32,15 +34,22 @@ export function Game() {
             index={i}
             initialValue={cells[i]}
             key={i}
-            selected={i === selected}
+            selected={i === selectedIndex}
             setSelected={setSelected}
             solution={solution[i]}
-          />
+          >
+            <Candidates
+              candidates={candidates[i]}
+              index={i}
+              readOnly={i !== selectedIndex}
+              setCandidates={setCandidates}
+            />
+          </Cell>
         ))}
       </div>
       <TokenSelect
         initiallyEmpty={initiallyEmpty}
-        selectedIndex={selected}
+        selectedIndex={selectedIndex}
         setInput={setInput}
       />
     </div>

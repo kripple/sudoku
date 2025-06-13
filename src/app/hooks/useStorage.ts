@@ -9,6 +9,7 @@ import { getFromLocalStorage, saveToLocalStorage } from '@/app/utils/window';
 export function useStorage() {
   const sudokuKey = 'sudoku' as const;
   const inputKey = 'sudoku_current' as const;
+  const candidatesKey = 'sudoku_candidates' as const;
 
   const syncWithLocalStorage = () => {
     const savedValue = getFromLocalStorage(sudokuKey);
@@ -33,7 +34,34 @@ export function useStorage() {
     saveToLocalStorage(inputKey, input);
   }, [input]);
 
+  /**
+   *
+   * `candidates` is an array of strings
+   *
+   *  each item in `candidates` corresponds to the sudoku.puzzle/input character
+   *  at the corresponding index value
+   *
+   *  the `candidates` item (or `candidate`) will be a string of length 0-9
+   *  the presence of number in the `candidate` indicates that the candidate token
+   *  checkbox should render as `defaultChecked` for the token represented by that number
+   *
+   */
+  const [candidates, setCandidates] = useState<string[]>(
+    getFromLocalStorage(candidatesKey) || input.split('').map(() => ''),
+  );
+
+  useEffect(() => {
+    saveToLocalStorage(candidatesKey, candidates);
+  }, [candidates]);
+
   // TODO: add newGame function
 
-  return [sudoku, sudokuRef, input, setInput] as const;
+  return [
+    sudoku,
+    sudokuRef,
+    input,
+    setInput,
+    candidates,
+    setCandidates,
+  ] as const;
 }

@@ -1,25 +1,49 @@
-import { useId } from 'react';
-
 import { Token } from '@/app/components/Token';
 import { tokenKeys } from '@/constants/tokens';
 
 import '@/app/components/Candidates.css';
 
-// TODO: save candidates state to local storage
-
-export function Candidates({ readOnly }: { readOnly: boolean }) {
-  const componentId = useId();
-
+export function Candidates({
+  index,
+  readOnly,
+  candidates,
+  setCandidates,
+}: {
+  index: number;
+  readOnly: boolean;
+  candidates: string;
+  setCandidates: SetState<string[]>;
+}) {
   return (
     <div className="candidates">
       {tokenKeys.map((key) => {
-        const id = `${componentId}-candidate-${key}`;
+        const id = `cell-${index}-candidate-${key}`;
+        const checked = candidates.includes(key);
         return (
           <div className="candidate" key={key}>
             <input
               className="candidate-input"
+              defaultChecked={checked}
               disabled={readOnly}
               id={id}
+              onChange={(event) => {
+                console.log(
+                  'onChange',
+                  key,
+                  index,
+                  event.currentTarget.checked,
+                );
+                setCandidates((current) => {
+                  const draft = [...current];
+                  // always remove from string before optionally adding it back
+                  let candidatesString = draft[index].replaceAll(key, '');
+                  if (event.currentTarget.checked) {
+                    candidatesString = candidatesString.concat(key);
+                  }
+                  draft[index] = candidatesString;
+                  return draft;
+                });
+              }}
               style={{ display: 'none' }}
               type="checkbox"
             ></input>

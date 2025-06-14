@@ -1,3 +1,9 @@
+:root {
+  --border-color: #000000;
+  --filled: #dfdfdf;
+  --white: #ffffff;
+}
+
 html {
   background-color: #f0f0f8;
   height: 100vh;
@@ -7,13 +13,21 @@ html {
   width: 100vw;
 }
 
-body,
-#root {
+body {
   display: block;
   height: inherit;
   margin: 0 auto;
   padding: 0;
   width: inherit;
+}
+
+#root {
+  align-items: center;
+  display: flex;
+  height: 100svh;
+  justify-content: center;
+  position: relative;
+  width: 100svw;
 }
 
 *,

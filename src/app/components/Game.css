@@ -1,10 +1,4 @@
 :root {
-  --border-color: #000000;
-  --filled: #dfdfdf;
-  --white: #ffffff;
-}
-
-:root {
   --game-columns: 9;
   --game-size: 90vmin;
   --game-cell-size-min: 32px;

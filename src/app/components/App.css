@@ -2,10 +2,23 @@
   --stroke-color: #444444;
 }
 
+.header {
+  position: absolute;
+  top: 0;
+}
+
 .main {
-  align-items: center;
-  display: flex;
-  height: 100svh;
-  justify-content: center;
-  width: 100svw;
+  align-items: inherit;
+  display: inherit;
+  height: inherit;
+  justify-content: inherit;
+  position: relative;
+  width: inherit;
+}
+
+.show-modal-checkbox-label,
+.hide-modal-checkbox-label {
+  cursor: pointer;
+  position: relative;
+  z-index: 20;
 }

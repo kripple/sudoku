@@ -1,22 +1,36 @@
-import { useEffect } from 'react';
-
 import { Game } from '@/app/components/Game';
+import { HowToPlayModal } from '@/app/components/HowToPlayModal';
+import { ModalProvider } from '@/app/providers/ModalProvider';
 
 import '@/app/components/App.css';
 
 export function App() {
-  useEffect(() => {
-    const now = new Date();
-    const hours = now.getHours();
-    const dark = hours < 8 || hours > 20;
-    document.documentElement.style.filter = dark
-      ? 'brightness(0.7)'
-      : 'brightness(0.8)';
-  }, []);
+  const showModalCheckboxId = 'modal-show' as const;
+  const hideModalCheckboxId = 'modal-hide' as const;
 
   return (
-    <main className="main">
-      <Game />
-    </main>
+    <ModalProvider
+      contents={<HowToPlayModal />}
+      hideModalCheckboxId={hideModalCheckboxId}
+      showModalCheckboxId={showModalCheckboxId}
+    >
+      <header className="header">
+        <label
+          className="show-modal-checkbox-label"
+          htmlFor={showModalCheckboxId}
+        >
+          SHOW
+        </label>
+        <label
+          className="hide-modal-checkbox-label"
+          htmlFor={hideModalCheckboxId}
+        >
+          HIDE
+        </label>
+      </header>
+      <main className="main">
+        <Game />
+      </main>
+    </ModalProvider>
   );
 }

@@ -1,0 +1,52 @@
+.modal-provider {
+  align-items: inherit;
+  display: inherit;
+  height: inherit;
+  justify-content: inherit;
+  position: relative;
+  width: inherit;
+}
+
+.modal {
+  backdrop-filter: blur(4px);
+  background-color: #08151c99;
+  border-radius: 12px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  color: white;
+  max-height: calc(100% - 16px);
+  max-width: calc(100% - 16px);
+  min-height: 300px;
+  min-width: 300px;
+  overflow-y: auto;
+  padding: 16px;
+  position: absolute;
+  transition-duration: 200ms;
+  transition-property: opacity, transform;
+  transition-timing-function: ease;
+  will-change: transform, opacity;
+  z-index: 30;
+}
+
+/* show modal when both are checked or both are unchecked */
+#modal-show:checked ~ #modal-hide:checked ~ .modal,
+#modal-show ~ #modal-hide ~ .modal {
+  opacity: 1;
+  pointer-events: initial;
+  transform: translateY(0px);
+}
+#modal-show:checked ~ #modal-hide:checked ~ .modal-provider,
+#modal-show ~ #modal-hide ~ .modal-provider {
+  overflow: hidden;
+}
+
+/* hide modal when one is checked and the other is unchecked */
+#modal-show:checked ~ #modal-hide ~ .modal,
+#modal-show ~ #modal-hide:checked ~ .modal {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+}
+#modal-show:checked ~ #modal-hide ~ .modal-provider,
+#modal-show ~ #modal-hide:checked ~ .modal-provider {
+  overflow: initial;
+}

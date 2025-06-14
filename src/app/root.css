@@ -2,10 +2,12 @@
   --border-color: #000000;
   --filled: #dfdfdf;
   --white: #ffffff;
+  --html-bgcolor: #f0f0f8;
+  --text-color: #222222;
 }
 
 html {
-  background-color: #f0f0f8;
+  background-color: var(--html-bgcolor);
   height: 100vh;
   margin: 0;
   overflow-x: hidden; /* prevent horizontal overscroll */
@@ -14,8 +16,11 @@ html {
 }
 
 body {
+  color: var(--text-color);
   display: block;
+  font-family: sans-serif;
   height: inherit;
+  line-height: 1.5;
   margin: 0 auto;
   padding: 0;
   width: inherit;
@@ -36,4 +41,20 @@ body {
   border-radius: inherit;
   box-sizing: border-box;
   flex-shrink: 0;
+  margin: 0;
+}
+
+.heading {
+  display: block;
+  font-family: serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.gap {
+  display: block;
+  height: 10px;
+  pointer-events: none;
+  width: 10px;
 }

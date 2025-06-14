@@ -15,10 +15,3 @@
   position: relative;
   width: inherit;
 }
-
-.show-modal-checkbox-label,
-.hide-modal-checkbox-label {
-  cursor: pointer;
-  position: relative;
-  z-index: 20;
-}

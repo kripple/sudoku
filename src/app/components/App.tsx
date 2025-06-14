@@ -21,12 +21,6 @@ export function App() {
         >
           SHOW
         </label>
-        <label
-          className="hide-modal-checkbox-label"
-          htmlFor={hideModalCheckboxId}
-        >
-          HIDE
-        </label>
       </header>
       <main className="main">
         <Game />

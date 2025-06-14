@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { Candidates } from '@/app/components/Candidates';
 import { Cell } from '@/app/components/Cell';
 import { TokenSelect } from '@/app/components/TokenSelect';
@@ -19,11 +21,17 @@ export function Game() {
   const win = sudoku.solution === input;
   useConfetti(win);
 
-  const [selectedIndex, setSelected, selectedRef] = useStateRef<number>(
+  const [selectedIndex, setSelectedIndex, selectedRef] = useStateRef<number>(
     inputs.findIndex((value) => value === emptyCell),
   );
   const initiallyEmpty = cells[selectedIndex] === emptyCell;
-  useKeyboard({ sudokuRef, indexRef: selectedRef, setInput, setSelected });
+  useKeyboard({ sudokuRef, indexRef: selectedRef, setInput, setSelectedIndex });
+
+  useEffect(() => {
+    if (!win) return;
+    setSelectedIndex(-1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [win]);
 
   return (
     <div className="game">
@@ -35,7 +43,7 @@ export function Game() {
             initialValue={cells[i]}
             key={i}
             selected={i === selectedIndex}
-            setSelected={setSelected}
+            setSelectedIndex={setSelectedIndex}
             solution={solution[i]}
           >
             <Candidates

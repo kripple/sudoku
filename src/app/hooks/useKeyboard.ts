@@ -7,7 +7,7 @@ export function useKeyboard({
   sudokuRef,
   indexRef,
   setInput,
-  setSelected,
+  setSelectedIndex,
 }: {
   sudokuRef: RefObject<{
     puzzle: string;
@@ -16,31 +16,31 @@ export function useKeyboard({
   }>;
   indexRef: RefObject<number>;
   setInput: SetState<string>;
-  setSelected: SetState<number>;
+  setSelectedIndex: SetState<number>;
 }) {
   const handleArrowUp = () => {
-    setSelected((current) => {
+    setSelectedIndex((current) => {
       const colId = Math.floor(current / gameSize) + 1;
       return colId === 1 ? current : current - gameSize;
     });
   };
 
   const handleArrowDown = () => {
-    setSelected((current) => {
+    setSelectedIndex((current) => {
       const colId = Math.floor(current / gameSize) + 1;
       return colId === gameSize ? current : current + gameSize;
     });
   };
 
   const handleArrowRight = () => {
-    setSelected((current) => {
+    setSelectedIndex((current) => {
       const rowId = (current % gameSize) + 1;
       return rowId === gameSize ? current : current + 1;
     });
   };
 
   const handleArrowLeft = () => {
-    setSelected((current) => {
+    setSelectedIndex((current) => {
       const rowId = (current % gameSize) + 1;
       return rowId === 1 ? current : current - 1;
     });

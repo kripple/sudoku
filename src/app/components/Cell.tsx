@@ -10,7 +10,7 @@ export function Cell({
   solution,
   selected,
   children,
-  setSelected,
+  setSelectedIndex,
 }: {
   index: number;
   initialValue: string;
@@ -18,7 +18,7 @@ export function Cell({
   solution: string;
   selected: boolean;
   children?: ReactNode;
-  setSelected: SetState<number>;
+  setSelectedIndex: SetState<number>;
 }) {
   const colId = (index % gameSize) + 1;
   const rowId = Math.floor(index / gameSize) + 1;
@@ -63,7 +63,7 @@ export function Cell({
     <div
       className={classNames}
       key={`row-${rowId}-col-${colId}`}
-      onClick={() => setSelected(index)}
+      onClick={() => setSelectedIndex(index)}
     >
       <Token token={currentValue}>{children}</Token>
     </div>

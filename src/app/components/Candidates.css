@@ -46,12 +46,7 @@
 }
 
 .candidate-input ~ .candidate-label .token {
-  opacity: 0;
-  transition: opacity 400ms ease;
-}
-
-.candidate-input ~ .candidate-label:hover .token {
-  opacity: 1;
+  opacity: 0.2;
 }
 
 .candidate-input:disabled ~ .candidate-label .token {

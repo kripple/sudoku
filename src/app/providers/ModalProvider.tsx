@@ -29,10 +29,20 @@ export function ModalProvider({
     return () => document.body.removeEventListener('keydown', handleEscape);
   }, []);
 
+  const toggleAllowScroll = () => {
+    if (!refA.current || !refB.current) {
+      console.warn('missing input element');
+      return;
+    }
+    document.documentElement.style.overflowY =
+      refA.current.checked === refB.current.checked ? 'hidden' : 'initial';
+  };
+
   return (
     <>
       <input
         id={showModalCheckboxId}
+        onChange={toggleAllowScroll}
         ref={refA}
         style={{ display: 'none' }}
         type="checkbox"
@@ -40,6 +50,7 @@ export function ModalProvider({
       <input
         defaultChecked
         id={hideModalCheckboxId}
+        onChange={toggleAllowScroll}
         ref={refB}
         style={{ display: 'none' }}
         type="checkbox"

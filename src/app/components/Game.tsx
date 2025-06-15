@@ -7,14 +7,7 @@ import { TokenSelect } from '@/app/components/TokenSelect';
 import { useConfetti } from '@/app/hooks/useConfetti';
 import { useKeyboard } from '@/app/hooks/useKeyboard';
 import { useStorage } from '@/app/hooks/useStorage';
-import {
-  emptyCell,
-  gameSize,
-  getColId,
-  getRowId,
-  getSetId,
-  miniGameSize,
-} from '@/utils/game';
+import { emptyCell, getColId, getRowId, getSetId } from '@/utils/game';
 
 import '@/app/components/Game.css';
 

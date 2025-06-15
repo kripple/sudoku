@@ -1,5 +1,5 @@
 .token-select {
-  background-color: #00000066;
+  background-color: var(--menu-color);
   border-radius: 2px;
 }
 

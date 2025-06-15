@@ -47,8 +47,6 @@ export function Cell({
   const innerBorderRight = colId % miniGameSize === 0;
   const innerBorderBottom = rowId % miniGameSize === 0;
 
-  const addBorder = (isBorderCell: boolean) => !selected && isBorderCell;
-
   const classNames = [
     'game-cell',
     `row-${rowId}`,
@@ -57,12 +55,12 @@ export function Cell({
     selected ? 'selected' : false,
     highlight ? 'highlight' : false,
     incorrect,
-    addBorder(outerBorderLeft) ? 'outer-border-left' : false,
-    addBorder(outerBorderRight) ? 'outer-border-right' : false,
-    addBorder(outerBorderTop) ? 'outer-border-top' : false,
-    addBorder(outerBorderBottom) ? 'outer-border-bottom' : false,
-    addBorder(innerBorderRight) ? 'inner-border-right' : false,
-    addBorder(innerBorderBottom) ? 'inner-border-bottom' : false,
+    outerBorderLeft ? 'outer-border-left' : false,
+    outerBorderRight ? 'outer-border-right' : false,
+    outerBorderTop ? 'outer-border-top' : false,
+    outerBorderBottom ? 'outer-border-bottom' : false,
+    innerBorderRight ? 'inner-border-right' : false,
+    innerBorderBottom ? 'inner-border-bottom' : false,
   ]
     .filter(Boolean)
     .join(' ');

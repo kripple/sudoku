@@ -57,13 +57,15 @@
   border-right: var(--game-border);
 }
 
-.game-cell.selected {
-  border-radius: 4px;
-  filter: drop-shadow(0px 0px 2px #00000099);
-  transform: scale(1.15);
-  z-index: 10;
+.game-cell.highlight {
+  background-color: var(--accent-color);
+}
+.game-cell.highlight > .token {
+  border: 1px solid var(--accent-color);
 }
 
-.game-cell.highlight {
-  background-color: pink;
+.game-cell.selected > .token {
+  border-radius: 0;
+  padding: 3px;
+  transform: scale(0.85);
 }

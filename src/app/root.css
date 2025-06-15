@@ -1,9 +1,12 @@
 :root {
-  --border-color: #000000;
-  --filled: #dfdfdf;
   --white: #ffffff;
   --html-bgcolor: #f0f0f8;
+  --filled: #dfdfdf;
+  --accent-color: #9aa7c3;
+  --menu-color: #7c7c81;
+  --stroke-color: #444444;
   --text-color: #222222;
+  --border-color: #000000;
 }
 
 html {

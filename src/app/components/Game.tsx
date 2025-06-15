@@ -51,6 +51,7 @@ export function Game() {
           const sameSet =
             getSetId(getRowId(i)) === getSetId(getRowId(selectedIndex)) &&
             getSetId(getColId(i)) === getSetId(getColId(selectedIndex));
+          const sameValue = input === inputs[selectedIndex];
 
           return (
             <Cell
@@ -59,6 +60,7 @@ export function Game() {
               index={i}
               initialValue={cells[i]}
               key={i}
+              sameValue={sameValue}
               selected={i === selectedIndex}
               setSelectedIndex={setSelectedIndex}
               solution={solution[i]}

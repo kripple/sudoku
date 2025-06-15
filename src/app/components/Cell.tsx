@@ -14,6 +14,7 @@ export function Cell({
   initialValue,
   currentValue,
   solution,
+  sameValue,
   selected,
   highlight,
   children,
@@ -23,6 +24,7 @@ export function Cell({
   initialValue: string;
   currentValue: string;
   solution: string;
+  sameValue: boolean;
   selected: boolean;
   highlight: boolean;
   children?: ReactNode;
@@ -54,6 +56,7 @@ export function Cell({
     initiallyEmpty ? 'empty' : 'filled',
     selected ? 'selected' : false,
     highlight ? 'highlight' : false,
+    currentValue !== emptyCell && sameValue ? 'same-value' : false,
     incorrect,
     outerBorderLeft ? 'outer-border-left' : false,
     outerBorderRight ? 'outer-border-right' : false,

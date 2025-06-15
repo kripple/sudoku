@@ -64,7 +64,9 @@
   border: 1px solid var(--accent-color);
 }
 
-.game-cell.selected > .token {
+.game-cell.selected > .token,
+.game-cell.same-value > .token {
+  border: 1px solid currentColor;
   border-radius: 0;
   padding: 3px;
   transform: scale(0.85);

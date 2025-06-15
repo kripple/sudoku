@@ -11,10 +11,11 @@ export function Token({
   token: TokenKey | string;
 }) {
   const icon = token in tokens ? tokens[token as TokenKey] : undefined;
+  const color = icon ? `var(--token-${icon})` : 'white';
 
   return (
-    <div className="token">
-      {icon ? <SvgIcon color={`var(--token-${icon})`} icon={icon} /> : children}
+    <div className="token" style={{ color }}>
+      {icon ? <SvgIcon color={color} icon={icon} /> : children}
     </div>
   );
 }

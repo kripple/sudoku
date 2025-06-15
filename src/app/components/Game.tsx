@@ -6,14 +6,13 @@ import { GameControls } from '@/app/components/GameControls';
 import { TokenSelect } from '@/app/components/TokenSelect';
 import { useConfetti } from '@/app/hooks/useConfetti';
 import { useKeyboard } from '@/app/hooks/useKeyboard';
-import { useStateRef } from '@/app/hooks/useStateRef';
 import { useStorage } from '@/app/hooks/useStorage';
 import { emptyCell } from '@/constants/config';
 
 import '@/app/components/Game.css';
 
 export function Game() {
-  const [
+  const {
     sudoku,
     sudokuRef,
     input,
@@ -21,17 +20,17 @@ export function Game() {
     candidates,
     setCandidates,
     startNewGame,
-  ] = useStorage();
+    inputs,
+    selectedIndex,
+    setSelectedIndex,
+    selectedRef,
+  } = useStorage();
   const cells = sudoku.puzzle.split('');
   const solution = sudoku.solution.split('');
-  const inputs = input.split('');
 
   const win = sudoku.solution === input;
   useConfetti(win);
 
-  const [selectedIndex, setSelectedIndex, selectedRef] = useStateRef<number>(
-    inputs.findIndex((value) => value === emptyCell),
-  );
   const initiallyEmpty = cells[selectedIndex] === emptyCell;
   useKeyboard({ sudokuRef, indexRef: selectedRef, setInput, setSelectedIndex });
 

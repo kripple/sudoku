@@ -3,6 +3,7 @@ import { getSudoku } from 'sudoku-gen';
 
 import { useStateRef } from '@/app/hooks/useStateRef';
 import { getFromLocalStorage, saveToLocalStorage } from '@/app/utils/window';
+import { emptyCell } from '@/constants/config';
 
 // TODO: check that data is valid on get and save to local storage
 
@@ -56,14 +57,22 @@ export function useStorage() {
     saveToLocalStorage(candidatesKey, candidates);
   }, [candidates]);
 
+  const inputs = input.split('');
+  const findFirstEmptyCell = (currentInputs: string[]) =>
+    currentInputs.findIndex((value) => value === emptyCell);
+  const [selectedIndex, setSelectedIndex, selectedRef] = useStateRef<number>(
+    findFirstEmptyCell(inputs),
+  );
+
   const startNewGame = () => {
     const newGame = getNewGame();
     setSudoku(newGame);
     setInput(newGame.puzzle);
     setCandidates(getNewCandidates(newGame.puzzle));
+    setSelectedIndex(findFirstEmptyCell(newGame.puzzle.split('')));
   };
 
-  return [
+  return {
     sudoku,
     sudokuRef,
     input,
@@ -71,5 +80,9 @@ export function useStorage() {
     candidates,
     setCandidates,
     startNewGame,
-  ] as const;
+    inputs,
+    selectedIndex,
+    setSelectedIndex,
+    selectedRef,
+  };
 }

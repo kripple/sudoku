@@ -72,6 +72,10 @@ export function useStorage() {
     setSelectedIndex(findFirstEmptyCell(newGame.puzzle.split('')));
   };
 
+  const enableAutoCandidatesMode = () => {
+    // TODO: set candidates for each cell based on the tokens in their row, col, and set
+  };
+
   return {
     sudoku,
     sudokuRef,
@@ -84,5 +88,6 @@ export function useStorage() {
     selectedIndex,
     setSelectedIndex,
     selectedRef,
+    enableAutoCandidatesMode,
   };
 }

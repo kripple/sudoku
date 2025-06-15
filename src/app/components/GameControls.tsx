@@ -1,4 +1,8 @@
-import { MdInfo as InfoIcon, MdAutorenew as NewGameIcon } from 'react-icons/md';
+import {
+  MdAutoMode as AutoModeIcon,
+  MdInfo as InfoIcon,
+  MdAutorenew as NewGameIcon,
+} from 'react-icons/md';
 
 import { showModalCheckboxId } from '@/app/utils/constants';
 
@@ -7,9 +11,11 @@ import '@/app/components/GameControls.css';
 export function GameControls({
   showNewGameButton,
   startNewGame,
+  enableAutoCandidatesMode,
 }: {
   showNewGameButton: boolean;
   startNewGame: () => void;
+  enableAutoCandidatesMode: () => void;
 }) {
   return (
     <div className="game-controls game-controls-distribute">
@@ -21,6 +27,15 @@ export function GameControls({
           >
             <InfoIcon className="md-icon" />
           </label>
+        </div>
+      </div>
+      <div
+        aria-label="Automatic Candidates Mode"
+        className="game-control"
+        onClick={() => enableAutoCandidatesMode()}
+      >
+        <div className="game-control-icon">
+          <AutoModeIcon className="md-icon" />
         </div>
       </div>
       {showNewGameButton ? (

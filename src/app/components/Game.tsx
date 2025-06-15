@@ -24,6 +24,7 @@ export function Game() {
     selectedIndex,
     setSelectedIndex,
     selectedRef,
+    enableAutoCandidatesMode,
   } = useStorage();
   const cells = sudoku.puzzle.split('');
   const solution = sudoku.solution.split('');
@@ -77,7 +78,11 @@ export function Game() {
         selectedIndex={selectedIndex}
         setInput={setInput}
       />
-      <GameControls showNewGameButton={win} startNewGame={startNewGame} />
+      <GameControls
+        enableAutoCandidatesMode={enableAutoCandidatesMode}
+        showNewGameButton={win}
+        startNewGame={startNewGame}
+      />
     </div>
   );
 }

@@ -14,7 +14,7 @@ export function TokenSelect({
   setInput: SetState<string>;
 }) {
   return (
-    <div className="token-select">
+    <div className="token-select game-controls">
       {tokenKeys.map((key) => {
         return (
           <div
@@ -29,15 +29,6 @@ export function TokenSelect({
           </div>
         );
       })}
-      {/* <div
-        className="token-option"
-        onClick={() => {
-          initiallyEmpty &&
-            setInput((draft) => replaceAt(draft, index, emptyCell));
-        }}
-      >
-        <Symbol />
-      </div> */}
     </div>
   );
 }

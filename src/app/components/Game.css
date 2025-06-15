@@ -22,20 +22,15 @@
 }
 
 .game-board,
-.token-select {
+.game-controls {
   align-content: center;
   align-items: center;
   aspect-ratio: 1;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .game-board {
-  /* border-bottom: 1px solid var(--border-color);
-  border-left: 2.5px solid var(--border-color);
-  border-right: 1px solid var(--border-color);
-  border-top: 2.5px solid var(--border-color); */
   height: var(--game-size);
   max-height: var(--game-size-max);
   max-width: var(--game-size-max);
@@ -45,7 +40,7 @@
 }
 
 @media screen and (max-height: 100vw) {
-  .token-select {
+  .game-controls {
     flex-direction: column;
     height: var(--game-size);
     max-height: var(--game-size-max);
@@ -57,7 +52,7 @@
 }
 
 @media screen and (max-width: 100vh) {
-  .token-select {
+  .game-controls {
     flex-direction: row;
     height: var(--game-cell-size);
     max-height: var(--game-cell-size-max);

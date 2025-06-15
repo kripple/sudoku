@@ -5,23 +5,9 @@ import { ModalProvider } from '@/app/providers/ModalProvider';
 import '@/app/components/App.css';
 
 export function App() {
-  const showModalCheckboxId = 'modal-show' as const;
-  const hideModalCheckboxId = 'modal-hide' as const;
-
   return (
-    <ModalProvider
-      contents={<HowToPlayModal />}
-      hideModalCheckboxId={hideModalCheckboxId}
-      showModalCheckboxId={showModalCheckboxId}
-    >
-      <header className="header">
-        <label
-          className="show-modal-checkbox-label"
-          htmlFor={showModalCheckboxId}
-        >
-          SHOW
-        </label>
-      </header>
+    <ModalProvider contents={<HowToPlayModal />}>
+      <header className="header"></header>
       <main className="main">
         <Game />
       </main>

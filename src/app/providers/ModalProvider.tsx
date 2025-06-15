@@ -1,17 +1,18 @@
 import { useEffect, useRef } from 'react';
 
+import {
+  hideModalCheckboxId,
+  showModalCheckboxId,
+} from '@/app/utils/constants';
+
 import '@/app/providers/ModalProvider.css';
 
 export function ModalProvider({
   children,
   contents,
-  hideModalCheckboxId,
-  showModalCheckboxId,
 }: {
   children: ReactNode;
   contents: ReactNode;
-  hideModalCheckboxId: string;
-  showModalCheckboxId: string;
 }) {
   const refA = useRef<HTMLInputElement>(null);
   const refB = useRef<HTMLInputElement>(null);

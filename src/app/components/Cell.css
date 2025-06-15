@@ -9,7 +9,7 @@
 }
 
 .game-cell,
-.token-option {
+.game-control {
   align-items: center;
   aspect-ratio: 1;
   display: flex;

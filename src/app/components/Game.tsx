@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import { Candidates } from '@/app/components/Candidates';
 import { Cell } from '@/app/components/Cell';
+import { GameControls } from '@/app/components/GameControls';
 import { TokenSelect } from '@/app/components/TokenSelect';
 import { useConfetti } from '@/app/hooks/useConfetti';
 import { useKeyboard } from '@/app/hooks/useKeyboard';
@@ -60,6 +61,7 @@ export function Game() {
         selectedIndex={selectedIndex}
         setInput={setInput}
       />
+      <GameControls />
     </div>
   );
 }

@@ -1,0 +1,33 @@
+.game-controls-distribute {
+  gap: 8px;
+}
+
+.game-control {
+  background-color: #00000066;
+  border-radius: 2px;
+}
+
+.game-control .game-control-icon {
+  height: 75%;
+  position: relative;
+  transition:
+    filter 100ms ease,
+    transform 150ms ease;
+  transition-delay: 50ms;
+  width: 75%;
+}
+
+.game-control:not(.disabled) {
+  cursor: pointer;
+}
+
+.game-control:not(.disabled):hover .game-control-icon {
+  filter: drop-shadow(4px 4px 2px #00000099);
+  transform: translateX(-2px) translateY(-2px);
+}
+
+svg.md-icon {
+  color: var(--white);
+  height: 100%;
+  width: 100%;
+}

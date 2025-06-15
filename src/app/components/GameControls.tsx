@@ -4,7 +4,13 @@ import { showModalCheckboxId } from '@/app/utils/constants';
 
 import '@/app/components/GameControls.css';
 
-export function GameControls() {
+export function GameControls({
+  showNewGameButton,
+  startNewGame,
+}: {
+  showNewGameButton: boolean;
+  startNewGame: () => void;
+}) {
   return (
     <div className="game-controls game-controls-distribute">
       <div aria-label="How To Play" className="game-control">
@@ -17,17 +23,17 @@ export function GameControls() {
           </label>
         </div>
       </div>
-      <div
-        aria-label="New Game"
-        className="game-control"
-        onClick={() => {
-          console.log('new!');
-        }}
-      >
-        <div className="game-control-icon">
-          <NewGameIcon className="md-icon" />
+      {showNewGameButton ? (
+        <div
+          aria-label="New Game"
+          className="game-control"
+          onClick={() => startNewGame()}
+        >
+          <div className="game-control-icon">
+            <NewGameIcon className="md-icon" />
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 }

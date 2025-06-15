@@ -13,8 +13,15 @@ import { emptyCell } from '@/constants/config';
 import '@/app/components/Game.css';
 
 export function Game() {
-  const [sudoku, sudokuRef, input, setInput, candidates, setCandidates] =
-    useStorage();
+  const [
+    sudoku,
+    sudokuRef,
+    input,
+    setInput,
+    candidates,
+    setCandidates,
+    startNewGame,
+  ] = useStorage();
   const cells = sudoku.puzzle.split('');
   const solution = sudoku.solution.split('');
   const inputs = input.split('');
@@ -61,7 +68,7 @@ export function Game() {
         selectedIndex={selectedIndex}
         setInput={setInput}
       />
-      <GameControls />
+      <GameControls showNewGameButton={win} startNewGame={startNewGame} />
     </div>
   );
 }

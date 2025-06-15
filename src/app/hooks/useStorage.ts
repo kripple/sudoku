@@ -11,18 +11,18 @@ export function useStorage() {
   const inputKey = 'sudoku_current' as const;
   const candidatesKey = 'sudoku_candidates' as const;
 
-  const syncWithLocalStorage = () => {
-    const savedValue = getFromLocalStorage(sudokuKey);
-    if (savedValue) {
-      return savedValue;
-    } else {
-      const newGame = getSudoku('easy');
-      saveToLocalStorage(sudokuKey, newGame);
-      return newGame;
-    }
+  const getNewGame = () => {
+    const newGame = getSudoku('easy');
+    saveToLocalStorage(sudokuKey, newGame);
+    return newGame;
   };
 
-  const [sudoku, _setSudoku, sudokuRef] = useStateRef<Sudoku>(
+  const syncWithLocalStorage = () => {
+    const savedValue = getFromLocalStorage(sudokuKey);
+    return savedValue || getNewGame();
+  };
+
+  const [sudoku, setSudoku, sudokuRef] = useStateRef<Sudoku>(
     syncWithLocalStorage(),
   );
 
@@ -46,15 +46,22 @@ export function useStorage() {
    *  checkbox should render as `defaultChecked` for the token represented by that number
    *
    */
+  const getNewCandidates = (currentInput: string) =>
+    currentInput.split('').map(() => '');
   const [candidates, setCandidates] = useState<string[]>(
-    getFromLocalStorage(candidatesKey) || input.split('').map(() => ''),
+    getFromLocalStorage(candidatesKey) || getNewCandidates(input),
   );
 
   useEffect(() => {
     saveToLocalStorage(candidatesKey, candidates);
   }, [candidates]);
 
-  // TODO: add newGame function
+  const startNewGame = () => {
+    const newGame = getNewGame();
+    setSudoku(newGame);
+    setInput(newGame.puzzle);
+    setCandidates(getNewCandidates(newGame.puzzle));
+  };
 
   return [
     sudoku,
@@ -63,5 +70,6 @@ export function useStorage() {
     setInput,
     candidates,
     setCandidates,
+    startNewGame,
   ] as const;
 }

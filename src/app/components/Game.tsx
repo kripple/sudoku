@@ -7,7 +7,14 @@ import { TokenSelect } from '@/app/components/TokenSelect';
 import { useConfetti } from '@/app/hooks/useConfetti';
 import { useKeyboard } from '@/app/hooks/useKeyboard';
 import { useStorage } from '@/app/hooks/useStorage';
-import { emptyCell } from '@/constants/config';
+import {
+  emptyCell,
+  gameSize,
+  getColId,
+  getRowId,
+  getSetId,
+  miniGameSize,
+} from '@/utils/game';
 
 import '@/app/components/Game.css';
 
@@ -43,24 +50,34 @@ export function Game() {
   return (
     <div className="game">
       <div className="game-board">
-        {inputs.map((input, i) => (
-          <Cell
-            currentValue={input}
-            index={i}
-            initialValue={cells[i]}
-            key={i}
-            selected={i === selectedIndex}
-            setSelectedIndex={setSelectedIndex}
-            solution={solution[i]}
-          >
-            <Candidates
-              candidates={candidates[i]}
+        {inputs.map((input, i) => {
+          // determine highlights based on selected cell
+          const sameRow = getRowId(i) === getRowId(selectedIndex);
+          const sameColumn = getColId(i) === getColId(selectedIndex);
+          const sameSet =
+            getSetId(getRowId(i)) === getSetId(getRowId(selectedIndex)) &&
+            getSetId(getColId(i)) === getSetId(getColId(selectedIndex));
+
+          return (
+            <Cell
+              currentValue={input}
+              highlight={sameRow || sameColumn || sameSet}
               index={i}
-              readOnly={i !== selectedIndex}
-              setCandidates={setCandidates}
-            />
-          </Cell>
-        ))}
+              initialValue={cells[i]}
+              key={i}
+              selected={i === selectedIndex}
+              setSelectedIndex={setSelectedIndex}
+              solution={solution[i]}
+            >
+              <Candidates
+                candidates={candidates[i]}
+                index={i}
+                readOnly={i !== selectedIndex}
+                setCandidates={setCandidates}
+              />
+            </Cell>
+          );
+        })}
       </div>
       <TokenSelect
         initiallyEmpty={initiallyEmpty}

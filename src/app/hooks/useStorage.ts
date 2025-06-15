@@ -3,7 +3,7 @@ import { getSudoku } from 'sudoku-gen';
 
 import { useStateRef } from '@/app/hooks/useStateRef';
 import { getFromLocalStorage, saveToLocalStorage } from '@/app/utils/window';
-import { emptyCell } from '@/constants/config';
+import { emptyCell } from '@/utils/game';
 
 // TODO: check that data is valid on get and save to local storage
 

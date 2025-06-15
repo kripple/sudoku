@@ -1,5 +1,5 @@
 import { SvgIcon } from '@/app/components/SvgIcon';
-import { type Token as TokenKey, tokens } from '@/constants/tokens';
+import { type Token as TokenKey, tokens } from '@/utils/tokens';
 
 import '@/app/components/Token.css';
 

@@ -7,7 +7,7 @@ import { grass } from '@/app/assets/grass';
 import { ice } from '@/app/assets/ice';
 import { poison } from '@/app/assets/poison';
 import { water } from '@/app/assets/water';
-import { type TokenIcon } from '@/constants/tokens';
+import { type TokenIcon } from '@/utils/tokens';
 
 const icons: { [token in TokenIcon]: SvgProps } = {
   fairy,

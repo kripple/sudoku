@@ -1,6 +1,6 @@
 import { type RefObject, useEffect } from 'react';
 
-import { emptyCell, gameSize } from '@/constants/config';
+import { emptyCell, gameSize } from '@/utils/game';
 import { replaceAt } from '@/utils/string-replace';
 
 export function useKeyboard({

@@ -1,5 +1,5 @@
 import { Token } from '@/app/components/Token';
-import { tokenKeys } from '@/constants/tokens';
+import { tokenKeys } from '@/utils/tokens';
 
 import '@/app/components/Candidates.css';
 

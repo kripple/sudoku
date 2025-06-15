@@ -1,5 +1,11 @@
 import { Token } from '@/app/components/Token';
-import { emptyCell, gameSize } from '@/constants/config';
+import {
+  emptyCell,
+  gameSize,
+  getColId,
+  getRowId,
+  miniGameSize,
+} from '@/utils/game';
 
 import '@/app/components/Cell.css';
 
@@ -9,6 +15,7 @@ export function Cell({
   currentValue,
   solution,
   selected,
+  highlight,
   children,
   setSelectedIndex,
 }: {
@@ -17,12 +24,12 @@ export function Cell({
   currentValue: string;
   solution: string;
   selected: boolean;
+  highlight: boolean;
   children?: ReactNode;
   setSelectedIndex: SetState<number>;
 }) {
-  const colId = (index % gameSize) + 1;
-  const rowId = Math.floor(index / gameSize) + 1;
-  const miniGameSize = Math.sqrt(gameSize);
+  const colId = getColId(index);
+  const rowId = getRowId(index);
 
   const initiallyEmpty = initialValue === emptyCell;
   const incorrect =
@@ -48,6 +55,7 @@ export function Cell({
     `col-${colId}`,
     initiallyEmpty ? 'empty' : 'filled',
     selected ? 'selected' : false,
+    highlight ? 'highlight' : false,
     incorrect,
     addBorder(outerBorderLeft) ? 'outer-border-left' : false,
     addBorder(outerBorderRight) ? 'outer-border-right' : false,

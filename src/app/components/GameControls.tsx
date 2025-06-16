@@ -4,6 +4,7 @@ import {
   MdAutorenew as NewGameIcon,
 } from 'react-icons/md';
 
+import { GameControl } from '@/app/components/GameControl';
 import { showModalCheckboxId } from '@/app/utils/constants';
 
 import '@/app/components/GameControls.css';
@@ -19,36 +20,29 @@ export function GameControls({
 }) {
   return (
     <div className="game-controls game-controls-distribute">
-      <div aria-label="How To Play" className="game-control">
-        <div className="game-control-icon">
-          <label
-            className="show-modal-checkbox-label"
-            htmlFor={showModalCheckboxId}
-          >
-            <InfoIcon className="md-icon" />
-          </label>
-        </div>
-      </div>
-      <div
-        aria-label="Automatic Candidates Mode"
-        className="game-control"
-        onClick={() => enableAutoCandidatesMode()}
-      >
-        <div className="game-control-icon">
-          <AutoModeIcon className="md-icon" />
-        </div>
-      </div>
-      {showNewGameButton ? (
-        <div
-          aria-label="New Game"
-          className="game-control"
-          onClick={() => startNewGame()}
+      <GameControl label="How To Play">
+        <label
+          className="show-modal-checkbox-label"
+          htmlFor={showModalCheckboxId}
         >
-          <div className="game-control-icon">
-            <NewGameIcon className="md-icon" />
-          </div>
-        </div>
-      ) : null}
+          <InfoIcon className="md-icon" />
+        </label>
+      </GameControl>
+
+      <GameControl
+        label="Automatic Candidates Mode"
+        onClick={enableAutoCandidatesMode}
+      >
+        <AutoModeIcon className="md-icon" />
+      </GameControl>
+
+      <GameControl
+        hide={!showNewGameButton}
+        label="New Game"
+        onClick={startNewGame}
+      >
+        <NewGameIcon className="md-icon" />
+      </GameControl>
     </div>
   );
 }

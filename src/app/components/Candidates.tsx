@@ -27,12 +27,6 @@ export function Candidates({
               disabled={readOnly}
               id={id}
               onChange={(event) => {
-                console.log(
-                  'onChange',
-                  key,
-                  index,
-                  event.currentTarget.checked,
-                );
                 setCandidates((current) => {
                   const draft = [...current];
                   // always remove from string before optionally adding it back

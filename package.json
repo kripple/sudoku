@@ -11,7 +11,8 @@
   "scripts": {
     "start": "vite",
     "lint": "eslint . && stylelint '**/*.css' && prettier --check .",
-    "optimize": "svgo src/app/assets --config src/app/config/svgo.config.mjs",
+    "test": "playwright test --config config/playwright.config.ts",
+    "optimize": "svgo src/app/assets --config config/svgo.config.mjs",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
@@ -26,6 +27,7 @@
     "sudoku-gen": "^1.0.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.53.0",
     "@types/canvas-confetti": "^1.9.0",
     "@types/lz-string": "^1.3.34",
     "@types/node": "^22.15.30",

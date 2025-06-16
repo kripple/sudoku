@@ -12,34 +12,7 @@ import { emptyCell, getColId, getRowId, getSetId } from '@/utils/game';
 import '@/app/components/Game.css';
 
 export function Game() {
-  const {
-    sudoku,
-    // sudokuRef,
-    // input,
-    // setInput,
-    // candidates,
-    // setCandidates,
-    startNewGame,
-    // inputs,
-    // selectedIndex,
-    // setSelectedIndex,
-    // selectedRef,
-    // enableAutoCandidatesMode,
-  } = useSudoku();
-  // const cells = sudoku.puzzle.split('');
-  // const solution = sudoku.solution.split('');
-
-  // const win = sudoku.solution === input;
-  // useConfetti(win);
-
-  // const initiallyEmpty = cells[selectedIndex] === emptyCell;
-  // useKeyboard({ sudokuRef, indexRef: selectedRef, setInput, setSelectedIndex });
-
-  // useEffect(() => {
-  //   if (!win) return;
-  //   setSelectedIndex(-1);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [win]);
+  const { sudoku, selected, setSelectedValue, startNewGame } = useSudoku();
 
   return (
     <div className="game">
@@ -59,7 +32,7 @@ export function Game() {
               highlight={false}
               key={i}
               sameValue={false}
-              selected={false}
+              selected={selected !== undefined && cell.index === selected.index}
               setSelectedIndex={() => {}}
               {...cell}
             >
@@ -73,11 +46,7 @@ export function Game() {
           );
         })}
       </div>
-      {/* <TokenSelect
-        initiallyEmpty={initiallyEmpty}
-        selectedIndex={selectedIndex}
-        setInput={setInput}
-      /> */}
+      <TokenSelect setSelectedValue={setSelectedValue} />
       <GameControls
         enableAutoCandidatesMode={() => {}}
         showNewGameButton={true}

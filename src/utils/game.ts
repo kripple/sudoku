@@ -1,5 +1,6 @@
 export const emptyCell = '-' as const;
 export const gameSize = 9 as const;
+export const gameLength = gameSize * gameSize;
 export const miniGameSize = Math.sqrt(gameSize);
 
 export const getColId = (index: number) => (index % gameSize) + 1;

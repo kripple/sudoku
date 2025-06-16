@@ -23,8 +23,8 @@
   width: var(--game-cell-size);
 }
 
-.game-cell.filled {
-  background-color: var(--filled);
+.game-cell.locked {
+  background-color: var(--locked);
 }
 
 .game-cell.incorrect::after {

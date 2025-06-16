@@ -1,17 +1,12 @@
 import { Token } from '@/app/components/Token';
 import { tokenKeys } from '@/utils/tokens';
-import { replaceAt } from '@/utils/string-replace';
 
 import '@/app/components/TokenSelect.css';
 
 export function TokenSelect({
-  initiallyEmpty,
-  selectedIndex: index,
-  setInput,
+  setSelectedValue,
 }: {
-  initiallyEmpty: boolean;
-  selectedIndex: number;
-  setInput: SetState<string>;
+  setSelectedValue: (value: string) => void;
 }) {
   return (
     <div className="token-select game-controls">
@@ -20,10 +15,7 @@ export function TokenSelect({
           <div
             className="token-option"
             key={key}
-            onClick={() => {
-              initiallyEmpty &&
-                setInput((draft) => replaceAt(draft, index, key));
-            }}
+            onClick={() => setSelectedValue(key)}
           >
             <Token token={key} />
           </div>

@@ -1,4 +1,5 @@
 import { Token } from '@/app/components/Token';
+import type { Cell } from '@/app/hooks/useSudoku';
 import {
   emptyCell,
   gameSize,
@@ -11,34 +12,28 @@ import '@/app/components/Cell.css';
 
 export function Cell({
   index,
-  initialValue,
   solution,
   sameValue,
   selected,
   highlight,
+  locked,
   value,
   children,
   setSelectedIndex,
-}: {
-  index: number;
-  initialValue: string;
-  solution: string;
+}: Cell & {
   sameValue: boolean;
-  selected: boolean;
   highlight: boolean;
-  value: string;
   children?: ReactNode;
+  selected?: boolean;
   setSelectedIndex: SetState<number>;
 }) {
   const colId = getColId(index);
   const rowId = getRowId(index);
 
-  const initiallyEmpty = initialValue === emptyCell;
+  // const initiallyEmpty = initialValue === emptyCell;
   const currentlyEmpty = value === emptyCell;
   const incorrect =
-    initiallyEmpty && !currentlyEmpty && value !== solution
-      ? 'incorrect'
-      : false;
+    !locked && !currentlyEmpty && value !== solution ? 'incorrect' : false;
 
   // outer borders
   const outerBorderLeft = colId === 1;
@@ -54,7 +49,7 @@ export function Cell({
     'game-cell',
     `row-${rowId}`,
     `col-${colId}`,
-    !initiallyEmpty ? 'filled' : false,
+    locked ? 'locked' : false,
     currentlyEmpty ? 'empty' : false,
     selected ? 'selected' : false,
     highlight ? 'highlight' : false,

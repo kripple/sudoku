@@ -3,28 +3,53 @@
   --game-border: 3px solid var(--border-color);
 }
 
-.game-cell {
+.game-cell-borders {
   background-color: var(--white);
   border: 0.5px solid var(--border-color);
 }
+.game-cell-borders.inner-border-bottom {
+  border-bottom: var(--game-inner-border);
+}
+.game-cell-borders.inner-border-right {
+  border-right: var(--game-inner-border);
+}
+.game-cell-borders.outer-border-top {
+  border-top: var(--game-border);
+}
+.game-cell-borders.outer-border-bottom {
+  border-bottom: var(--game-border);
+}
+.game-cell-borders.outer-border-left {
+  border-left: var(--game-border);
+}
+.game-cell-borders.outer-border-right {
+  border-right: var(--game-border);
+}
 
+.game-cell-borders,
 .game-cell,
 .game-control {
   align-items: center;
-  aspect-ratio: 1;
   display: flex;
-  height: var(--game-cell-size);
   justify-content: center;
+  position: relative;
+}
+
+.game-cell-borders,
+.game-control {
+  aspect-ratio: 1;
+  height: var(--game-cell-size);
   max-height: var(--game-cell-size-max);
   max-width: var(--game-cell-size-max);
   min-height: var(--game-cell-size-min);
   min-width: var(--game-cell-size-min);
-  position: relative;
   width: var(--game-cell-size);
 }
 
-.game-cell.locked {
-  background-color: var(--locked);
+.game-cell {
+  aspect-ratio: 1;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .game-cell.incorrect::after {
@@ -38,29 +63,6 @@
   width: 150%;
 }
 
-.game-cell.inner-border-bottom {
-  border-bottom: var(--game-inner-border);
-}
-.game-cell.inner-border-right {
-  border-right: var(--game-inner-border);
-}
-.game-cell.outer-border-top {
-  border-top: var(--game-border);
-}
-.game-cell.outer-border-bottom {
-  border-bottom: var(--game-border);
-}
-.game-cell.outer-border-left {
-  border-left: var(--game-border);
-}
-.game-cell.outer-border-right {
-  border-right: var(--game-border);
-}
-
-.game-cell.highlight,
-.game-cell.same-value {
-  background-color: var(--lowlight-color);
-}
 .game-cell.highlight > .token {
   border: 1px solid var(--lowlight-color);
 }
@@ -79,9 +81,21 @@
   background-color: transparent;
 }
 
-.game-cell.selected {
+.game-cell-borders.locked {
+  background-color: var(--locked);
+}
+.game-cell-borders.highlight,
+.game-cell-borders.same-value {
+  background-color: var(--lowlight-color);
+}
+.game-cell-borders.selected {
   background-color: var(--highlight-color);
 }
 .game-cell.selected > .token {
   border: 1px solid var(--highlight-color);
+}
+
+.game-cell.empty .token {
+  transform: var(--token-scale);
+  transition: none;
 }

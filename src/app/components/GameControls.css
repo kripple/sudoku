@@ -13,7 +13,6 @@
   transition:
     filter 100ms ease,
     transform 150ms ease;
-  transition-delay: 50ms;
   width: 75%;
 }
 

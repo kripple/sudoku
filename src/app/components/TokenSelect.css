@@ -4,8 +4,7 @@
 }
 
 .token-option {
-  transition: filter 100ms ease;
-  transition-delay: 50ms;
+  transition: filter 100ms ease 50ms;
 }
 .token-option:not(.complete) {
   cursor: pointer;

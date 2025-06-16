@@ -36,20 +36,21 @@
   cursor: pointer;
   pointer-events: all;
 }
+.candidate-input ~ .candidate-label svg {
+  opacity: 0.3;
+}
 .candidate-input:disabled ~ .candidate-label {
   cursor: default;
   pointer-events: none;
 }
-
-.candidate-input ~ .candidate-label .token {
-  opacity: 0.3;
+.candidate-input:disabled ~ .candidate-label .token,
+.candidate-input:disabled ~ .candidate-label svg {
   opacity: 0;
 }
-
-.candidate-input:disabled ~ .candidate-label .token {
-  opacity: 0;
-}
-
-.candidate-input:checked ~ .candidate-label .token {
+.candidate-input:checked ~ .candidate-label .token,
+.candidate-input:checked ~ .candidate-label svg {
   opacity: 1;
+}
+.candidate-input:checked ~ .candidate-label .token {
+  outline: 1.5px solid white;
 }

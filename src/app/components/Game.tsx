@@ -1,47 +1,25 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Candidates } from '@/app/components/Candidates';
 import { Cell } from '@/app/components/Cell';
 import { GameControls } from '@/app/components/GameControls';
 import { TokenSelect } from '@/app/components/TokenSelect';
-import { useConfetti } from '@/app/hooks/useConfetti';
 import { useKeyboard } from '@/app/hooks/useKeyboard';
-import { useSudoku } from '@/app/hooks/useSudoku';
-import { emptyCell, getColId, getRowId, getSetId } from '@/utils/game';
+import { type Cell as CellType, useSudoku } from '@/app/hooks/useSudoku';
+import { emptyCell } from '@/utils/game';
 
 import '@/app/components/Game.css';
 
 export function Game() {
-  const { sudoku, selected, setSelectedIndex, setSelectedValue, startNewGame } =
-    useSudoku();
-  // const {
-  // sudoku,
-  // sudokuRef,
-  // input,
-  // setInput,
-  // candidates,
-  // setCandidates,
-  // startNewGame,
-  // inputs,
-  // selectedIndex,
-  // setSelectedIndex,
-  // selectedRef,
-  // enableAutoCandidatesMode,
-  // } = useSudoku();
-  // const cells = sudoku.puzzle.split('');
-  // const solution = sudoku.solution.split('');
+  const { sudoku, setCellValue, startNewGame } = useSudoku();
+  const [selected, setSelected] = useState<CellType>();
 
-  // const win = sudoku.solution === input;
-  // useConfetti(win);
+  useEffect(() => {
+    const firstEmptyCell = sudoku.find(({ value }) => value === emptyCell);
+    setSelected(firstEmptyCell);
+  }, [sudoku]);
 
-  // const initiallyEmpty = cells[selectedIndex] === emptyCell;
   // useKeyboard({ sudokuRef, indexRef: selectedRef, setInput, setSelectedIndex });
-
-  // useEffect(() => {
-  //   if (!win) return;
-  //   setSelectedIndex(-1);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [win]);
 
   return (
     <div className="game">
@@ -62,7 +40,7 @@ export function Game() {
               key={i}
               sameValue={false}
               selected={selected !== undefined && cell.index === selected.index}
-              setSelectedIndex={setSelectedIndex}
+              setSelected={setSelected}
               {...cell}
             >
               {/* <Candidates
@@ -75,7 +53,13 @@ export function Game() {
           );
         })}
       </div>
-      <TokenSelect setSelectedValue={setSelectedValue} />
+      <TokenSelect
+        setSelectedValue={
+          selected !== undefined
+            ? (value: string) => setCellValue({ index: selected.index, value })
+            : selected
+        }
+      />
       <GameControls
         enableAutoCandidatesMode={() => {}}
         showNewGameButton={true}

@@ -1,39 +1,27 @@
 import { Token } from '@/app/components/Token';
-import type { Cell } from '@/app/hooks/useSudoku';
-import {
-  emptyCell,
-  gameSize,
-  getColId,
-  getRowId,
-  miniGameSize,
-} from '@/utils/game';
+import type { Cell as CellType } from '@/app/hooks/useSudoku';
+import { emptyCell, gameSize, miniGameSize } from '@/utils/game';
 
 import '@/app/components/Cell.css';
 
 export function Cell({
-  index,
-  solution,
   sameValue,
-  selected,
   highlight,
-  locked,
-  value,
+  selected,
   children,
-  setSelectedIndex,
-}: Cell & {
+  setSelected,
+  ...cell
+}: CellType & {
   sameValue: boolean;
   highlight: boolean;
+  selected: boolean;
   children?: ReactNode;
-  selected?: boolean;
-  setSelectedIndex: (value: number) => void;
+  setSelected: SetState<CellType | undefined>;
 }) {
-  const colId = getColId(index);
-  const rowId = getRowId(index);
-
-  // const initiallyEmpty = initialValue === emptyCell;
-  const currentlyEmpty = value === emptyCell;
+  const { rowId, colId, solution, value, locked } = cell;
+  const empty = value === emptyCell;
   const incorrect =
-    !locked && !currentlyEmpty && value !== solution ? 'incorrect' : false;
+    !locked && !empty && value !== solution ? 'incorrect' : false;
 
   // outer borders
   const outerBorderLeft = colId === 1;
@@ -50,7 +38,7 @@ export function Cell({
     `row-${rowId}`,
     `col-${colId}`,
     locked ? 'locked' : false,
-    currentlyEmpty ? 'empty' : false,
+    empty ? 'empty' : false,
     selected ? 'selected' : false,
     highlight ? 'highlight' : false,
     value !== emptyCell && sameValue ? 'same-value' : false,
@@ -69,7 +57,7 @@ export function Cell({
     <div
       className={classNames}
       key={`row-${rowId}-col-${colId}`}
-      onClick={() => setSelectedIndex(index)}
+      onClick={() => setSelected(cell)}
     >
       <Token token={value}>{children}</Token>
     </div>

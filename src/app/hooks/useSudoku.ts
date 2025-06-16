@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import confetti from 'canvas-confetti';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { getSudoku } from 'sudoku-gen';
 
-import { useStateRef } from '@/app/hooks/useStateRef';
 import { getFromLocalStorage, saveToLocalStorage } from '@/app/utils/window';
 import {
   emptyCell,
@@ -35,69 +35,82 @@ type CellEntries = {
 // auto-candidates mode
 // user candidates
 
-const findFirstEmptyCell = (entries: CellEntries) =>
-  Object.values(entries).find(({ value }) => value === emptyCell);
-
 export function useSudoku(difficulty?: Difficulty) {
-  const getNewGame = () => getSudoku(difficulty || 'easy');
-
-  const [sudoku, setSudoku] = useState<Sudoku>(getNewGame());
+  const sudokuRef = useRef<Sudoku>(null);
   const [entries, setEntries] = useState<CellEntries>();
-  const [selected, setSelected] = useState<Cell>();
 
-  const startNewGame = () => {
-    const newGame = getNewGame();
-    setSudoku(newGame);
-  };
+  const startNewGame = useCallback(() => {
+    const newGame = getSudoku(difficulty || 'easy');
+    sudokuRef.current = newGame;
 
-  useEffect(() => {
     setEntries((current) => {
       const draft = { ...current };
       for (let i = 0; i < gameLength; i++) {
-        const value = sudoku.puzzle[i];
+        const value = newGame.puzzle[i];
         draft[i] = {
           index: i,
           rowId: getRowId(i),
           colId: getColId(i),
           setId: getSetId(i),
-          solution: sudoku.solution[i],
+          solution: newGame.solution[i],
           value,
           locked: value !== emptyCell,
         };
       }
-      setSelected(findFirstEmptyCell(draft));
+
       return draft;
     });
-  }, [sudoku]);
+  }, [difficulty]);
+
+  useEffect(() => {
+    startNewGame();
+  }, [startNewGame]);
+
+  // when entries change, check to see if we've won
+  useEffect(() => {
+    setTimeout(() => {
+      if (!entries) return;
+      const win = Object.values(entries).every(
+        (cell) => cell.value === cell.solution,
+      );
+      if (!win) return;
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+    }, 0);
+  }, [entries]);
 
   // change value of selected cell
-  const setSelectedValue = (value: string) => {
-    setEntries((draft) => {
-      if (!entries || !selected) return draft;
-      const currentValue = entries[selected.index].value;
+  const setCellValue = useCallback(
+    ({ index, value }: { index: number; value: string }) => {
+      setEntries((draft) => {
+        if (!entries) {
+          console.warn('missing entries');
+          return draft;
+        }
+        const currentValue = entries[index].value;
+        return {
+          ...draft,
+          [index]: {
+            ...entries[index],
+            value: value === currentValue ? emptyCell : value,
+          },
+        };
+      });
+    },
+    [entries],
+  );
 
-      return !entries || !selected
-        ? draft
-        : {
-            ...draft,
-            [selected.index]: {
-              ...entries[selected.index],
-              value: value === currentValue ? emptyCell : value,
-            },
-          };
-    });
-  };
+  const memo = useMemo(
+    () => ({
+      sudoku: entries ? Object.values(entries) : [],
+      setCellValue,
+      startNewGame,
+    }),
+    [entries, setCellValue, startNewGame],
+  );
 
-  // change selected cell
-  const setSelectedIndex = (indexValue?: number) => {
-    setSelected(entries && indexValue ? entries[indexValue] : undefined);
-  };
-
-  return {
-    sudoku: entries ? Object.values(entries) : [],
-    selected,
-    setSelectedIndex,
-    setSelectedValue,
-    startNewGame,
-  };
+  return memo;
 }

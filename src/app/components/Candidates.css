@@ -8,10 +8,6 @@
   width: var(--candidate-tokens-size);
 }
 
-.candidates .token::before {
-  content: none;
-}
-
 .candidate {
   display: flex;
   height: 33%;
@@ -46,7 +42,8 @@
 }
 
 .candidate-input ~ .candidate-label .token {
-  opacity: 0.2;
+  opacity: 0.3;
+  opacity: 0;
 }
 
 .candidate-input:disabled ~ .candidate-label .token {

@@ -11,7 +11,7 @@ export function Token({
   token: TokenKey | string;
 }) {
   const icon = token in tokens ? tokens[token as TokenKey] : undefined;
-  const color = icon ? `var(--token-${icon})` : 'white';
+  const color = icon ? `var(--token-${icon})` : undefined;
 
   return (
     <div className="token" style={{ color }}>

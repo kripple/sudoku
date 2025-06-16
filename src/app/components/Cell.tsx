@@ -34,8 +34,9 @@ export function Cell({
   const rowId = getRowId(index);
 
   const initiallyEmpty = initialValue === emptyCell;
+  const currentlyEmpty = currentValue === emptyCell;
   const incorrect =
-    initiallyEmpty && currentValue !== emptyCell && currentValue !== solution
+    initiallyEmpty && !currentlyEmpty && currentValue !== solution
       ? 'incorrect'
       : false;
 
@@ -53,7 +54,8 @@ export function Cell({
     'game-cell',
     `row-${rowId}`,
     `col-${colId}`,
-    initiallyEmpty ? 'empty' : 'filled',
+    !initiallyEmpty ? 'filled' : false,
+    currentlyEmpty ? 'empty' : false,
     selected ? 'selected' : false,
     highlight ? 'highlight' : false,
     currentValue !== emptyCell && sameValue ? 'same-value' : false,

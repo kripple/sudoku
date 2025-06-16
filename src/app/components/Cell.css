@@ -28,7 +28,7 @@
 }
 
 .game-cell.incorrect::after {
-  background-color: #ff4b56;
+  background-color: var(--error-color);
   content: '';
   height: 2px;
   left: 50%;

@@ -1,15 +1,3 @@
-:root {
-  --token-fairy: #ff359a;
-  --token-fire: #ff5400;
-  --token-electric: #ffe600;
-  --token-grass: #00e41b;
-  --token-water: #1e90ff;
-  --token-ice: #00ffff;
-  --token-flying: #9fa1f2;
-  --token-poison: #c772ff;
-  --token-ghost: #923fdf;
-}
-
 .token {
   align-items: center;
   aspect-ratio: 1;

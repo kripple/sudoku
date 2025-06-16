@@ -1,13 +1,29 @@
 :root {
+  --token-fairy: #ff359a;
+  --token-fire: #ff5400;
+  --token-electric: #ffe600;
+  --token-grass: #00e41b;
+  --token-water: #1e90ff;
+  --token-ice: #00ffff;
+  --token-flying: #9fa1f2;
+  --token-poison: #c772ff;
+  --token-ghost: #923fdf;
+}
+
+:root {
+  --highlight-color: #558bff;
+  --lowlight-color: #bacfff;
+}
+
+:root {
   --white: #ffffff;
   --html-bgcolor: #f0f0f8;
   --locked: #dfdfdf;
-  --lowlight-color: #cadaff;
-  --highlight-color: #558bff;
   --menu-color: #7c7c81;
   --stroke-color: #444444;
   --text-color: #222222;
   --border-color: #000000;
+  --error-color: #ff4b56;
 }
 
 html {

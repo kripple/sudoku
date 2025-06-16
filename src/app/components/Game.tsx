@@ -26,20 +26,17 @@ export function Game() {
       <div className="game-board">
         {sudoku.map((cell, i) => {
           // determine highlights based on selected cell
-          // const sameRow = getRowId(i) === getRowId(selectedIndex);
-          // const sameColumn = getColId(i) === getColId(selectedIndex);
-          // const sameSet =
-          //   getSetId(getRowId(i)) === getSetId(getRowId(selectedIndex)) &&
-          //   getSetId(getColId(i)) === getSetId(getColId(selectedIndex));
-          // const sameValue = input === inputs[selectedIndex];
+          const sameRow = cell.rowId === selected?.rowId;
+          const sameColumn = cell.colId === selected?.colId;
+          const sameSet = cell.setId === selected?.setId;
+          const sameValue = cell.value === selected?.value;
 
           return (
             <Cell
-              // highlight={sameRow || sameColumn || sameSet}
-              highlight={false}
+              highlight={sameRow || sameColumn || sameSet}
               key={i}
-              sameValue={false}
-              selected={selected !== undefined && cell.index === selected.index}
+              sameValue={sameValue}
+              selected={cell.index === selected?.index}
               setSelected={setSelected}
               {...cell}
             >

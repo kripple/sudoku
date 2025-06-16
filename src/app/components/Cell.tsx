@@ -33,33 +33,41 @@ export function Cell({
   const innerBorderRight = colId % miniGameSize === 0;
   const innerBorderBottom = rowId % miniGameSize === 0;
 
-  const classNames = [
-    'game-cell',
-    `row-${rowId}`,
-    `col-${colId}`,
+  const shared = [
     locked ? 'locked' : false,
     empty ? 'empty' : false,
     selected ? 'selected' : false,
     highlight ? 'highlight' : false,
     value !== emptyCell && sameValue ? 'same-value' : false,
     incorrect,
+  ];
+
+  const borderClassNames = [
+    'game-cell-borders',
+    `row-${rowId}`,
+    `col-${colId}`,
     outerBorderLeft ? 'outer-border-left' : false,
     outerBorderRight ? 'outer-border-right' : false,
     outerBorderTop ? 'outer-border-top' : false,
     outerBorderBottom ? 'outer-border-bottom' : false,
     innerBorderRight ? 'inner-border-right' : false,
     innerBorderBottom ? 'inner-border-bottom' : false,
+    ...shared,
   ]
     .filter(Boolean)
     .join(' ');
 
+  const classNames = ['game-cell', ...shared].filter(Boolean).join(' ');
+
   return (
     <div
-      className={classNames}
+      className={borderClassNames}
       key={`row-${rowId}-col-${colId}`}
       onClick={() => setSelected(cell)}
     >
-      <Token token={value}>{children}</Token>
+      <div className={classNames}>
+        <Token token={value}>{children}</Token>
+      </div>
     </div>
   );
 }

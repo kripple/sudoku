@@ -72,23 +72,31 @@ export function useSudoku(difficulty?: Difficulty) {
 
   // change value of selected cell
   const setSelectedValue = (value: string) => {
-    setEntries((draft) =>
-      !entries || !selected
+    setEntries((draft) => {
+      if (!entries || !selected) return draft;
+      const currentValue = entries[selected.index].value;
+
+      return !entries || !selected
         ? draft
         : {
             ...draft,
             [selected.index]: {
               ...entries[selected.index],
-              value,
+              value: value === currentValue ? emptyCell : value,
             },
-          },
-    );
+          };
+    });
+  };
+
+  // change selected cell
+  const setSelectedIndex = (indexValue?: number) => {
+    setSelected(entries && indexValue ? entries[indexValue] : undefined);
   };
 
   return {
     sudoku: entries ? Object.values(entries) : [],
     selected,
-    setSelected,
+    setSelectedIndex,
     setSelectedValue,
     startNewGame,
   };

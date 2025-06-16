@@ -25,7 +25,7 @@ export function Cell({
   highlight: boolean;
   children?: ReactNode;
   selected?: boolean;
-  setSelectedIndex: SetState<number>;
+  setSelectedIndex: (value: number) => void;
 }) {
   const colId = getColId(index);
   const rowId = getRowId(index);

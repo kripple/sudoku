@@ -12,7 +12,36 @@ import { emptyCell, getColId, getRowId, getSetId } from '@/utils/game';
 import '@/app/components/Game.css';
 
 export function Game() {
-  const { sudoku, selected, setSelectedValue, startNewGame } = useSudoku();
+  const { sudoku, selected, setSelectedIndex, setSelectedValue, startNewGame } =
+    useSudoku();
+  // const {
+  // sudoku,
+  // sudokuRef,
+  // input,
+  // setInput,
+  // candidates,
+  // setCandidates,
+  // startNewGame,
+  // inputs,
+  // selectedIndex,
+  // setSelectedIndex,
+  // selectedRef,
+  // enableAutoCandidatesMode,
+  // } = useSudoku();
+  // const cells = sudoku.puzzle.split('');
+  // const solution = sudoku.solution.split('');
+
+  // const win = sudoku.solution === input;
+  // useConfetti(win);
+
+  // const initiallyEmpty = cells[selectedIndex] === emptyCell;
+  // useKeyboard({ sudokuRef, indexRef: selectedRef, setInput, setSelectedIndex });
+
+  // useEffect(() => {
+  //   if (!win) return;
+  //   setSelectedIndex(-1);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [win]);
 
   return (
     <div className="game">
@@ -33,7 +62,7 @@ export function Game() {
               key={i}
               sameValue={false}
               selected={selected !== undefined && cell.index === selected.index}
-              setSelectedIndex={() => {}}
+              setSelectedIndex={setSelectedIndex}
               {...cell}
             >
               {/* <Candidates

@@ -12,21 +12,21 @@ import '@/app/components/Cell.css';
 export function Cell({
   index,
   initialValue,
-  currentValue,
   solution,
   sameValue,
   selected,
   highlight,
+  value,
   children,
   setSelectedIndex,
 }: {
   index: number;
   initialValue: string;
-  currentValue: string;
   solution: string;
   sameValue: boolean;
   selected: boolean;
   highlight: boolean;
+  value: string;
   children?: ReactNode;
   setSelectedIndex: SetState<number>;
 }) {
@@ -34,9 +34,9 @@ export function Cell({
   const rowId = getRowId(index);
 
   const initiallyEmpty = initialValue === emptyCell;
-  const currentlyEmpty = currentValue === emptyCell;
+  const currentlyEmpty = value === emptyCell;
   const incorrect =
-    initiallyEmpty && !currentlyEmpty && currentValue !== solution
+    initiallyEmpty && !currentlyEmpty && value !== solution
       ? 'incorrect'
       : false;
 
@@ -58,7 +58,7 @@ export function Cell({
     currentlyEmpty ? 'empty' : false,
     selected ? 'selected' : false,
     highlight ? 'highlight' : false,
-    currentValue !== emptyCell && sameValue ? 'same-value' : false,
+    value !== emptyCell && sameValue ? 'same-value' : false,
     incorrect,
     outerBorderLeft ? 'outer-border-left' : false,
     outerBorderRight ? 'outer-border-right' : false,
@@ -76,7 +76,7 @@ export function Cell({
       key={`row-${rowId}-col-${colId}`}
       onClick={() => setSelectedIndex(index)}
     >
-      <Token token={currentValue}>{children}</Token>
+      <Token token={value}>{children}</Token>
     </div>
   );
 }

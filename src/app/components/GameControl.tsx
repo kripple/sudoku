@@ -14,7 +14,7 @@ export function GameControl({
     <div
       aria-label={label}
       className="game-control"
-      onClick={() => onClick}
+      onClick={() => onClick?.()}
       title={label}
     >
       <div className="game-control-icon">{children}</div>

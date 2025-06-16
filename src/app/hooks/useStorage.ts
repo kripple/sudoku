@@ -3,7 +3,7 @@ import { getSudoku } from 'sudoku-gen';
 
 import { useStateRef } from '@/app/hooks/useStateRef';
 import { getFromLocalStorage, saveToLocalStorage } from '@/app/utils/window';
-import { emptyCell } from '@/utils/game';
+import { emptyCell, getColId, getRowId, getSetId } from '@/utils/game';
 
 // TODO: check that data is valid on get and save to local storage
 
@@ -74,6 +74,56 @@ export function useStorage() {
 
   const enableAutoCandidatesMode = () => {
     // TODO: set candidates for each cell based on the tokens in their row, col, and set
+    setCandidates((currentCandidates) => {
+      return [...currentCandidates].map((_, i) => {
+        const draft = '123456789';
+
+        const value = input[i];
+        if (value !== emptyCell) return '';
+
+        // get values for row
+        const rowId = getRowId(i);
+
+        // get values for column
+        const colId = getColId(i);
+
+        // get values for set
+        const rowSetId = getSetId(rowId);
+        const colSetId = getSetId(colId);
+
+        const exclude = inputs.reduce((cellValues, cell, cellIndex) => {
+          if (cell === emptyCell) return cellValues;
+
+          const cellRowId = getRowId(cellIndex);
+          if (rowId === cellRowId) {
+            return cellValues.concat(cell);
+          }
+
+          const cellColId = getColId(cellIndex);
+          if (colId === cellColId) {
+            return cellValues.concat(cell);
+          }
+
+          const cellRowSetId = getSetId(cellRowId);
+          const cellColSetId = getSetId(cellColId);
+          if (rowSetId === cellRowSetId && colSetId === cellColSetId) {
+            return cellValues.concat(cell);
+          }
+
+          return cellValues;
+        }, '');
+
+        exclude.split('').forEach((value) => {
+          draft.replaceAll(value, '');
+        });
+
+        return draft
+          .split('')
+          .filter((value) => !exclude.includes(value))
+          .join('');
+      });
+    });
+    setInput((current) => `${current}`);
   };
 
   return {

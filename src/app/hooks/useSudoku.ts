@@ -30,10 +30,11 @@ type CellEntries = {
   [index: number]: Cell;
 };
 
-// save entries to local storage
-// user input + selected cell
+// save to local storage
+// add candidates
 // auto-candidates mode
-// user candidates
+// use keyboard
+// add lowlights
 
 export function useSudoku(difficulty?: Difficulty) {
   const sudokuRef = useRef<Sudoku>(null);

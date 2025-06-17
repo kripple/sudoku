@@ -5,10 +5,6 @@ import { tokenKeys } from '@/utils/tokens';
 
 import '@/app/components/TokenSelect.css';
 
-// have auto candidate mode auto-update when cell values change
-// hide the no-gos on the selected cell
-// needs a button to clear the selected cell
-
 export function TokenSelect({
   cells,
   setSelectedValue,

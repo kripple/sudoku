@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { Token } from '@/app/components/Token';
 import type { Cell } from '@/app/hooks/useSudoku';
@@ -17,6 +17,12 @@ export function Candidates({
   cells: Cell[];
   auto: boolean;
 }) {
+  const [count, setCount] = useState<number>(0);
+
+  useEffect(() => {
+    setCount((current) => current + 1);
+  }, [auto, cells]);
+
   const autoCandidates = useMemo(() => {
     const validOptions = new Set(tokenKeys as string[]);
     cells.forEach((comparisonCell) => {
@@ -35,7 +41,7 @@ export function Candidates({
   return (
     <div className="candidates">
       {tokenKeys.map((key) => {
-        const renderKey = `${key}-${auto ? '-auto' : ''}`;
+        const renderKey = `${key}-${count}`;
         const id = `cell-${cell.index}-candidate-${key}`;
         const checked = auto && autoCandidates.includes(key);
         return (

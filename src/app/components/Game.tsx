@@ -4,6 +4,7 @@ import { Candidates } from '@/app/components/Candidates';
 import { Cell } from '@/app/components/Cell';
 import { GameControls } from '@/app/components/GameControls';
 import { TokenSelect } from '@/app/components/TokenSelect';
+import { useEffectOnFirstChange } from '@/app/hooks/useEffectOnFirstChange';
 import { useKeyboard } from '@/app/hooks/useKeyboard';
 import { type Cell as CellType, useSudoku } from '@/app/hooks/useSudoku';
 import { emptyCell } from '@/utils/game';
@@ -16,7 +17,7 @@ export function Game() {
   const [auto, setAuto] = useState<boolean>(false);
   const toggleAuto = () => setAuto((current) => !current);
 
-  useEffect(() => {
+  useEffectOnFirstChange(() => {
     const firstEmptyCell = sudoku.find(
       (cell) => cell.value === emptyCell || cell.value !== cell.solution,
     );

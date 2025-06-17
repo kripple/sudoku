@@ -1,3 +1,4 @@
+import { IoClose as ClearIcon } from 'react-icons/io5';
 import {
   MdAutoMode as AutoModeIcon,
   MdInfo as InfoIcon,
@@ -13,19 +14,25 @@ export function GameControls({
   showNewGameButton,
   startNewGame,
   enableAutoCandidatesMode,
+  clearCell,
 }: {
   showNewGameButton: boolean;
   startNewGame: () => void;
   enableAutoCandidatesMode: () => void;
+  clearCell?: () => void;
 }) {
   return (
     <div className="game-controls game-controls-distribute">
+      <GameControl label="Clear Cell" onClick={clearCell}>
+        <ClearIcon className="react-icon" />
+      </GameControl>
+
       <GameControl label="How To Play">
         <label
           className="show-modal-checkbox-label"
           htmlFor={showModalCheckboxId}
         >
-          <InfoIcon className="md-icon" />
+          <InfoIcon className="react-icon" />
         </label>
       </GameControl>
 
@@ -33,7 +40,7 @@ export function GameControls({
         label="Automatic Candidates Mode"
         onClick={enableAutoCandidatesMode}
       >
-        <AutoModeIcon className="md-icon" />
+        <AutoModeIcon className="react-icon" />
       </GameControl>
 
       <GameControl
@@ -41,7 +48,7 @@ export function GameControls({
         label="New Game"
         onClick={startNewGame}
       >
-        <NewGameIcon className="md-icon" />
+        <NewGameIcon className="react-icon" />
       </GameControl>
     </div>
   );

@@ -34,7 +34,6 @@ type CellEntries = {
 // add candidates
 // auto-candidates mode
 // use keyboard
-// add lowlights
 
 export function useSudoku(difficulty?: Difficulty) {
   const sudokuRef = useRef<Sudoku>(null);

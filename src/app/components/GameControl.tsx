@@ -9,8 +9,7 @@ export function GameControl({
   hide?: boolean;
   onClick?: () => void;
 }) {
-  if (hide) return null;
-  return (
+  return hide ? null : (
     <div
       aria-label={label}
       className="game-control"

@@ -25,7 +25,7 @@
   transform: translateX(-2px) translateY(-2px);
 }
 
-svg.md-icon {
+svg.react-icon {
   color: var(--white);
   height: 100%;
   width: 100%;

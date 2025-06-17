@@ -6,13 +6,21 @@
 .token-option {
   transition: filter 100ms ease 50ms;
 }
-.token-option:not(.complete) {
+.token-option:not(.disabled) {
   cursor: pointer;
 }
-.token-option:not(.complete):hover {
+.token-option:not(.disabled):hover {
   filter: drop-shadow(4px 4px 2px #00000099);
 }
 
-.token-option:not(.complete):hover .token {
+.token-option:not(.disabled):hover .token {
   transform: var(--token-scale) translateX(-2px) translateY(-2px);
+}
+
+.token-option.disabled .token {
+  outline: 2px solid white;
+}
+.token-option.disabled .token svg {
+  filter: brightness(0.5);
+  opacity: 0.5;
 }

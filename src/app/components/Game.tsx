@@ -13,9 +13,13 @@ import '@/app/components/Game.css';
 export function Game() {
   const { sudoku, setCellValue, startNewGame } = useSudoku();
   const [selected, setSelected] = useState<CellType>();
+  const [auto, setAuto] = useState<boolean>(false);
+  const toggleAuto = () => setAuto((current) => !current);
 
   useEffect(() => {
-    const firstEmptyCell = sudoku.find(({ value }) => value === emptyCell);
+    const firstEmptyCell = sudoku.find(
+      (cell) => cell.value === emptyCell || cell.value !== cell.solution,
+    );
     setSelected(firstEmptyCell);
   }, [sudoku]);
 
@@ -40,17 +44,18 @@ export function Game() {
               setSelected={setSelected}
               {...cell}
             >
-              {/* <Candidates
-                candidates={candidates[i]}
-                index={i}
-                readOnly={i !== selectedIndex}
-                setCandidates={setCandidates}
-              /> */}
+              <Candidates
+                auto={auto}
+                cell={cell}
+                cells={sudoku}
+                readOnly={cell.index !== selected?.index}
+              />
             </Cell>
           );
         })}
       </div>
       <TokenSelect
+        cells={sudoku}
         setSelectedValue={
           selected !== undefined
             ? (value: string) => setCellValue({ index: selected.index, value })
@@ -58,7 +63,12 @@ export function Game() {
         }
       />
       <GameControls
-        enableAutoCandidatesMode={() => {}}
+        clearCell={
+          selected !== undefined
+            ? () => setCellValue({ index: selected.index, value: emptyCell })
+            : selected
+        }
+        enableAutoCandidatesMode={toggleAuto}
         showNewGameButton={true}
         startNewGame={startNewGame}
       />

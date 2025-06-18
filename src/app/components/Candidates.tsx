@@ -27,6 +27,7 @@ export function Candidates({
     const validOptions = new Set(tokenKeys as string[]);
     cells.forEach((comparisonCell) => {
       if (cell.index == comparisonCell.index) return; // skip self compare
+      if (comparisonCell.solution !== comparisonCell.value) return;
       if (
         cell.rowId == comparisonCell.rowId ||
         cell.colId == comparisonCell.colId ||

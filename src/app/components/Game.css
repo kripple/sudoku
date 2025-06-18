@@ -2,7 +2,7 @@
   --game-columns: 9;
   --game-size: 90vmin;
   --game-cell-size-min: 32px;
-  --game-cell-size-max: 64px;
+  --game-cell-size-max: 96px;
   --game-cell-size: calc(var(--game-size) / var(--game-columns));
   --game-size-min: calc(var(--game-cell-size-min) * var(--game-columns));
   --game-size-max: calc(var(--game-cell-size-max) * var(--game-columns));

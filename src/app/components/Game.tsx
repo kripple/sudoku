@@ -26,53 +26,56 @@ export function Game() {
 
   // useKeyboard({ sudokuRef, indexRef: selectedRef, setInput, setSelectedIndex });
 
+  const cells = sudoku.map((cell, i) => {
+    // determine highlights based on selected cell
+    const sameRow = cell.rowId === selected?.rowId;
+    const sameColumn = cell.colId === selected?.colId;
+    const sameSet = cell.setId === selected?.setId;
+    const sameValue = cell.value === selected?.value;
+
+    return (
+      <Cell
+        highlight={sameRow || sameColumn || sameSet}
+        key={i}
+        sameValue={sameValue}
+        selected={cell.index === selected?.index}
+        setSelected={setSelected}
+        {...cell}
+      >
+        <Candidates
+          auto={auto}
+          cell={cell}
+          cells={sudoku}
+          readOnly={cell.index !== selected?.index}
+        />
+      </Cell>
+    );
+  });
+
   return (
     <div className="game">
-      <div className="game-board">
-        {sudoku.map((cell, i) => {
-          // determine highlights based on selected cell
-          const sameRow = cell.rowId === selected?.rowId;
-          const sameColumn = cell.colId === selected?.colId;
-          const sameSet = cell.setId === selected?.setId;
-          const sameValue = cell.value === selected?.value;
-
-          return (
-            <Cell
-              highlight={sameRow || sameColumn || sameSet}
-              key={i}
-              sameValue={sameValue}
-              selected={cell.index === selected?.index}
-              setSelected={setSelected}
-              {...cell}
-            >
-              <Candidates
-                auto={auto}
-                cell={cell}
-                cells={sudoku}
-                readOnly={cell.index !== selected?.index}
-              />
-            </Cell>
-          );
-        })}
-      </div>
-      <TokenSelect
-        cells={sudoku}
-        setSelectedValue={
-          selected !== undefined
-            ? (value: string) => setCellValue({ index: selected.index, value })
-            : selected
-        }
-      />
-      <GameControls
-        clearCell={
-          selected !== undefined
-            ? () => setCellValue({ index: selected.index, value: emptyCell })
-            : selected
-        }
-        enableAutoCandidatesMode={toggleAuto}
-        showNewGameButton={true}
-        startNewGame={startNewGame}
-      />
+      {/* <div className="game-board">{cells}</div>
+      <div className="game-controls">
+        <TokenSelect
+          cells={sudoku}
+          setSelectedValue={
+            selected !== undefined
+              ? (value: string) =>
+                  setCellValue({ index: selected.index, value })
+              : selected
+          }
+        />
+        <GameControls
+          clearCell={
+            selected !== undefined
+              ? () => setCellValue({ index: selected.index, value: emptyCell })
+              : selected
+          }
+          enableAutoCandidatesMode={toggleAuto}
+          showNewGameButton={true}
+          startNewGame={startNewGame}
+        />
+      </div> */}
     </div>
   );
 }

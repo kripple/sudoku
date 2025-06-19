@@ -38,12 +38,12 @@
 .game-cell-borders,
 .game-control {
   aspect-ratio: 1;
-  height: var(--game-cell-size);
+  /* height: var(--game-cell-size);
   max-height: var(--game-cell-size-max);
   max-width: var(--game-cell-size-max);
   min-height: var(--game-cell-size-min);
   min-width: var(--game-cell-size-min);
-  width: var(--game-cell-size);
+  width: var(--game-cell-size); */
 }
 
 .game-cell {
@@ -96,6 +96,6 @@
 }
 
 .game-cell.empty .token {
-  transform: var(--token-scale);
+  /* transform: var(--token-scale); */
   transition: none;
 }

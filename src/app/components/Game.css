@@ -1,5 +1,5 @@
 :root {
-  --game-columns: 9;
+  /* --game-columns: 9;
   --game-size: 90vmin;
   --game-cell-size-min: 32px;
   --game-cell-size-max: 96px;
@@ -7,58 +7,48 @@
   --game-size-min: calc(var(--game-cell-size-min) * var(--game-columns));
   --game-size-max: calc(var(--game-cell-size-max) * var(--game-columns));
   --token-scale: scale(0.75);
-  --candidate-tokens-size: 115%;
+  --candidate-tokens-size: 115%; */
+}
+
+:root {
+  --controls-size: 100px;
+  --game-height-max: calc(100% - var(--padding));
 }
 
 .game {
-  align-content: center;
   align-items: center;
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  height: 100%;
-  justify-content: center;
+  flex-direction: column;
+  gap: var(--padding);
+  height: var(--game-height-max);
+  justify-content: flex-start;
   width: 100%;
+  outline: 1px solid lime;
 }
 
 .game-board,
 .game-controls {
   align-content: center;
   align-items: center;
-  aspect-ratio: 1;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .game-board {
-  height: var(--game-size);
-  max-height: var(--game-size-max);
-  max-width: var(--game-size-max);
-  min-height: var(--game-size-min);
-  min-width: var(--game-size-min);
-  width: var(--game-size);
+  aspect-ratio: 1;
+  width: 100%;
+  outline: 1px solid magenta;
 }
 
-@media screen and (max-height: 100vw) {
-  .game-controls {
-    flex-direction: column;
-    height: var(--game-size);
-    max-height: var(--game-size-max);
-    max-width: var(--game-cell-size-max);
-    min-height: var(--game-size-min);
-    min-width: var(--game-cell-size-min);
-    width: var(--game-cell-size);
-  }
+.game-controls {
+  height: var(--controls-size);
+  /* width: var(--controls-width); */
+  outline: 1px solid cyan;
 }
 
-@media screen and (max-width: 100vh) {
-  .game-controls {
+/* @media screen and (min-width: 800px) {
+  .game {
     flex-direction: row;
-    height: var(--game-cell-size);
-    max-height: var(--game-cell-size-max);
-    max-width: var(--game-size-max);
-    min-height: var(--game-cell-size-min);
-    min-width: var(--game-size-min);
-    width: var(--game-size);
   }
-}
+} */

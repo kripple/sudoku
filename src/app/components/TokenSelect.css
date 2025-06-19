@@ -14,7 +14,7 @@
 }
 
 .token-option:not(.disabled):hover .token {
-  transform: var(--token-scale) translateX(-2px) translateY(-2px);
+  /* transform: var(--token-scale) translateX(-2px) translateY(-2px); */
 }
 
 .token-option.disabled .token {

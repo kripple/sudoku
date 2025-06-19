@@ -2,10 +2,10 @@
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  height: var(--candidate-tokens-size);
+  /* height: var(--candidate-tokens-size); */
   justify-content: center;
   position: relative;
-  width: var(--candidate-tokens-size);
+  /* width: var(--candidate-tokens-size); */
 }
 
 .candidate {

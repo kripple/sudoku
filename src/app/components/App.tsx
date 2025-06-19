@@ -6,11 +6,13 @@ import '@/app/components/App.css';
 
 export function App() {
   return (
-    <ModalProvider contents={<HowToPlayModal />}>
-      <header className="header"></header>
-      <main className="main">
-        <Game />
-      </main>
-    </ModalProvider>
+    <div className="app">
+      <ModalProvider contents={<HowToPlayModal />}>
+        <header className="header">header</header>
+        <main className="main">
+          <Game />
+        </main>
+      </ModalProvider>
+    </div>
   );
 }

@@ -1,13 +1,66 @@
+:root {
+  --pad-xs: 4px;
+  --pad-sm: 8px;
+  --pad-md: 16px;
+  --pad-lg: 32px;
+  --pad-xl: 64px;
+
+  --padding: var(--pad-md);
+}
+
+.app {
+  align-items: center;
+  display: flex;
+  height: 100svh;
+  justify-content: center;
+  position: relative;
+  width: 100svw;
+}
+
+/* square game element & flexible controls buttons */
+:root {
+  --header-height: 50px;
+  /* --controls-size: 100px; */
+  /* --game-height-max: calc(100% - var(--controls-size) - var(--padding)); */
+}
+
+/* vertical */
+@media screen and (max-width: 100svh) {
+  /* :root {
+    --controls-height: var(--controls-size);
+    --controls-width: unset;
+  } */
+  /* html {
+    background-color: red !important;
+  } */
+}
+
+/* horizontal */
+@media screen and (max-height: 100svw) {
+  /* :root {
+    --controls-height: unset;
+    --controls-width: var(--controls-size);
+  } */
+  /* html {
+    background-color: blue !important;
+  } */
+}
+
 .header {
+  border-bottom: 1px solid var(--stroke-color);
+  height: var(--header-height);
   position: absolute;
   top: 0;
+  width: 100%;
 }
 
 .main {
-  align-items: inherit;
-  display: inherit;
-  height: inherit;
-  justify-content: inherit;
+  align-items: center;
+  display: flex;
+  height: calc(100% - var(--header-height));
+  justify-content: center;
+  margin-top: var(--header-height);
+  padding: var(--padding);
   position: relative;
-  width: inherit;
+  width: 100%;
 }

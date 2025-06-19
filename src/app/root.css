@@ -49,10 +49,10 @@ body {
 #root {
   align-items: center;
   display: flex;
-  height: 100svh;
+  height: 100lvh;
   justify-content: center;
   position: relative;
-  width: 100svw;
+  width: 100lvw;
 }
 
 *,

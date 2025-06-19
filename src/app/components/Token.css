@@ -1,19 +1,19 @@
 .token {
   align-items: center;
   aspect-ratio: 1;
-  border-radius: var(--game-cell-size-max);
+  /* border-radius: var(--game-cell-size-max); */
   display: flex;
-  height: var(--game-cell-size);
+  /* height: var(--game-cell-size); */
   justify-content: center;
-  max-height: var(--game-cell-size-max);
+  /* max-height: var(--game-cell-size-max);
   max-width: var(--game-cell-size-max);
   min-height: var(--game-cell-size-min);
-  min-width: var(--game-cell-size-min);
+  min-width: var(--game-cell-size-min); */
   position: relative;
-  transform: var(--token-scale);
+  /* transform: var(--token-scale); */
   transform-style: preserve-3d;
   transition: transform 150ms ease-in;
-  width: var(--game-cell-size);
+  /* width: var(--game-cell-size); */
 }
 .token::before {
   background-color: var(--white);

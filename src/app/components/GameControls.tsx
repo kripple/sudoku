@@ -22,7 +22,7 @@ export function GameControls({
   clearCell?: () => void;
 }) {
   return (
-    <div className="game-controls game-controls-distribute">
+    <div className="game-controls">
       <GameControl label="Clear Cell" onClick={clearCell}>
         <ClearIcon className="react-icon" />
       </GameControl>

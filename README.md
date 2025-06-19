@@ -10,6 +10,7 @@ https://sudokutodo.com/
 - number keys & clicking should both apply the selected number/icon to a cell
 - use arrow keys to navigte cells
 - don't use tab to navigate (number/icon) options, only use number key inputs or clicks
+- investigate using Next.js in lieu of netlify edge functions / cloudflare workers / aws lambda
 
 ## 9x9
 

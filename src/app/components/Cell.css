@@ -1,6 +1,8 @@
 :root {
   --game-inner-border: 2px solid var(--border-color);
   --game-border: 3px solid var(--border-color);
+  --game-columns: 9;
+  --game-cell-size: calc(100% / var(--game-columns));
 }
 
 .game-cell-borders {
@@ -35,21 +37,14 @@
   position: relative;
 }
 
-.game-cell-borders,
-.game-control {
-  aspect-ratio: 1;
-  /* height: var(--game-cell-size);
-  max-height: var(--game-cell-size-max);
-  max-width: var(--game-cell-size-max);
-  min-height: var(--game-cell-size-min);
-  min-width: var(--game-cell-size-min);
-  width: var(--game-cell-size); */
+.game-cell-borders {
+  min-height: var(--game-cell-size);
+  min-width: var(--game-cell-size);
 }
 
 .game-cell {
   aspect-ratio: 1;
-  max-height: 100%;
-  max-width: 100%;
+  width: var(--game-cell-size);
 }
 
 .game-cell.incorrect::after {
@@ -96,6 +91,5 @@
 }
 
 .game-cell.empty .token {
-  /* transform: var(--token-scale); */
   transition: none;
 }

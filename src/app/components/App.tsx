@@ -10,7 +10,9 @@ export function App() {
       <ModalProvider contents={<HowToPlayModal />}>
         <header className="header">header</header>
         <main className="main">
-          <Game />
+          {/* <Game /> */}
+          <div className="main-contents">main-contents</div>
+          <aside className="aside">aside</aside>
         </main>
       </ModalProvider>
     </div>

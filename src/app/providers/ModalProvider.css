@@ -3,12 +3,7 @@
 }
 
 .modal-provider {
-  align-items: inherit;
-  display: inherit;
-  height: inherit;
-  justify-content: inherit;
-  position: relative;
-  width: inherit;
+  all: inherit;
 }
 
 .modal {

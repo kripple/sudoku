@@ -1,38 +1,80 @@
 :root {
-  --pad-xs: 4px;
-  --pad-sm: 8px;
-  --pad-md: 16px;
-  --pad-lg: 32px;
-  --pad-xl: 64px;
-  --padding: var(--pad-md);
-  --header-height: 50px;
+  --padding: 16px;
+  --controls-size: 64px;
+  --contents-size: calc(100svw - (2 * var(--padding)));
+  --main-flex-direction: column;
+  --main-align-items: center;
+  --main-height: calc(
+    var(--contents-size) + var(--controls-size) + (2 * var(--padding))
+  );
+  --aside-height: calc(var(--controls-size) - var(--padding));
+  --aside-width: var(--contents-size);
+}
+
+@media screen and (min-width: 600px), screen and (min-width: 100svh) {
+  :root {
+    --contents-size: calc(
+      100vmin - var(--controls-size) - (2 * var(--padding))
+    );
+    --main-flex-direction: row;
+    --main-align-items: flex-start;
+    --main-height: calc(var(--contents-size) + (2 * var(--padding)));
+    --aside-height: var(--contents-size);
+    --aside-width: calc(var(--controls-size) - var(--padding));
+  }
 }
 
 .app {
   align-items: center;
   display: flex;
+  flex-direction: column;
   height: 100svh;
-  justify-content: center;
-  position: relative;
   width: 100svw;
 }
 
 .header {
-  border-bottom: 1px solid var(--stroke-color);
-  height: var(--header-height);
-  position: absolute;
-  top: 0;
+  display: flex;
+  height: var(--controls-size);
   width: 100%;
+}
+.header::after {
+  background-color: var(--stroke-color);
+  content: '';
+  height: 1px;
+  left: 0;
+  opacity: 0.5;
+  position: absolute;
+  right: 0;
+  top: var(--controls-size);
 }
 
 .main {
-  align-items: flex-start;
-  align-self: flex-start;
+  align-items: var(--main-align-items);
   display: flex;
-  height: calc(100% - var(--header-height));
+  flex-direction: var(--main-flex-direction);
+  gap: var(--padding);
+  height: var(--main-height);
   justify-content: center;
-  margin-top: var(--header-height);
   padding: var(--padding);
-  position: relative;
   width: 100%;
+}
+
+.main-contents {
+  display: flex;
+  height: var(--contents-size);
+  width: var(--contents-size);
+}
+
+.aside {
+  display: flex;
+  height: var(--aside-height);
+  width: var(--aside-width);
+}
+
+.main-contents {
+  background-color: magenta;
+}
+
+.aside {
+  background-color: blue;
 }

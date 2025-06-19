@@ -1,74 +1,46 @@
 :root {
-  /* --game-columns: 9;
-  --game-size: 90vmin;
-  --game-cell-size-min: 32px;
-  --game-cell-size-max: 96px;
-  --game-cell-size: calc(var(--game-size) / var(--game-columns));
-  --game-size-min: calc(var(--game-cell-size-min) * var(--game-columns));
-  --game-size-max: calc(var(--game-cell-size-max) * var(--game-columns));
-  --token-scale: scale(0.75);
-  --candidate-tokens-size: 115%; */
-}
-
-:root {
   --controls-size: 100px;
-  --game-board-height-max: calc(100% - var(--controls-size) - var(--padding));
 }
 
 .game {
-  align-items: center;
   display: flex;
   flex-direction: column;
   gap: var(--padding);
   height: 100%;
-  justify-content: flex-start;
-  min-height: calc((var(--controls-size) * 3) + var(--padding));
   width: 100%;
-}
-.game {
-  outline: 1px solid lime;
-  outline-offset: 4px;
 }
 
 .game-board {
-  align-content: flex-start;
-  align-items: flex-start;
+  aspect-ratio: 1;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: var(--padding);
-  height: 100%;
-  justify-content: center;
-  min-height: calc((var(--controls-size) * 3) + var(--padding));
-  width: 100%;
+  height: calc(100% - var(--controls-size) - var(--padding));
+  width: auto;
 }
 .game-board {
   outline: 1px solid magenta;
-  outline-offset: 2px;
-}
-
-.game-board-aspect-ratio {
-  align-content: center;
-  align-items: center;
-  aspect-ratio: 1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.game-board-aspect-ratio {
-  outline: 1px solid blue;
-  outline-offset: 1px;
 }
 
 .game-controls {
-  align-content: center;
-  align-items: center;
   display: flex;
-  flex-wrap: wrap;
   height: var(--controls-size);
-  justify-content: center;
-  min-width: var(--controls-size);
+  width: 100%;
 }
 .game-controls {
-  outline: 1px solid cyan;
+  outline: 1px solid blueviolet;
+}
+
+@media screen and (min-width: 600px) {
+  .game {
+    flex-direction: row;
+  }
+
+  .game-board {
+    height: auto;
+    width: calc(100% - var(--controls-size) - var(--padding));
+  }
+
+  .game-controls {
+    height: 100%;
+    width: var(--controls-size);
+  }
 }

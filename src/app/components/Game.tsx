@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { Candidates } from '@/app/components/Candidates';
 import { Cell } from '@/app/components/Cell';
@@ -52,32 +52,37 @@ export function Game() {
     );
   });
 
+  const controls = (
+    <>
+      <TokenSelect
+        cells={sudoku}
+        setSelectedValue={
+          selected !== undefined
+            ? (value: string) => setCellValue({ index: selected.index, value })
+            : selected
+        }
+      />
+      <GameControls
+        clearCell={
+          selected !== undefined
+            ? () =>
+                setCellValue({
+                  index: selected.index,
+                  value: emptyCell,
+                })
+            : selected
+        }
+        enableAutoCandidatesMode={toggleAuto}
+        showNewGameButton={true}
+        startNewGame={startNewGame}
+      />
+    </>
+  );
+
   return (
     <div className="game">
-      <div className="game-board">
-        <div className="game-board-aspect-ratio">{cells}</div>
-        <div className="game-controls">
-          {/* <TokenSelect
-          cells={sudoku}
-          setSelectedValue={
-            selected !== undefined
-              ? (value: string) =>
-                  setCellValue({ index: selected.index, value })
-              : selected
-          }
-        />
-        <GameControls
-          clearCell={
-            selected !== undefined
-              ? () => setCellValue({ index: selected.index, value: emptyCell })
-              : selected
-          }
-          enableAutoCandidatesMode={toggleAuto}
-          showNewGameButton={true}
-          startNewGame={startNewGame}
-        /> */}
-        </div>
-      </div>
+      <div className="game-board">cells</div>
+      <div className="game-controls">controls</div>
     </div>
   );
 }

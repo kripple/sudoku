@@ -28,10 +28,12 @@
 
 html {
   background-color: var(--html-bgcolor);
+  display: block;
   height: 100vh;
   margin: 0;
   overflow-x: hidden; /* prevent horizontal overscroll */
   padding: 0;
+  position: relative;
   width: 100vw;
 }
 
@@ -43,6 +45,7 @@ body {
   line-height: 1.5;
   margin: 0 auto;
   padding: 0;
+  position: relative;
   width: inherit;
 }
 

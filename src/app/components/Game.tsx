@@ -54,9 +54,10 @@ export function Game() {
 
   return (
     <div className="game">
-      {/* <div className="game-board">{cells}</div>
-      <div className="game-controls">
-        <TokenSelect
+      <div className="game-board">
+        <div className="game-board-aspect-ratio">{cells}</div>
+        <div className="game-controls">
+          {/* <TokenSelect
           cells={sudoku}
           setSelectedValue={
             selected !== undefined
@@ -74,8 +75,9 @@ export function Game() {
           enableAutoCandidatesMode={toggleAuto}
           showNewGameButton={true}
           startNewGame={startNewGame}
-        />
-      </div> */}
+        /> */}
+        </div>
+      </div>
     </div>
   );
 }

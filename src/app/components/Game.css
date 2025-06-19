@@ -12,7 +12,7 @@
 
 :root {
   --controls-size: 100px;
-  --game-height-max: calc(100% - var(--padding));
+  --game-board-height-max: calc(100% - var(--controls-size) - var(--padding));
 }
 
 .game {
@@ -20,35 +20,55 @@
   display: flex;
   flex-direction: column;
   gap: var(--padding);
-  height: var(--game-height-max);
+  height: 100%;
   justify-content: flex-start;
+  min-height: calc((var(--controls-size) * 3) + var(--padding));
   width: 100%;
+}
+.game {
   outline: 1px solid lime;
+  outline-offset: 4px;
 }
 
-.game-board,
+.game-board {
+  align-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--padding);
+  height: 100%;
+  justify-content: center;
+  min-height: calc((var(--controls-size) * 3) + var(--padding));
+  width: 100%;
+}
+.game-board {
+  outline: 1px solid magenta;
+  outline-offset: 2px;
+}
+
+.game-board-aspect-ratio {
+  align-content: center;
+  align-items: center;
+  aspect-ratio: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.game-board-aspect-ratio {
+  outline: 1px solid blue;
+  outline-offset: 1px;
+}
+
 .game-controls {
   align-content: center;
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-}
-
-.game-board {
-  aspect-ratio: 1;
-  width: 100%;
-  outline: 1px solid magenta;
-}
-
-.game-controls {
   height: var(--controls-size);
-  /* width: var(--controls-width); */
+  justify-content: center;
+  min-width: var(--controls-size);
+}
+.game-controls {
   outline: 1px solid cyan;
 }
-
-/* @media screen and (min-width: 800px) {
-  .game {
-    flex-direction: row;
-  }
-} */

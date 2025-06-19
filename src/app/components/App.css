@@ -4,8 +4,8 @@
   --pad-md: 16px;
   --pad-lg: 32px;
   --pad-xl: 64px;
-
   --padding: var(--pad-md);
+  --header-height: 50px;
 }
 
 .app {
@@ -17,35 +17,6 @@
   width: 100svw;
 }
 
-/* square game element & flexible controls buttons */
-:root {
-  --header-height: 50px;
-  /* --controls-size: 100px; */
-  /* --game-height-max: calc(100% - var(--controls-size) - var(--padding)); */
-}
-
-/* vertical */
-@media screen and (max-width: 100svh) {
-  /* :root {
-    --controls-height: var(--controls-size);
-    --controls-width: unset;
-  } */
-  /* html {
-    background-color: red !important;
-  } */
-}
-
-/* horizontal */
-@media screen and (max-height: 100svw) {
-  /* :root {
-    --controls-height: unset;
-    --controls-width: var(--controls-size);
-  } */
-  /* html {
-    background-color: blue !important;
-  } */
-}
-
 .header {
   border-bottom: 1px solid var(--stroke-color);
   height: var(--header-height);
@@ -55,7 +26,8 @@
 }
 
 .main {
-  align-items: center;
+  align-items: flex-start;
+  align-self: flex-start;
   display: flex;
   height: calc(100% - var(--header-height));
   justify-content: center;

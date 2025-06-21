@@ -23,6 +23,8 @@ export function Candidates({
     setCount((current) => current + 1);
   }, [auto, cells]);
 
+  // FIXME: (in auto mode) manually deselecting candidate is not persisted when filling any cell
+
   const autoCandidates = useMemo(() => {
     const validOptions = new Set(tokenKeys as string[]);
     cells.forEach((comparisonCell) => {

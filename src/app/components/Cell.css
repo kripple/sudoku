@@ -76,17 +76,18 @@
 }
 
 .gc.highlight > .token {
-  border: 1px solid var(--lowlight-color);
+  /* border: 1px solid var(--lowlight-color); */
 }
 
-.gc.selected > .token,
-.gc.same-value > .token {
-  /* transform: scale(0.85); */
+.gc.selected > .token::before,
+.gc.same-value > .token::before {
+  /* transform: scale(1.1); */
 }
 
 .gc.same-value > .token {
-  border: 1px solid currentColor;
-  padding: 2px;
+  /* outline: 2px solid currentColor;
+  outline-offset: 2px; */
+  /* padding: 2px; */
 }
 
 .gc.empty > .token::before {
@@ -96,16 +97,18 @@
 .gcb.locked {
   background-color: var(--locked);
 }
-.gcb.highlight,
-.gcb.same-value {
+.gcb.highlight {
   background-color: var(--lowlight-color);
+}
+.gcb.same-value {
+  background-color: var(--midlight-color);
 }
 .gcb.selected {
   background-color: var(--highlight-color);
 }
-.gc.selected > .token {
-  border: 1px solid var(--highlight-color);
-}
+/* .gcb.selected > .token {
+  transform: scale(1.1);
+} */
 
 .gc.empty .token {
   transition: none;

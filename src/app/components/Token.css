@@ -1,6 +1,7 @@
 .token {
   align-items: center;
   aspect-ratio: 1;
+  border: 1px solid transparent;
   border-radius: var(--controls-size);
   display: flex;
   flex-basis: 0;
@@ -12,9 +13,12 @@
 }
 .token::before {
   background-color: var(--white);
+  bottom: 0;
   content: '';
-  inset: 1px;
+  left: 0;
   position: absolute;
+  right: 0;
+  top: 0;
   transform: translateZ(-1px);
 }
 

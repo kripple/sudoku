@@ -29,6 +29,7 @@
 :root {
   --padding: 16px;
   --controls-size: 64px;
+  --token-margin: 0.75vmin;
 }
 
 html {

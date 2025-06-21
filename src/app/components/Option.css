@@ -13,17 +13,17 @@
 }
 
 .option {
+  align-items: center;
   aspect-ratio: 1;
   display: flex;
   flex-basis: 0;
   flex-grow: 1;
   height: var(--options-height);
-  transition: filter 150ms ease;
+  justify-content: center;
+  transition:
+    filter 150ms ease,
+    transform 150ms ease;
   width: var(--options-width);
-}
-
-.option .token {
-  transition: transform 150ms ease;
 }
 
 .option:not(.disabled) {
@@ -31,9 +31,6 @@
 }
 .option:not(.disabled):hover {
   filter: drop-shadow(3px 4px 2px #00000099);
-}
-
-.option:not(.disabled):hover .token {
   transform: translateX(-2px) translateY(-2px);
 }
 

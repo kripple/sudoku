@@ -1,17 +1,19 @@
 .candidates {
   align-items: center;
+  border-radius: 0;
   display: flex;
   flex-wrap: wrap;
-  /* height: var(--candidate-tokens-size); */
+  gap: var(--token-margin);
+  height: 100%;
   justify-content: center;
-  position: relative;
-  /* width: var(--candidate-tokens-size); */
+  position: absolute;
+  width: 100%;
 }
 
 .candidate {
   display: flex;
-  height: 33%;
-  width: 33%;
+  flex-basis: calc(33% - var(--token-margin));
+  flex-grow: 1;
 }
 
 .candidate-label {
@@ -23,27 +25,22 @@
   width: 100%;
 }
 
-/* .candidate-label .token {
-  height: inherit;
-  max-height: unset;
-  max-width: unset;
-  min-height: unset;
-  min-width: unset;
-  width: inherit;
-} */
+.candidate-label .token {
+  margin: 0;
+}
 
 .candidate-input ~ .candidate-label {
   cursor: pointer;
   pointer-events: all;
 }
-/* .candidate-input ~ .candidate-label svg {
+.candidate-input ~ .candidate-label svg {
   opacity: 0.3;
-} */
+}
 .candidate-input:disabled ~ .candidate-label {
   cursor: default;
   pointer-events: none;
 }
-/* .candidate-input:disabled ~ .candidate-label .token,
+.candidate-input:disabled ~ .candidate-label .token,
 .candidate-input:disabled ~ .candidate-label svg {
   opacity: 0;
 }
@@ -52,5 +49,5 @@
   opacity: 1;
 }
 .candidate-input:checked ~ .candidate-label .token {
-  outline: 1.5px solid white;
-} */
+  /* outline: 1px solid white; */
+}

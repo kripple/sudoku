@@ -16,7 +16,7 @@ export function Token({
 
   return (
     <div className="token" {...optionalStyle}>
-      {/* {icon ? <SvgIcon color={color} icon={icon} /> : children} */}
+      {icon ? <SvgIcon color={color} icon={icon} /> : children}
     </div>
   );
 }

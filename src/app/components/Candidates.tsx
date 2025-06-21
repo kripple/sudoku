@@ -59,7 +59,7 @@ export function Candidates({
             <label
               className="candidate-label"
               htmlFor={id}
-              style={{ display: !auto || checked ? 'flex' : 'none' }}
+              style={{ visibility: !auto || checked ? 'visible' : 'hidden' }}
             >
               <Token token={key} />
             </label>

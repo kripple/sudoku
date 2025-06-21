@@ -93,8 +93,8 @@ export function App() {
       })}
       <Option onClick={() => setSelectedValue?.(emptyCell)}>
         {/* ← */}
-        💣
-        {/* 💥 */}
+        {/* 💣 */}
+        💥
       </Option>
     </>
   );

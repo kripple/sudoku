@@ -1,26 +1,30 @@
 :root {
-  --padding: 16px;
-  --controls-size: 64px;
-  --contents-size: calc(100svw - (2 * var(--padding)));
+  --contents-size: calc(100svw - (3 * var(--padding)));
   --main-flex-direction: column;
   --main-align-items: center;
   --main-height: calc(
     var(--contents-size) + var(--controls-size) + (2 * var(--padding))
   );
-  --aside-height: calc(var(--controls-size) - var(--padding));
+  --aside-flex-direction: row;
+  --aside-height: auto;
   --aside-width: var(--contents-size);
+  --aside-max-height: var(--controls-size);
+  --aside-max-width: var(--contents-size);
 }
 
 @media screen and (min-width: 600px), screen and (min-width: 100svh) {
   :root {
     --contents-size: calc(
-      100vmin - var(--controls-size) - (2 * var(--padding))
+      100vmin - var(--controls-size) - (3 * var(--padding))
     );
     --main-flex-direction: row;
     --main-align-items: flex-start;
     --main-height: calc(var(--contents-size) + (2 * var(--padding)));
+    --aside-flex-direction: column;
     --aside-height: var(--contents-size);
-    --aside-width: calc(var(--controls-size) - var(--padding));
+    --aside-width: auto;
+    --aside-max-height: var(--contents-size);
+    --aside-max-width: var(--controls-size);
   }
 }
 
@@ -61,20 +65,17 @@
 
 .main-contents {
   display: flex;
+  flex-wrap: wrap;
   height: var(--contents-size);
   width: var(--contents-size);
 }
 
 .aside {
+  background-color: var(--menu-color);
+  border-radius: 2px;
   display: flex;
+  flex-direction: var(--aside-flex-direction);
   height: var(--aside-height);
+  max-width: var(--aside-max-width);
   width: var(--aside-width);
-}
-
-.main-contents {
-  background-color: magenta;
-}
-
-.aside {
-  background-color: blue;
 }

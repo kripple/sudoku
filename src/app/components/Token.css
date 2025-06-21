@@ -1,28 +1,22 @@
 .token {
   align-items: center;
   aspect-ratio: 1;
-  /* border-radius: var(--game-cell-size-max); */
+  border-radius: var(--controls-size);
   display: flex;
-  /* height: var(--game-cell-size); */
+  flex-basis: 0;
+  flex-grow: 1;
   justify-content: center;
-  /* max-height: var(--game-cell-size-max);
-  max-width: var(--game-cell-size-max);
-  min-height: var(--game-cell-size-min);
-  min-width: var(--game-cell-size-min); */
+  margin: 0.75vmin;
   position: relative;
-  /* transform: var(--token-scale); */
   transform-style: preserve-3d;
   transition: transform 150ms ease-in;
-  /* width: var(--game-cell-size); */
 }
-.token::before {
+/* .token::before {
   background-color: var(--white);
   content: '';
-  height: 100%;
   position: absolute;
   transform: translateZ(-1px);
-  width: 100%;
-}
+} */
 
 .token svg {
   aspect-ratio: 1;

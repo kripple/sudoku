@@ -23,27 +23,27 @@
   width: 100%;
 }
 
-.candidate-label .token {
+/* .candidate-label .token {
   height: inherit;
   max-height: unset;
   max-width: unset;
   min-height: unset;
   min-width: unset;
   width: inherit;
-}
+} */
 
 .candidate-input ~ .candidate-label {
   cursor: pointer;
   pointer-events: all;
 }
-.candidate-input ~ .candidate-label svg {
+/* .candidate-input ~ .candidate-label svg {
   opacity: 0.3;
-}
+} */
 .candidate-input:disabled ~ .candidate-label {
   cursor: default;
   pointer-events: none;
 }
-.candidate-input:disabled ~ .candidate-label .token,
+/* .candidate-input:disabled ~ .candidate-label .token,
 .candidate-input:disabled ~ .candidate-label svg {
   opacity: 0;
 }
@@ -53,4 +53,4 @@
 }
 .candidate-input:checked ~ .candidate-label .token {
   outline: 1.5px solid white;
-}
+} */

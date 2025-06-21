@@ -5,31 +5,58 @@
   --game-cell-size: calc(100% / var(--game-columns));
 }
 
-.game-cell-borders {
+/* .border-left::after {
+  background-color: var(--border-color);
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 0.5px;
+} */
+
+.gcb {
   background-color: var(--white);
   border: 0.5px solid var(--border-color);
 }
-.game-cell-borders.inner-border-bottom {
+.gcb.ibb {
   border-bottom: var(--game-inner-border);
 }
-.game-cell-borders.inner-border-right {
+.gcb.ibr {
   border-right: var(--game-inner-border);
 }
-.game-cell-borders.outer-border-top {
+.gcb.obt {
   border-top: var(--game-border);
 }
-.game-cell-borders.outer-border-bottom {
+.gcb.obb {
   border-bottom: var(--game-border);
 }
-.game-cell-borders.outer-border-left {
+.gcb.obl {
   border-left: var(--game-border);
 }
-.game-cell-borders.outer-border-right {
+.gcb.obr {
   border-right: var(--game-border);
 }
 
-.game-cell-borders,
-.game-cell,
+.gcb {
+  align-items: center;
+  aspect-ratio: 1;
+  display: flex;
+  height: var(--game-cell-size);
+  justify-content: center;
+  position: relative;
+  width: var(--game-cell-size);
+}
+
+.gc {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
 .game-control {
   align-items: center;
   display: flex;
@@ -37,17 +64,7 @@
   position: relative;
 }
 
-.game-cell-borders {
-  min-height: var(--game-cell-size);
-  min-width: var(--game-cell-size);
-}
-
-.game-cell {
-  aspect-ratio: 1;
-  width: var(--game-cell-size);
-}
-
-.game-cell.incorrect::after {
+.gc.incorrect::after {
   background-color: var(--error-color);
   content: '';
   height: 2px;
@@ -58,38 +75,38 @@
   width: 150%;
 }
 
-.game-cell.highlight > .token {
+.gc.highlight > .token {
   border: 1px solid var(--lowlight-color);
 }
 
-.game-cell.selected > .token,
-.game-cell.same-value > .token {
-  transform: scale(0.85);
+.gc.selected > .token,
+.gc.same-value > .token {
+  /* transform: scale(0.85); */
 }
 
-.game-cell.same-value > .token {
+.gc.same-value > .token {
   border: 1px solid currentColor;
   padding: 2px;
 }
 
-.game-cell.empty > .token::before {
+.gc.empty > .token::before {
   background-color: transparent;
 }
 
-.game-cell-borders.locked {
+.gcb.locked {
   background-color: var(--locked);
 }
-.game-cell-borders.highlight,
-.game-cell-borders.same-value {
+.gcb.highlight,
+.gcb.same-value {
   background-color: var(--lowlight-color);
 }
-.game-cell-borders.selected {
+.gcb.selected {
   background-color: var(--highlight-color);
 }
-.game-cell.selected > .token {
+.gc.selected > .token {
   border: 1px solid var(--highlight-color);
 }
 
-.game-cell.empty .token {
+.gc.empty .token {
   transition: none;
 }

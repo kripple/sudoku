@@ -42,30 +42,28 @@ export function Cell({
     incorrect,
   ];
 
-  const borderClassNames = [
-    'game-cell-borders',
-    `row-${rowId}`,
-    `col-${colId}`,
-    outerBorderLeft ? 'outer-border-left' : false,
-    outerBorderRight ? 'outer-border-right' : false,
-    outerBorderTop ? 'outer-border-top' : false,
-    outerBorderBottom ? 'outer-border-bottom' : false,
-    innerBorderRight ? 'inner-border-right' : false,
-    innerBorderBottom ? 'inner-border-bottom' : false,
+  const gameCellBorderClasses = [
+    'gcb',
+    outerBorderLeft ? 'obl' : false,
+    outerBorderRight ? 'obr' : false,
+    outerBorderTop ? 'obt' : false,
+    outerBorderBottom ? 'obb' : false,
+    innerBorderRight ? 'ibr' : false,
+    innerBorderBottom ? 'ibb' : false,
     ...shared,
   ]
     .filter(Boolean)
     .join(' ');
 
-  const classNames = ['game-cell', ...shared].filter(Boolean).join(' ');
+  const gameCellClasses = ['gc', ...shared].filter(Boolean).join(' ');
 
   return (
     <div
-      className={borderClassNames}
+      className={gameCellBorderClasses}
       key={`row-${rowId}-col-${colId}`}
       onClick={() => setSelected(cell)}
     >
-      <div className={classNames}>
+      <div className={gameCellClasses}>
         <Token token={value}>{children}</Token>
       </div>
     </div>

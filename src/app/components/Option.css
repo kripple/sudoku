@@ -1,0 +1,73 @@
+:root {
+  --options: 10;
+  --options-size: calc(100% / var(--options));
+  --options-height: auto;
+  --options-width: var(--options-size);
+}
+
+@media screen and (min-width: 600px), screen and (min-width: 100svh) {
+  :root {
+    --options-height: var(--options-size);
+    --options-width: auto;
+  }
+}
+
+.option {
+  aspect-ratio: 1;
+  display: flex;
+  flex-basis: 0;
+  flex-grow: 1;
+  height: var(--options-height);
+  transition: filter 150ms ease;
+  width: var(--options-width);
+}
+
+.option .token {
+  transition: transform 150ms ease;
+}
+
+.option:not(.disabled) {
+  cursor: pointer;
+}
+.option:not(.disabled):hover {
+  filter: drop-shadow(3px 4px 2px #00000099);
+}
+
+.option:not(.disabled):hover .token {
+  transform: translateX(-2px) translateY(-2px);
+}
+
+.option.disabled .token {
+  outline: 2px solid white;
+}
+.option.disabled .token svg {
+  filter: brightness(0.5);
+  opacity: 0.5;
+}
+
+.game-controls {
+  display: flex;
+  gap: var(--padding);
+  padding: var(--padding);
+}
+
+.game-control {
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+.game-control .game-control-icon {
+  position: relative;
+  transition:
+    filter 100ms ease,
+    transform 150ms ease;
+}
+
+.game-control:not(.disabled) {
+  cursor: pointer;
+}
+
+.game-control:not(.disabled):hover .game-control-icon {
+  filter: drop-shadow(4px 4px 2px #00000099);
+  transform: translateX(-2px) translateY(-2px);
+}

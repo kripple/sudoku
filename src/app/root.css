@@ -26,6 +26,11 @@
   --error-color: #ff4b56;
 }
 
+:root {
+  --padding: 16px;
+  --controls-size: 64px;
+}
+
 html {
   background-color: var(--html-bgcolor);
   display: block;
@@ -81,4 +86,10 @@ body {
   height: 10px;
   pointer-events: none;
   width: 10px;
+}
+
+svg.react-icon {
+  color: var(--text-color);
+  height: 100%;
+  width: 100%;
 }

@@ -1,11 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { IoClose as ClearIcon } from 'react-icons/io5';
-import {
-  MdAutoMode as AutoModeIcon,
-  MdKeyboardBackspace as BackspaceIcon,
-  MdInfo as InfoIcon,
-  MdAutorenew as NewGameIcon,
-} from 'react-icons/md';
+import { useState } from 'react';
+import { MdInfo as InfoIcon } from 'react-icons/md';
 
 import { Candidates } from '@/app/components/Candidates';
 import { Cell } from '@/app/components/Cell';
@@ -24,7 +18,7 @@ import { tokenKeys } from '@/utils/tokens';
 import '@/app/components/App.css';
 
 export function App() {
-  const { sudoku, setCellValue, startNewGame } = useSudoku();
+  const { sudoku, toggleCellValue, startNewGame } = useSudoku();
   const [selected, setSelected] = useState<CellType>();
   const [auto, setAuto] = useState<boolean>(false);
   const toggleAuto = () => setAuto((current) => !current);
@@ -67,37 +61,28 @@ export function App() {
   const showNewGameButton = true;
   const setSelectedValue =
     selected !== undefined
-      ? (value: string) => setCellValue({ index: selected.index, value })
+      ? (value: string) => toggleCellValue({ index: selected.index, value })
       : selected;
 
-  const gameControls = (
-    <>
-      {tokenKeys.map((key) => {
-        const disabled =
-          sudoku.reduce((count, cell) => {
-            if (cell.value === key && cell.value === cell.solution) {
-              return count + 1;
-            } else {
-              return count;
-            }
-          }, 0) === gameSize;
-        return (
-          <Option
-            className={disabled ? 'disabled' : undefined}
-            key={key}
-            onClick={() => setSelectedValue?.(key)}
-          >
-            <Token token={key} />
-          </Option>
-        );
-      })}
-      <Option onClick={() => setSelectedValue?.(emptyCell)}>
-        {/* ← */}
-        {/* 💣 */}
-        💥
+  const gameControls = tokenKeys.map((key) => {
+    const disabled =
+      sudoku.reduce((count, cell) => {
+        if (cell.value === key && cell.value === cell.solution) {
+          return count + 1;
+        } else {
+          return count;
+        }
+      }, 0) === gameSize;
+    return (
+      <Option
+        className={disabled ? 'disabled' : undefined}
+        key={key}
+        onClick={() => setSelectedValue?.(key)}
+      >
+        <Token token={key} />
       </Option>
-    </>
-  );
+    );
+  });
 
   return (
     <div className="app">

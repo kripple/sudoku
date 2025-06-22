@@ -16,6 +16,7 @@
   align-items: center;
   aspect-ratio: 1;
   display: flex;
+  filter: drop-shadow(0 0 0 #00000033);
   flex-basis: 0;
   flex-grow: 1;
   height: var(--options-height);
@@ -30,7 +31,7 @@
   cursor: pointer;
 }
 .option:not(.disabled):hover {
-  filter: drop-shadow(3px 4px 2px #00000099);
+  filter: drop-shadow(2.5px 4px 2px #00000099);
   transform: translateX(-2px) translateY(-2px);
 }
 
@@ -51,20 +52,4 @@
 .game-control {
   font-family: monospace;
   white-space: nowrap;
-}
-
-.game-control .game-control-icon {
-  position: relative;
-  transition:
-    filter 100ms ease,
-    transform 150ms ease;
-}
-
-.game-control:not(.disabled) {
-  cursor: pointer;
-}
-
-.game-control:not(.disabled):hover .game-control-icon {
-  filter: drop-shadow(4px 4px 2px #00000099);
-  transform: translateX(-2px) translateY(-2px);
 }

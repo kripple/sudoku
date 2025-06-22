@@ -83,7 +83,7 @@ export function useSudoku(difficulty?: Difficulty) {
   }, [entries]);
 
   // change value of selected cell
-  const setCellValue = useCallback(
+  const toggleCellValue = useCallback(
     ({ index, value }: { index: number; value: string }) => {
       setEntries((draft) => {
         if (!entries) {
@@ -106,10 +106,10 @@ export function useSudoku(difficulty?: Difficulty) {
   const memo = useMemo(
     () => ({
       sudoku: entries ? Object.values(entries) : [],
-      setCellValue,
+      toggleCellValue,
       startNewGame,
     }),
-    [entries, setCellValue, startNewGame],
+    [entries, toggleCellValue, startNewGame],
   );
 
   return memo;

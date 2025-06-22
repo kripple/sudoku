@@ -17,7 +17,7 @@ import { tokenKeys } from '@/utils/tokens';
 import '@/app/components/App.css';
 
 export function App() {
-  const { sudoku, toggleCellValue, startNewGame } = useSudoku();
+  const { sudoku, toggleCellValue } = useSudoku();
   const [selected, setSelected] = useState<CellType>();
   const [auto, setAuto] = useState<boolean>(false);
   const toggleAuto = () => setAuto((current) => !current);
@@ -94,13 +94,9 @@ export function App() {
       <ModalProvider contents={<HowToPlayModal />}>
         <header className="header">
           <div className="app-title">Sudoku</div>
-          <div className="header-button-text" onClick={() => toggleAuto()}>
+          <div className="header-button-text" onClick={toggleAuto}>
             Manual | Automatic
           </div>
-
-          {/* <div className="header-button-text" onClick={() => startNewGame()}>
-            New Game
-          </div> */}
 
           <label
             className="checkbox-label"

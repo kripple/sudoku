@@ -39,7 +39,6 @@
 .header {
   align-items: center;
   display: flex;
-  gap: calc(var(--padding) / 2);
   height: var(--controls-size);
   justify-content: flex-end;
   padding: 0 var(--padding);
@@ -62,10 +61,9 @@
   flex-wrap: nowrap;
   gap: calc(var(--padding) / 2);
   height: 100%;
-  margin: calc(var(--padding) / 2);
   min-height: var(--padding);
   min-width: var(--padding);
-  padding: calc(var(--padding) / 2);
+  padding: calc(var(--padding) / 2) calc(var(--padding) / 2 + 2px);
 }
 .header-button-text {
   font-family: monospace;
@@ -121,6 +119,30 @@
 
 .candidate-token .token {
   margin: 0;
+}
+
+.toggle-button {
+  border-color: var(--stroke-color-alpha);
+  border-radius: 2px;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin: calc(var(--padding) / 2);
+  min-height: var(--padding);
+  min-width: var(--padding);
+  padding: calc(var(--padding) / 2) calc(var(--padding) / 2 + 2px);
+  transition: border-color 150ms ease;
+}
+.toggle-button:hover {
+  border-color: var(--stroke-color);
+}
+
+.toggle-button input {
+  cursor: pointer;
+  pointer-events: none;
 }
 
 @media screen and (max-width: 599px) {

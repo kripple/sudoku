@@ -11,13 +11,16 @@ import type {
 
 export type ReactNode = ReactNodeType;
 
-export type ReactChangeEvent = ChangeEvent;
+export type ReactChangeEvent = ChangeEvent<HTMLInputElement>;
 
 export type ReactFormEvent = FormEvent;
 
-export type ReactMouseEvent = MouseEvent;
+export type ReactMouseEvent = MouseEvent<
+  HTMLInputElement,
+  MouseEvent
+>;
 
-export type ReactKeyboardEvent = KeyboardEvent;
+export type ReactKeyboardEvent = KeyboardEvent<HTMLBodyElement>;
 
 export type SetState<T> = Dispatch<SetStateAction<T>>;
 

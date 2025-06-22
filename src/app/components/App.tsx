@@ -17,10 +17,17 @@ import { tokenKeys } from '@/utils/tokens';
 import '@/app/components/App.css';
 
 export function App() {
-  const { sudoku, toggleCellValue, toggleCandidate } = useSudoku();
+  const {
+    sudoku,
+    toggleCellValue,
+    toggleCandidate,
+    toggleExcludeAutoCandidate,
+  } = useSudoku();
   const [selected, setSelected] = useState<CellType>();
   const [auto, setAuto] = useState<boolean>(false);
-  const toggleAuto = () => setAuto((current) => !current);
+  const toggleAuto = (event: ChangeEvent) => {
+    setAuto(event.currentTarget.checked);
+  };
 
   useEffectOnFirstChange(() => {
     const firstEmptyCell = sudoku.find(
@@ -50,8 +57,10 @@ export function App() {
         <Candidates
           auto={auto}
           cell={cell}
+          cells={sudoku}
           readOnly={cell.index !== selected?.index}
           toggleCandidate={toggleCandidate}
+          toggleExcludeAutoCandidate={toggleExcludeAutoCandidate}
         />
       </Cell>
     );
@@ -94,9 +103,16 @@ export function App() {
       <ModalProvider contents={<HowToPlayModal />}>
         <header className="header">
           <div className="app-title">Sudoku</div>
-          <div className="header-button-text" onClick={toggleAuto}>
-            Manual | Automatic
-          </div>
+          <label className="header-button-text toggle-button" tabIndex={0}>
+            <input
+              defaultChecked={auto}
+              key={auto.toString()}
+              onChange={toggleAuto}
+              tabIndex={-1}
+              type="checkbox"
+            />{' '}
+            Auto
+          </label>
 
           <label
             className="checkbox-label"
@@ -109,7 +125,6 @@ export function App() {
               title="How To Play"
             />
             <span className="hide-for-mobile header-button">
-              <InfoIcon className="react-icon" />{' '}
               <span className="header-button-text">How To Play</span>
             </span>
           </label>

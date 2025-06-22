@@ -33,13 +33,13 @@
 
 .checkbox-label {
   cursor: pointer;
-  outline-offset: calc(var(--padding) / -4);
+  margin: calc(var(--padding) / 2);
   position: relative;
   z-index: 20;
 }
 
 .checkbox-label .header-button {
-  border-color: transparent;
+  border-color: var(--stroke-color-alpha);
   border-radius: 2px;
   border-style: solid;
   border-width: 1px;

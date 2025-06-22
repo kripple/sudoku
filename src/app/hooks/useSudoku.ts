@@ -10,7 +10,6 @@ import {
   getRowId,
   getSetId,
 } from '@/utils/game';
-import { tokenKeys } from '@/utils/tokens';
 
 // TODO: check that data is valid on get and save to local storage
 
@@ -25,15 +24,21 @@ export type Cell = {
   solution: string;
   value: string;
   locked: boolean;
-  autoCandidates: string;
   userCandidates: string;
+  excludedAutoCandidates: string;
 };
-
-type PartialCell = Omit<Cell, 'autoCandidates'>;
 
 type CellEntries = {
   [index: number]: Cell;
 };
+
+export type ToggleHandler = ({
+  index,
+  value,
+}: {
+  index: number;
+  value: string;
+}) => void;
 
 // save to local storage
 // add candidates
@@ -44,33 +49,14 @@ export function useSudoku(difficulty?: Difficulty) {
   const sudokuRef = useRef<Sudoku>(null);
   const [entries, setEntries] = useState<CellEntries>();
 
-  const getAutoCandidates = useCallback(
-    (cell: PartialCell, cells: PartialCell[]) => {
-      const validOptions = new Set(tokenKeys as string[]);
-      cells.forEach((comparisonCell) => {
-        if (cell.index == comparisonCell.index) return; // skip self compare
-        if (comparisonCell.solution !== comparisonCell.value) return;
-        if (
-          cell.rowId == comparisonCell.rowId ||
-          cell.colId == comparisonCell.colId ||
-          cell.setId == comparisonCell.setId
-        ) {
-          validOptions.delete(comparisonCell.value);
-        }
-      });
-      return [...validOptions].join('');
-    },
-    [],
-  );
-
   const startNewGame = useCallback(() => {
     const newGame = getSudoku(difficulty || 'easy');
     sudokuRef.current = newGame;
 
-    const cells: PartialCell[] = [];
+    const draft: CellEntries = {};
     for (let i = 0; i < gameLength; i++) {
       const value = newGame.puzzle[i];
-      cells.push({
+      draft[i] = {
         index: i,
         rowId: getRowId(i),
         colId: getColId(i),
@@ -79,19 +65,11 @@ export function useSudoku(difficulty?: Difficulty) {
         value,
         locked: value !== emptyCell,
         userCandidates: '',
-      });
-    }
-
-    const draft = cells.reduce((result, cell) => {
-      result[cell.index] = {
-        ...cell,
-        autoCandidates: getAutoCandidates(cell, cells),
+        excludedAutoCandidates: '',
       };
-      return result;
-    }, {} as CellEntries);
-
+    }
     setEntries(draft);
-  }, [difficulty, getAutoCandidates]);
+  }, [difficulty]);
 
   useEffect(() => {
     startNewGame();
@@ -99,22 +77,20 @@ export function useSudoku(difficulty?: Difficulty) {
 
   // when entries change, check to see if we've won
   useEffect(() => {
-    setTimeout(() => {
-      if (!entries) return;
-      const win = Object.values(entries).every(
-        (cell) => cell.value === cell.solution,
-      );
-      if (!win) return;
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-      });
-    }, 0);
+    if (!entries) return;
+    const win = Object.values(entries).every(
+      (cell) => cell.value === cell.solution,
+    );
+    if (!win) return;
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
   }, [entries]);
 
   // change value of selected cell
-  const toggleCellValue = useCallback(
+  const toggleCellValue: ToggleHandler = useCallback(
     ({ index, value }: { index: number; value: string }) => {
       setEntries((draft) => {
         if (!entries) {
@@ -134,7 +110,7 @@ export function useSudoku(difficulty?: Difficulty) {
     [entries],
   );
 
-  const toggleCandidate = useCallback(
+  const toggleCandidate: ToggleHandler = useCallback(
     ({ index, value }: { index: number; value: string }) => {
       setEntries((draft) => {
         if (!entries) {
@@ -142,7 +118,7 @@ export function useSudoku(difficulty?: Difficulty) {
           return draft;
         }
         const draftCandidates = `${entries[index].userCandidates}`;
-        const userCandidates = draftCandidates.includes(value)
+        const candidates = draftCandidates.includes(value)
           ? draftCandidates.replaceAll(value, '')
           : draftCandidates.concat(value);
 
@@ -150,7 +126,31 @@ export function useSudoku(difficulty?: Difficulty) {
           ...draft,
           [index]: {
             ...entries[index],
-            userCandidates,
+            userCandidates: candidates,
+          },
+        };
+      });
+    },
+    [entries],
+  );
+
+  const toggleExcludeAutoCandidate: ToggleHandler = useCallback(
+    ({ index, value }: { index: number; value: string }) => {
+      setEntries((draft) => {
+        if (!entries) {
+          console.warn('missing entries');
+          return draft;
+        }
+        const excluded = `${entries[index].excludedAutoCandidates}`;
+        const toggled = excluded.includes(value)
+          ? excluded.replaceAll(value, '')
+          : excluded.concat(value);
+
+        return {
+          ...draft,
+          [index]: {
+            ...entries[index],
+            excludedAutoCandidates: toggled,
           },
         };
       });
@@ -163,9 +163,16 @@ export function useSudoku(difficulty?: Difficulty) {
       sudoku: entries ? Object.values(entries) : [],
       toggleCellValue,
       toggleCandidate,
+      toggleExcludeAutoCandidate,
       startNewGame,
     }),
-    [entries, toggleCellValue, toggleCandidate, startNewGame],
+    [
+      entries,
+      toggleCellValue,
+      toggleCandidate,
+      toggleExcludeAutoCandidate,
+      startNewGame,
+    ],
   );
 
   return memo;

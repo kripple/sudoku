@@ -10,6 +10,7 @@ import {
   getRowId,
   getSetId,
 } from '@/utils/game';
+import { tokenKeys } from '@/utils/tokens';
 
 // TODO: check that data is valid on get and save to local storage
 
@@ -24,7 +25,11 @@ export type Cell = {
   solution: string;
   value: string;
   locked: boolean;
+  autoCandidates: string;
+  userCandidates: string;
 };
+
+type PartialCell = Omit<Cell, 'autoCandidates'>;
 
 type CellEntries = {
   [index: number]: Cell;
@@ -39,28 +44,54 @@ export function useSudoku(difficulty?: Difficulty) {
   const sudokuRef = useRef<Sudoku>(null);
   const [entries, setEntries] = useState<CellEntries>();
 
+  const getAutoCandidates = useCallback(
+    (cell: PartialCell, cells: PartialCell[]) => {
+      const validOptions = new Set(tokenKeys as string[]);
+      cells.forEach((comparisonCell) => {
+        if (cell.index == comparisonCell.index) return; // skip self compare
+        if (comparisonCell.solution !== comparisonCell.value) return;
+        if (
+          cell.rowId == comparisonCell.rowId ||
+          cell.colId == comparisonCell.colId ||
+          cell.setId == comparisonCell.setId
+        ) {
+          validOptions.delete(comparisonCell.value);
+        }
+      });
+      return [...validOptions].join('');
+    },
+    [],
+  );
+
   const startNewGame = useCallback(() => {
     const newGame = getSudoku(difficulty || 'easy');
     sudokuRef.current = newGame;
 
-    setEntries((current) => {
-      const draft = { ...current };
-      for (let i = 0; i < gameLength; i++) {
-        const value = newGame.puzzle[i];
-        draft[i] = {
-          index: i,
-          rowId: getRowId(i),
-          colId: getColId(i),
-          setId: getSetId(i),
-          solution: newGame.solution[i],
-          value,
-          locked: value !== emptyCell,
-        };
-      }
+    const cells: PartialCell[] = [];
+    for (let i = 0; i < gameLength; i++) {
+      const value = newGame.puzzle[i];
+      cells.push({
+        index: i,
+        rowId: getRowId(i),
+        colId: getColId(i),
+        setId: getSetId(i),
+        solution: newGame.solution[i],
+        value,
+        locked: value !== emptyCell,
+        userCandidates: '',
+      });
+    }
 
-      return draft;
-    });
-  }, [difficulty]);
+    const draft = cells.reduce((result, cell) => {
+      result[cell.index] = {
+        ...cell,
+        autoCandidates: getAutoCandidates(cell, cells),
+      };
+      return result;
+    }, {} as CellEntries);
+
+    setEntries(draft);
+  }, [difficulty, getAutoCandidates]);
 
   useEffect(() => {
     startNewGame();
@@ -103,13 +134,38 @@ export function useSudoku(difficulty?: Difficulty) {
     [entries],
   );
 
+  const toggleCandidate = useCallback(
+    ({ index, value }: { index: number; value: string }) => {
+      setEntries((draft) => {
+        if (!entries) {
+          console.warn('missing entries');
+          return draft;
+        }
+        const draftCandidates = `${entries[index].userCandidates}`;
+        const userCandidates = draftCandidates.includes(value)
+          ? draftCandidates.replaceAll(value, '')
+          : draftCandidates.concat(value);
+
+        return {
+          ...draft,
+          [index]: {
+            ...entries[index],
+            userCandidates,
+          },
+        };
+      });
+    },
+    [entries],
+  );
+
   const memo = useMemo(
     () => ({
       sudoku: entries ? Object.values(entries) : [],
       toggleCellValue,
+      toggleCandidate,
       startNewGame,
     }),
-    [entries, toggleCellValue, startNewGame],
+    [entries, toggleCellValue, toggleCandidate, startNewGame],
   );
 
   return memo;

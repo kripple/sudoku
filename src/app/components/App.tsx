@@ -17,7 +17,7 @@ import { tokenKeys } from '@/utils/tokens';
 import '@/app/components/App.css';
 
 export function App() {
-  const { sudoku, toggleCellValue } = useSudoku();
+  const { sudoku, toggleCellValue, toggleCandidate } = useSudoku();
   const [selected, setSelected] = useState<CellType>();
   const [auto, setAuto] = useState<boolean>(false);
   const toggleAuto = () => setAuto((current) => !current);
@@ -50,8 +50,8 @@ export function App() {
         <Candidates
           auto={auto}
           cell={cell}
-          cells={sudoku}
           readOnly={cell.index !== selected?.index}
+          toggleCandidate={toggleCandidate}
         />
       </Cell>
     );

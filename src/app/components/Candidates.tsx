@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Token } from '@/app/components/Token';
 import type { Cell } from '@/app/hooks/useSudoku';
@@ -9,13 +9,13 @@ import '@/app/components/Candidates.css';
 export function Candidates({
   cell,
   readOnly,
-  cells,
   auto,
+  toggleCandidate,
 }: {
   cell: Cell;
   readOnly: boolean;
-  cells: Cell[];
   auto: boolean;
+  toggleCandidate: (props: { index: number; value: string }) => void;
 }) {
   const [count, setCount] = useState<number>(0);
 
@@ -25,28 +25,14 @@ export function Candidates({
     setCount((current) => current + 1);
   }, [auto]);
 
-  const autoCandidates = useMemo(() => {
-    const validOptions = new Set(tokenKeys as string[]);
-    cells.forEach((comparisonCell) => {
-      if (cell.index == comparisonCell.index) return; // skip self compare
-      if (comparisonCell.solution !== comparisonCell.value) return;
-      if (
-        cell.rowId == comparisonCell.rowId ||
-        cell.colId == comparisonCell.colId ||
-        cell.setId == comparisonCell.setId
-      ) {
-        validOptions.delete(comparisonCell.value);
-      }
-    });
-    return [...validOptions].join('');
-  }, [cell, cells]);
-
   return (
     <div className="candidates">
       {tokenKeys.map((key) => {
         const renderKey = `${key}-${count}`;
         const id = `cell-${cell.index}-candidate-${key}`;
-        const checked = auto && autoCandidates.includes(key);
+        const checked =
+          (auto && cell.autoCandidates.includes(key)) ||
+          (!auto && cell.userCandidates.includes(key));
         return (
           <div className="candidate" key={key}>
             <input
@@ -55,6 +41,9 @@ export function Candidates({
               disabled={readOnly}
               id={id}
               key={renderKey}
+              onChange={() => {
+                toggleCandidate({ index: cell.index, value: key });
+              }}
               style={{ display: 'none' }}
               type="checkbox"
             ></input>

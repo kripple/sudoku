@@ -19,11 +19,11 @@ export function Candidates({
 }) {
   const [count, setCount] = useState<number>(0);
 
+  // `defaultChecked` is only relevant for initial render
+  // with this strategy, auto candidates will only be forcefully changed when `auto` changes
   useEffect(() => {
     setCount((current) => current + 1);
-  }, [auto, cells]);
-
-  // FIXME: (in auto mode) manually deselecting candidate is not persisted when filling any cell
+  }, [auto]);
 
   const autoCandidates = useMemo(() => {
     const validOptions = new Set(tokenKeys as string[]);

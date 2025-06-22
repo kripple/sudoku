@@ -60,9 +60,7 @@
   display: flex;
   flex-wrap: nowrap;
   gap: calc(var(--padding) / 2);
-  height: 100%;
-  min-height: var(--padding);
-  min-width: var(--padding);
+  height: var(--header-item-height);
   padding: calc(var(--padding) / 2) calc(var(--padding) / 2 + 2px);
 }
 .header-button-text {
@@ -130,9 +128,8 @@
   display: flex;
   flex-wrap: nowrap;
   gap: 8px;
+  height: var(--header-item-height);
   margin: calc(var(--padding) / 2);
-  min-height: var(--padding);
-  min-width: var(--padding);
   padding: calc(var(--padding) / 2) calc(var(--padding) / 2 + 2px);
   transition: border-color 150ms ease;
 }
@@ -143,6 +140,10 @@
 .toggle-button input {
   cursor: pointer;
   pointer-events: none;
+}
+
+.react-icon.header-button {
+  padding: 4px;
 }
 
 @media screen and (max-width: 599px) {

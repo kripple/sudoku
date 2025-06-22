@@ -33,6 +33,7 @@
 
 .checkbox-label {
   cursor: pointer;
+  height: var(--header-item-height);
   margin: calc(var(--padding) / 2);
   position: relative;
   z-index: 20;

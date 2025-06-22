@@ -32,6 +32,7 @@
   --padding: 16px;
   --controls-size: 64px;
   --token-margin: 0.75vmin;
+  --header-item-height: calc(var(--controls-size) / 2 - 2px);
 }
 
 html {

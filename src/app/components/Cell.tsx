@@ -20,8 +20,7 @@ export function Cell({
 }) {
   const { rowId, colId, solution, value, locked } = cell;
   const empty = value === emptyCell;
-  const incorrect =
-    !locked && !empty && value !== solution ? 'incorrect' : false;
+  const incorrect = !locked && !empty && value !== solution ? 'icr' : false;
 
   // outer borders
   const outerBorderLeft = colId === 1;
@@ -34,11 +33,11 @@ export function Cell({
   const innerBorderBottom = rowId % miniGameSize === 0;
 
   const shared = [
-    locked ? 'locked' : false,
-    empty ? 'empty' : false,
-    selected ? 'selected' : false,
-    highlight ? 'highlight' : false,
-    value !== emptyCell && sameValue ? 'same-value' : false,
+    locked ? 'lk' : false,
+    empty ? 'et' : false,
+    selected ? 'sl' : false,
+    highlight ? 'hl' : false,
+    value !== emptyCell && sameValue ? 'sv' : false,
     incorrect,
   ];
 

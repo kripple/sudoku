@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { MdInfo as InfoIcon } from 'react-icons/md';
 
 import { Candidates } from '@/app/components/Candidates';
 import { Cell } from '@/app/components/Cell';
-import { GameControl } from '@/app/components/GameControl';
 import { HowToPlayModal } from '@/app/components/HowToPlayModal';
 import { Option } from '@/app/components/Option';
 import { Token } from '@/app/components/Token';
@@ -58,7 +57,6 @@ export function App() {
     );
   });
 
-  const showNewGameButton = true;
   const setSelectedValue =
     selected !== undefined
       ? (value: string) => toggleCellValue({ index: selected.index, value })
@@ -74,13 +72,20 @@ export function App() {
         }
       }, 0) === gameSize;
     return (
-      <Option
-        className={disabled ? 'disabled' : undefined}
-        key={key}
-        onClick={() => setSelectedValue?.(key)}
-      >
-        <Token token={key} />
-      </Option>
+      <Fragment key={key}>
+        <Option
+          className={disabled ? 'disabled' : undefined}
+          onClick={() => setSelectedValue?.(key)}
+        >
+          <Token token={key} />
+          <div
+            className="candidate-token"
+            onClick={() => setSelectedValue?.(key)}
+          >
+            <Token token={key} />
+          </div>
+        </Option>
+      </Fragment>
     );
   });
 
@@ -88,28 +93,28 @@ export function App() {
     <div className="app">
       <ModalProvider contents={<HowToPlayModal />}>
         <header className="header">
-          <div className="game-controls">
-            <GameControl label="Automatic Candidates Mode" onClick={toggleAuto}>
-              Manual | Automatic
-            </GameControl>
-
-            <GameControl
-              hide={!showNewGameButton}
-              label="New Game"
-              onClick={startNewGame}
-            >
-              New Game
-            </GameControl>
-
-            <GameControl label="How To Play">
-              <label
-                className="show-modal-checkbox-label"
-                htmlFor={showModalCheckboxId}
-              >
-                <InfoIcon className="react-icon" />
-              </label>
-            </GameControl>
+          <div className="header-button-text" onClick={() => toggleAuto()}>
+            Manual | Automatic
           </div>
+
+          {/* <div className="header-button-text" onClick={() => startNewGame()}>
+            New Game
+          </div> */}
+
+          <label
+            className="show-modal-checkbox-label"
+            htmlFor={showModalCheckboxId}
+          >
+            <InfoIcon
+              aria-label="How To Play"
+              className="react-icon hide-for-desktop header-button"
+              title="How To Play"
+            />
+            <span className="hide-for-mobile header-button">
+              <InfoIcon className="react-icon" />{' '}
+              <span className="header-button-text">How To Play</span>
+            </span>
+          </label>
         </header>
         <main className="main">
           <div className="main-contents">{gameCells}</div>

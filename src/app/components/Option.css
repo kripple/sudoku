@@ -21,35 +21,31 @@
   flex-grow: 1;
   height: var(--options-height);
   justify-content: center;
+  width: var(--options-width);
+}
+.option > .token {
   transition:
     filter 150ms ease,
     transform 150ms ease;
-  width: var(--options-width);
 }
 
 .option:not(.disabled) {
   cursor: pointer;
 }
-.option:not(.disabled):hover {
+/* .option .token {
+  display: relative;
+  transform: translateZ(-1px);
+  z-index: -1;
+} */
+.option:not(.disabled):hover > .token {
   filter: drop-shadow(2.5px 4px 2px #00000099);
-  transform: translateX(-2px) translateY(-2px);
+  transform: translateX(-2px) translateY(-2px) translateZ(1px);
 }
 
-.option.disabled .token {
+.option.disabled > .token {
   outline: 2px solid white;
 }
-.option.disabled .token svg {
+.option.disabled > .token svg {
   filter: brightness(0.5);
   opacity: 0.5;
-}
-
-.game-controls {
-  display: flex;
-  gap: var(--padding);
-  padding: var(--padding);
-}
-
-.game-control {
-  font-family: monospace;
-  white-space: nowrap;
 }

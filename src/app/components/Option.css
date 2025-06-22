@@ -32,14 +32,9 @@
 .option:not(.disabled) {
   cursor: pointer;
 }
-/* .option .token {
-  display: relative;
-  transform: translateZ(-1px);
-  z-index: -1;
-} */
 .option:not(.disabled):hover > .token {
   filter: drop-shadow(2.5px 4px 2px #00000099);
-  transform: translateX(-2px) translateY(-2px) translateZ(1px);
+  transform: translateX(-2px) translateY(-2px);
 }
 
 .option.disabled > .token {
@@ -48,4 +43,11 @@
 .option.disabled > .token svg {
   filter: brightness(0.5);
   opacity: 0.5;
+}
+
+.option > .token {
+  z-index: auto;
+}
+.option:not(.disabled):hover > .token ~ .candidate-token > .token {
+  z-index: -1;
 }

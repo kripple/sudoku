@@ -106,10 +106,8 @@
 .gcb.sl {
   background-color: var(--highlight-color);
 }
-/* .gcb.sl > .token {
-  transform: scale(1.1);
-} */
 
-.gc.et .token {
-  transition: none;
+.gcb.sl .candidate-input:checked ~ .candidate-label .token,
+.gcb.sl .candidate-input:checked ~ .candidate-label svg {
+  opacity: 1;
 }

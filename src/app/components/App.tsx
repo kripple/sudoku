@@ -93,6 +93,7 @@ export function App() {
     <div className="app">
       <ModalProvider contents={<HowToPlayModal />}>
         <header className="header">
+          <div className="app-title">Sudoku</div>
           <div className="header-button-text" onClick={() => toggleAuto()}>
             Manual | Automatic
           </div>
@@ -102,8 +103,9 @@ export function App() {
           </div> */}
 
           <label
-            className="show-modal-checkbox-label"
+            className="checkbox-label"
             htmlFor={showModalCheckboxId}
+            tabIndex={0}
           >
             <InfoIcon
               aria-label="How To Play"

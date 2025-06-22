@@ -31,11 +31,22 @@
   transition: transform 200ms ease;
 }
 
-.show-modal-checkbox-label,
-.hide-modal-checkbox-label {
+.checkbox-label {
   cursor: pointer;
+  outline-offset: calc(var(--padding) / -4);
   position: relative;
   z-index: 20;
+}
+
+.checkbox-label .header-button {
+  border-color: transparent;
+  border-radius: 2px;
+  border-style: solid;
+  border-width: 1px;
+  transition: border-color 150ms ease;
+}
+.checkbox-label:hover .header-button {
+  border-color: var(--stroke-color);
 }
 
 /* show modal when both are checked or both are unchecked */

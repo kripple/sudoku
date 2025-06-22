@@ -39,9 +39,10 @@
 .header {
   align-items: center;
   display: flex;
-  gap: 4px;
+  gap: calc(var(--padding) / 2);
   height: var(--controls-size);
   justify-content: flex-end;
+  padding: 0 var(--padding);
   width: 100%;
 }
 .header::after {
@@ -56,10 +57,6 @@
 }
 .header-button {
   align-items: center;
-  border-color: transparent;
-  border-radius: 2px;
-  border-style: solid;
-  border-width: 1px;
   cursor: pointer;
   display: flex;
   flex-wrap: nowrap;
@@ -69,10 +66,6 @@
   min-height: var(--padding);
   min-width: var(--padding);
   padding: calc(var(--padding) / 2);
-  transition: border-color 150ms ease;
-}
-.header-button:hover {
-  border-color: var(--stroke-color);
 }
 .header-button-text {
   font-family: monospace;
@@ -109,6 +102,16 @@
   width: var(--aside-width);
 }
 
+.app-title {
+  flex-grow: 1;
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 16px;
+  padding: var(--padding);
+  white-space: nowrap;
+}
+
 .candidate-token {
   position: absolute;
   right: 2px;
@@ -120,12 +123,12 @@
   margin: 0;
 }
 
-@media screen and (max-width: 399px) {
+@media screen and (max-width: 599px) {
   .hide-for-mobile {
     display: none;
   }
 }
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 600px) {
   .hide-for-desktop {
     display: none;
   }

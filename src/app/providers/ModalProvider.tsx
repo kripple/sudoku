@@ -7,6 +7,8 @@ import {
 
 import '@/app/providers/ModalProvider.css';
 
+// FIXME: Escape key should remove focus-visible from tabbable labels
+
 export function ModalProvider({
   children,
   contents,
@@ -56,7 +58,10 @@ export function ModalProvider({
         style={{ display: 'none' }}
         type="checkbox"
       ></input>
-      <label className="modal" htmlFor={hideModalCheckboxId}>
+      <label
+        className="modal"
+        htmlFor={hideModalCheckboxId}
+      >
         <div className="modal-contents">
           <div className="modal-actions">
             <div className="modal-actions-close" />

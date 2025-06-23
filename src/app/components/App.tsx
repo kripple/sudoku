@@ -43,7 +43,16 @@ export function App() {
   const setSelectedValue =
     selected !== undefined
       ? (value: string) => toggleCellValue({ index: selected.index, value })
-      : undefined;
+      : () => {};
+
+  const setCandidate =
+    selected !== undefined
+      ? (value: string) =>
+          (auto ? toggleExcludeAutoCandidate : toggleCandidate)({
+            index: selected.index,
+            value,
+          })
+      : () => {};
 
   const gameCells = sudoku.map((cell, i) => {
     // determine highlights based on selected cell
@@ -83,20 +92,16 @@ export function App() {
         }
       }, 0) === gameSize;
     return (
-      <Fragment key={key}>
-        <Option
+      <Option key={key}>
+        <Token
           className={disabled ? 'disabled' : undefined}
-          onClick={() => setSelectedValue?.(key)}
-        >
+          onClick={() => setSelectedValue(key)}
+          token={key}
+        />
+        {/* <div className="candidate-token" onClick={() => setCandidate(key)}>
           <Token token={key} />
-          <div
-            className="candidate-token"
-            onClick={() => setSelectedValue?.(key)}
-          >
-            <Token token={key} />
-          </div>
-        </Option>
-      </Fragment>
+        </div> */}
+      </Option>
     );
   });
 

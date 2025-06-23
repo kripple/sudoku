@@ -18,5 +18,6 @@ export function useEffectOnFirstChange<T extends EffectCallback>(
       hasRun.current = true;
       return effect();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 }

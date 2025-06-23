@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import { MdInfo as InfoIcon } from 'react-icons/md';
 
 import { Candidates } from '@/app/components/Candidates';
@@ -7,7 +7,7 @@ import { HowToPlayModal } from '@/app/components/HowToPlayModal';
 import { Option } from '@/app/components/Option';
 import { Token } from '@/app/components/Token';
 import { useEffectOnFirstChange } from '@/app/hooks/useEffectOnFirstChange';
-import { useKeyboard } from '@/app/hooks/useKeyboard';
+// import { useKeyboard } from '@/app/hooks/useKeyboard';
 import { useOnKeyDown } from '@/app/hooks/useOnKeyDown';
 import { type Cell as CellType, useSudoku } from '@/app/hooks/useSudoku';
 import { ModalProvider } from '@/app/providers/ModalProvider';
@@ -45,14 +45,14 @@ export function App() {
       ? (value: string) => toggleCellValue({ index: selected.index, value })
       : () => {};
 
-  const setCandidate =
-    selected !== undefined
-      ? (value: string) =>
-          (auto ? toggleExcludeAutoCandidate : toggleCandidate)({
-            index: selected.index,
-            value,
-          })
-      : () => {};
+  // const setCandidate =
+  //   selected !== undefined
+  //     ? (value: string) =>
+  //         (auto ? toggleExcludeAutoCandidate : toggleCandidate)({
+  //           index: selected.index,
+  //           value,
+  //         })
+  //     : () => {};
 
   const gameCells = sudoku.map((cell, i) => {
     // determine highlights based on selected cell

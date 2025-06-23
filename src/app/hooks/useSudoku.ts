@@ -2,7 +2,7 @@ import confetti from 'canvas-confetti';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { getSudoku } from 'sudoku-gen';
 
-import { getFromLocalStorage, saveToLocalStorage } from '@/app/utils/window';
+// import { getFromLocalStorage, saveToLocalStorage } from '@/app/utils/window';
 import {
   emptyCell,
   gameLength,

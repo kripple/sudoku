@@ -15,10 +15,7 @@ export type ReactChangeEvent = ChangeEvent<HTMLInputElement>;
 
 export type ReactFormEvent = FormEvent;
 
-export type ReactMouseEvent = MouseEvent<
-  HTMLInputElement,
-  MouseEvent
->;
+export type ReactMouseEvent = MouseEvent<HTMLInputElement, MouseEvent>;
 
 export type ReactKeyboardEvent = KeyboardEvent<HTMLBodyElement>;
 

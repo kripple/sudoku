@@ -29,6 +29,8 @@
     transform 150ms ease;
 }
 
+/* FIXME: `.disabled` is applied to `.token` now, not to `.option`  */
+
 .option:not(.disabled) {
   cursor: pointer;
 }

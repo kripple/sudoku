@@ -23,7 +23,7 @@
   justify-content: center;
   width: var(--options-width);
 }
-.option > .token {
+.option .token {
   transition:
     filter 150ms ease,
     transform 150ms ease;
@@ -32,22 +32,22 @@
 .option:not(.disabled) {
   cursor: pointer;
 }
-.option:not(.disabled):hover > .token {
+.option:not(.disabled):hover .token {
   filter: drop-shadow(2.5px 4px 2px #00000099);
   transform: translateX(-2px) translateY(-2px);
 }
 
-.option.disabled > .token {
+.option.disabled .token {
   outline: 2px solid white;
 }
-.option.disabled > .token svg {
+.option.disabled .token svg {
   filter: brightness(0.5);
   opacity: 0.5;
 }
 
-.option > .token {
+.option .token {
   z-index: auto;
 }
-.option:not(.disabled):hover > .token ~ .candidate-token > .token {
+/* .option:not(.disabled):hover > .token ~ .candidate-token > .token {
   z-index: -1;
-}
+} */

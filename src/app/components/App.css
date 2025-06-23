@@ -111,8 +111,8 @@
 .candidate-token {
   position: absolute;
   right: 2px;
-  top: var(--token-margin);
-  width: 37%;
+  top: 2px;
+  width: 30%;
 }
 
 .candidate-token .token {

@@ -1,13 +1,13 @@
 declare type ReactNode = import('@/types/react').ReactNode;
 
-declare type FormEvent =
+declare type ReactFormEvent =
   import('@/types/react').ReactFormEvent<HTMLFormElement>;
 
-declare type ChangeEvent = import('@/types/react').ReactChangeEvent;
+declare type ReactChangeEvent = import('@/types/react').ReactChangeEvent;
 
-declare type ClickEvent = import('@/types/react').ReactMouseEvent;
+declare type ReactClickEvent = import('@/types/react').ReactMouseEvent;
 
-declare type KeyboardEvent = import('@/types/react').ReactKeyboardEvent;
+declare type ReactKeyboardEvent = import('@/types/react').ReactKeyboardEvent;
 
 declare type SetState<T> = import('@/types/react').SetState<T>;
 

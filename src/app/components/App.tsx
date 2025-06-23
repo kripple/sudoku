@@ -8,6 +8,7 @@ import { Option } from '@/app/components/Option';
 import { Token } from '@/app/components/Token';
 import { useEffectOnFirstChange } from '@/app/hooks/useEffectOnFirstChange';
 import { useKeyboard } from '@/app/hooks/useKeyboard';
+import { useOnKeyDown } from '@/app/hooks/useOnKeyDown';
 import { type Cell as CellType, useSudoku } from '@/app/hooks/useSudoku';
 import { ModalProvider } from '@/app/providers/ModalProvider';
 import { showModalCheckboxId } from '@/app/utils/constants';
@@ -25,9 +26,10 @@ export function App() {
   } = useSudoku();
   const [selected, setSelected] = useState<CellType>();
   const [auto, setAuto] = useState<boolean>(false);
-  const toggleAuto = (event: ChangeEvent) => {
+  const toggleAuto = (event: ReactChangeEvent) => {
     setAuto(event.currentTarget.checked);
   };
+  const onKeyDown = useOnKeyDown();
 
   useEffectOnFirstChange(() => {
     const firstEmptyCell = sudoku.find(
@@ -37,6 +39,11 @@ export function App() {
   }, [sudoku]);
 
   // useKeyboard({ sudokuRef, indexRef: selectedRef, setInput, setSelectedIndex });
+
+  const setSelectedValue =
+    selected !== undefined
+      ? (value: string) => toggleCellValue({ index: selected.index, value })
+      : undefined;
 
   const gameCells = sudoku.map((cell, i) => {
     // determine highlights based on selected cell
@@ -65,11 +72,6 @@ export function App() {
       </Cell>
     );
   });
-
-  const setSelectedValue =
-    selected !== undefined
-      ? (value: string) => toggleCellValue({ index: selected.index, value })
-      : selected;
 
   const gameControls = tokenKeys.map((key) => {
     const disabled =
@@ -103,7 +105,11 @@ export function App() {
       <ModalProvider contents={<HowToPlayModal />}>
         <header className="header">
           <div className="app-title">Sudoku</div>
-          <label className="header-button-text toggle-button" tabIndex={0}>
+          <label
+            className="header-button-text toggle-button"
+            onKeyDown={onKeyDown}
+            tabIndex={0}
+          >
             <input
               defaultChecked={auto}
               key={auto.toString()}
@@ -117,6 +123,7 @@ export function App() {
           <label
             className="checkbox-label"
             htmlFor={showModalCheckboxId}
+            onKeyDown={onKeyDown}
             tabIndex={0}
           >
             <InfoIcon

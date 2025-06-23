@@ -99,10 +99,10 @@
 }
 
 .app-title {
+  color: #000000;
   flex-grow: 1;
   font-family: monospace;
   font-size: 16px;
-  font-weight: 700;
   line-height: 16px;
   padding: var(--padding);
   white-space: nowrap;

@@ -1,0 +1,25 @@
+.button {
+  align-items: center;
+  display: flex;
+  font-family: monospace;
+  font-size: inherit;
+  justify-content: center;
+  line-height: 1;
+}
+
+.button:not(:disabled) {
+  cursor: pointer;
+}
+
+.difficulty {
+  background: var(--text-color);
+  border: none;
+  border-radius: 42px;
+  color: var(--background-color);
+  font-family: sans-serif;
+  height: 42px;
+  letter-spacing: 0.04em;
+  padding: 1px 16px;
+  text-transform: capitalize;
+  width: 150px;
+}

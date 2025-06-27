@@ -6,15 +6,18 @@ import { store } from '@/app/store/store';
 class Ui {
   width = 0;
   height = 0;
-  controlsSize = 64 as const;
   padding = 16 as const;
+  buttonHeight = 24 as const;
+  goldenRatio = 1.618 as const;
 
   get derivedValue() {
-    const headerHeight = this.controlsSize;
-    const asideSize = Math.floor(this.controlsSize * 1.618);
+    const padding = this.padding * 2;
+    const controlsSize = this.buttonHeight + padding;
+    const headerHeight = controlsSize;
+    const asideSize = Math.floor(controlsSize * this.goldenRatio);
     const mainHeight = this.height - headerHeight;
     const mainWidth = this.width;
-    const gameSizeMax = Math.min(mainHeight, mainWidth) - 2 * this.padding;
+    const gameSizeMax = Math.min(mainHeight, mainWidth) - padding;
     const shouldWrap = mainHeight >= this.padding * 3 + gameSizeMax + asideSize;
     const availableGameSize = shouldWrap
       ? gameSizeMax
@@ -41,6 +44,7 @@ class Ui {
   get header(): CSSProperties {
     return {
       height: this.derivedValue.headerHeight,
+      padding: this.padding + this.derivedValue.offset,
       width: this.width,
     } as const;
   }
@@ -99,6 +103,13 @@ class Ui {
     return {
       height: this.derivedValue.cellSizeInner,
       width: this.derivedValue.cellSizeInner,
+    } as const;
+  }
+
+  get button(): CSSProperties {
+    return {
+      minHeight: this.buttonHeight,
+      minWidth: this.buttonHeight,
     } as const;
   }
 

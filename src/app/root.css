@@ -4,6 +4,7 @@
   --stroke-color: #444444;
   --border-color: #000000;
   --aside-color: #7c7c81;
+  --accent-color: #558bff;
 }
 
 html {
@@ -13,25 +14,11 @@ html {
 
 body {
   color: var(--text-color);
-}
-
-body,
-button {
-  font-family: monospace;
+  font-family: sans-serif;
   font-size: 16px;
   font-weight: normal;
   letter-spacing: normal;
-  line-height: 1;
-}
-
-button {
-  display: flex;
-  gap: 8px;
-  padding: 8px;
-}
-
-button:not(:disabled) {
-  cursor: pointer;
+  line-height: 24px;
 }
 
 #root {

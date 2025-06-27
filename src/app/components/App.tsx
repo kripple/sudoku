@@ -4,6 +4,7 @@ import { IoArrowBack as ArrowBackIcon } from 'react-icons/io5';
 import type { Difficulty } from 'sudoku-gen/dist/types/difficulty.type';
 
 import { AppLoader } from '@/app/components/AppLoader';
+import { Button } from '@/app/components/Button';
 import { Game } from '@/app/components/Game';
 import { GameSelectionScreen } from '@/app/components/GameSelectionScreen';
 import { ui } from '@/app/store/ui';
@@ -21,20 +22,19 @@ export const App = observer(() => {
     <AppLoader>
       <header className="header" style={ui.header}>
         {difficulty !== undefined ? (
-          <button onClick={() => setDifficulty(undefined)}>
+          <Button onClick={() => setDifficulty(undefined)}>
             <ArrowBackIcon />
-          </button>
+          </Button>
         ) : null}
 
         {/* <button onClick={() => toggleAuto}>Auto</button> */}
       </header>
-      <main style={ui.main}>
-        {difficulty ? (
-          <Game />
-        ) : (
-          <GameSelectionScreen setDifficulty={setDifficulty} />
-        )}
-      </main>
+
+      {difficulty ? (
+        <Game />
+      ) : (
+        <GameSelectionScreen setDifficulty={setDifficulty} />
+      )}
     </AppLoader>
   );
 });

@@ -58,15 +58,6 @@ class Ui {
     } as const;
   }
 
-  get game(): CSSProperties {
-    return {
-      flexShrink: 0,
-      height: this.derivedValue.gameSize,
-      margin: this.derivedValue.offset,
-      width: this.derivedValue.gameSize,
-    } as const;
-  }
-
   get aside(): CSSProperties {
     return {
       flexGrow: 1,
@@ -86,17 +77,30 @@ class Ui {
     } as const;
   }
 
-  get cell(): CSSProperties {
+  get game(): CSSProperties {
     return {
-      height: this.derivedValue.cellSize,
-      width: this.derivedValue.cellSize,
+      display: 'flex',
+      flexWrap: 'wrap',
+      flexShrink: 0,
+      height: this.derivedValue.gameSize,
+      margin: this.derivedValue.offset,
+      width: this.derivedValue.gameSize,
     } as const;
   }
 
   get set(): CSSProperties {
     return {
+      display: 'flex',
+      flexWrap: 'wrap',
       height: this.derivedValue.setSize,
       width: this.derivedValue.setSize,
+    } as const;
+  }
+
+  get cell(): CSSProperties {
+    return {
+      height: this.derivedValue.cellSize,
+      width: this.derivedValue.cellSize,
     } as const;
   }
 
@@ -108,14 +112,6 @@ class Ui {
   constructor() {
     makeAutoObservable(this);
     this.handleResize();
-  }
-
-  addListeners() {
-    window.addEventListener('resize', this.handleResize);
-  }
-
-  removeListeners() {
-    window.removeEventListener('resize', this.handleResize);
   }
 }
 

@@ -44,7 +44,7 @@ export function Candidates({
   }, [auto, cell]);
 
   return (
-    <div className="candidates">
+    <div>
       {tokenKeys.map((key) => {
         const renderKey = `${key}-${count}`;
         const id = `cell-${cell.index}-candidate-${key}`;
@@ -55,9 +55,8 @@ export function Candidates({
             !cell.excludedAutoCandidates.includes(key)) ||
           (!auto && cell.userCandidates.includes(key));
         return (
-          <div className="candidate" key={key}>
+          <div key={key}>
             <input
-              className="candidate-input"
               defaultChecked={checked}
               disabled={readOnly}
               id={id}
@@ -72,8 +71,8 @@ export function Candidates({
               type="checkbox"
             ></input>
             <label
-              className="candidate-label"
               htmlFor={id}
+              role="button"
               style={{ visibility: visible ? 'visible' : 'hidden' }}
             >
               <Token token={key} />

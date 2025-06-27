@@ -1,99 +1,51 @@
 :root {
-  --token-fairy: #ff359a;
-  --token-fire: #ff5400;
-  --token-electric: #ffe600;
-  --token-grass: #00e41b;
-  --token-water: #1e90ff;
-  --token-ice: #00ffff;
-  --token-flying: #9fa1f2;
-  --token-poison: #c772ff;
-  --token-ghost: #923fdf;
-}
-
-:root {
-  --highlight-color: #558bff;
-  --midlight-color: #82a7ff;
-  --lowlight-color: #bacfff;
-}
-
-:root {
-  --white: #ffffff;
-  --html-bgcolor: #f0f0f8;
-  --locked: #dfdfdf;
-  --menu-color: #7c7c81;
-  --stroke-color: #444444;
-  --stroke-color-alpha: #44444444;
   --text-color: #222222;
-  --border-color: #000000;
-  --error-color: #ff4b56;
-}
-
-:root {
-  --padding: 16px;
-  --controls-size: 64px;
-  --token-margin: 0.75vmin;
-  --header-item-height: calc(var(--controls-size) / 2 - 2px);
+  --background-color: #f0f0f8;
+  --stroke-color: #444444;
 }
 
 html {
-  background-color: var(--html-bgcolor);
-  display: block;
-  height: 100vh;
-  margin: 0;
-  overflow-x: hidden; /* prevent horizontal overscroll */
-  padding: 0;
-  position: relative;
-  width: 100vw;
+  background-color: var(--background-color);
+  overflow-x: hidden;
 }
 
 body {
   color: var(--text-color);
-  display: block;
-  font-family: sans-serif;
-  height: inherit;
-  line-height: 1.5;
-  margin: 0 auto;
-  padding: 0;
-  position: relative;
-  width: inherit;
+}
+
+body,
+button {
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: 1;
+}
+
+button {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
 }
 
 #root {
-  align-items: center;
-  display: flex;
-  height: 100lvh;
-  justify-content: center;
-  position: relative;
-  width: 100lvw;
+  all: inherit;
 }
 
-*,
-::before,
-::after {
-  border-radius: inherit;
+* {
   box-sizing: border-box;
-  flex-shrink: 0;
   margin: 0;
+  padding: 0;
   position: relative;
 }
 
-.heading {
-  display: block;
-  font-family: serif;
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 12px;
+.game {
+  background-color: lightgreen;
 }
-
-.gap {
-  display: block;
-  height: 10px;
-  pointer-events: none;
-  width: 10px;
-}
-
-svg.react-icon {
-  color: var(--text-color);
-  height: inherit;
-  width: inherit;
+aside {
+  background-color: lightsalmon;
 }

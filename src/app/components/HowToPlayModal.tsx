@@ -3,9 +3,9 @@ import { List } from '@/app/components/List';
 export function HowToPlayModal() {
   return (
     <div>
-      <div className="heading">How To Play</div>
+      <div>How To Play</div>
       <div>Fill each 3 x 3 set with all 9 tokens.</div>
-      <span className="gap" />
+
       <List
         items={[
           'Tap a cell in any set, then select a token.',

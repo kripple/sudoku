@@ -9,12 +9,5 @@ export function Option({
   className?: string;
   onClick?: () => void;
 }) {
-  return (
-    <div
-      className={`option${className ? ' ' + className : ''}`}
-      onClick={onClick}
-    >
-      {children}
-    </div>
-  );
+  return <div onClick={onClick}>{children}</div>;
 }

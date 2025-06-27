@@ -19,12 +19,8 @@ export function Token({
   const optionalStyle = color ? { style: { color } } : {};
 
   return (
-    <div
-      className={`token${className ? ' ' + className : ''}`}
-      onClick={onClick}
-      {...optionalStyle}
-    >
-      {icon ? <SvgIcon color={color} icon={icon} /> : children}
+    <div onClick={onClick} {...optionalStyle}>
+      {/* {icon ? <SvgIcon color={color} icon={icon} /> : children} */}
     </div>
   );
 }

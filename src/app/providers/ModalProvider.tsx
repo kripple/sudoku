@@ -1,13 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 
-import {
-  hideModalCheckboxId,
-  showModalCheckboxId,
-} from '@/app/utils/constants';
+import { useOnKeyDown } from '@/app/hooks/useOnKeyDown';
+import { uiStore } from '@/app/store/ui';
 
 import '@/app/providers/ModalProvider.css';
-
-// FIXME: Escape key should remove focus-visible from tabbable labels
 
 export function ModalProvider({
   children,
@@ -18,6 +14,8 @@ export function ModalProvider({
 }) {
   const refA = useRef<HTMLInputElement>(null);
   const refB = useRef<HTMLInputElement>(null);
+  const onKeyDown = useOnKeyDown();
+
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return;
@@ -44,7 +42,7 @@ export function ModalProvider({
   return (
     <>
       <input
-        id={showModalCheckboxId}
+        id={uiStore.showModalCheckboxId}
         onChange={toggleAllowScroll}
         ref={refA}
         style={{ display: 'none' }}
@@ -52,13 +50,19 @@ export function ModalProvider({
       ></input>
       <input
         defaultChecked
-        id={hideModalCheckboxId}
+        id={uiStore.hideModalCheckboxId}
         onChange={toggleAllowScroll}
         ref={refB}
         style={{ display: 'none' }}
         type="checkbox"
       ></input>
-      <label className="modal" htmlFor={hideModalCheckboxId}>
+      <label
+        className="modal"
+        htmlFor={uiStore.hideModalCheckboxId}
+        onKeyDown={onKeyDown}
+        role="button"
+        tabIndex={0}
+      >
         <div className="modal-contents">
           <div className="modal-actions">
             <div className="modal-actions-close" />
@@ -66,7 +70,7 @@ export function ModalProvider({
           {contents}
         </div>
       </label>
-      <div className="modal-provider">{children}</div>
+      <div className="inherit">{children}</div>
     </>
   );
 }

@@ -19,50 +19,46 @@ export function Cell({
   setSelected: SetState<CellType | undefined>;
 }) {
   const { rowId, colId, solution, value, locked } = cell;
-  const empty = value === emptyCell;
-  const incorrect = !locked && !empty && value !== solution ? 'icr' : false;
+  // const empty = value === emptyCell;
+  // const incorrect = !locked && !empty && value !== solution ? 'icr' : false;
 
   // outer borders
-  const outerBorderLeft = colId === 1;
-  const outerBorderRight = colId === gameSize;
-  const outerBorderTop = rowId === 1;
-  const outerBorderBottom = rowId === gameSize;
+  // const outerBorderLeft = colId === 1;
+  // const outerBorderRight = colId === gameSize;
+  // const outerBorderTop = rowId === 1;
+  // const outerBorderBottom = rowId === gameSize;
 
   // inner borders
-  const innerBorderRight = colId % miniGameSize === 0;
-  const innerBorderBottom = rowId % miniGameSize === 0;
+  // const innerBorderRight = colId % miniGameSize === 0;
+  // const innerBorderBottom = rowId % miniGameSize === 0;
 
-  const shared = [
-    locked ? 'lk' : false,
-    empty ? 'et' : false,
-    selected ? 'sl' : false,
-    highlight ? 'hl' : false,
-    value !== emptyCell && sameValue ? 'sv' : false,
-    incorrect,
-  ];
+  // const shared = [
+  //   locked ? 'lk' : false,
+  //   empty ? 'et' : false,
+  //   selected ? 'sl' : false,
+  //   highlight ? 'hl' : false,
+  //   value !== emptyCell && sameValue ? 'sv' : false,
+  //   incorrect,
+  // ];
 
-  const gameCellBorderClasses = [
-    'gcb',
-    outerBorderLeft ? 'obl' : false,
-    outerBorderRight ? 'obr' : false,
-    outerBorderTop ? 'obt' : false,
-    outerBorderBottom ? 'obb' : false,
-    innerBorderRight ? 'ibr' : false,
-    innerBorderBottom ? 'ibb' : false,
-    ...shared,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  // const gameCellBorderClasses = [
+  //   'gcb',
+  //   outerBorderLeft ? 'obl' : false,
+  //   outerBorderRight ? 'obr' : false,
+  //   outerBorderTop ? 'obt' : false,
+  //   outerBorderBottom ? 'obb' : false,
+  //   innerBorderRight ? 'ibr' : false,
+  //   innerBorderBottom ? 'ibb' : false,
+  //   ...shared,
+  // ]
+  //   .filter(Boolean)
+  //   .join(' ');
 
-  const gameCellClasses = ['gc', ...shared].filter(Boolean).join(' ');
+  // const gameCellClasses = ['gc', ...shared].filter(Boolean).join(' ');
 
   return (
-    <div
-      className={gameCellBorderClasses}
-      key={`row-${rowId}-col-${colId}`}
-      onClick={() => setSelected(cell)}
-    >
-      <div className={gameCellClasses}>
+    <div key={`row-${rowId}-col-${colId}`} onClick={() => setSelected(cell)}>
+      <div>
         <Token token={value}>{children}</Token>
       </div>
     </div>

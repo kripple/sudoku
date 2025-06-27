@@ -1,6 +1,8 @@
 import confetti from 'canvas-confetti';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { getSudoku } from 'sudoku-gen';
+import type { Difficulty } from 'sudoku-gen/dist/types/difficulty.type';
+import type { Sudoku } from 'sudoku-gen/dist/types/sudoku.type';
 
 // import { getFromLocalStorage, saveToLocalStorage } from '@/app/utils/window';
 import {
@@ -12,9 +14,6 @@ import {
 } from '@/utils/game';
 
 // TODO: check that data is valid on get and save to local storage
-
-type Sudoku = ReturnType<typeof getSudoku>;
-type Difficulty = ReturnType<typeof getSudoku>['difficulty'];
 
 export type Cell = {
   index: number;

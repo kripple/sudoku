@@ -40,7 +40,6 @@ export function SvgIcon({
 
   return (
     <svg
-      className={`${key}-icon`}
       fill="currentColor"
       style={{ color }}
       viewBox={icon.viewBox}

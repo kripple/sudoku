@@ -19,15 +19,11 @@ export function Game() {
   return (
     <>
       <div className="game" style={ui.game}>
-        {Array.from({ length: store.cellsPerSet }).map((_, setKey) => (
-          <div className="set" key={`set-${setKey}`} style={ui.set}>
-            {Array.from({ length: store.cellsPerSet }).map((_, cellKey) => (
-              <Cell key={`cell-${cellKey}`} />
-            ))}
-          </div>
+        {Array.from({ length: store.cellCount }).map((_, i) => (
+          <Cell cellId={i} key={i} />
         ))}
       </div>
-      <aside style={ui.aside}>aside</aside>
+      <aside className="aside" style={ui.aside}></aside>
     </>
   );
 }

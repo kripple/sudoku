@@ -1,4 +1,30 @@
+:root {
+  --game-inner-border: 2px solid var(--border-color);
+  --game-border: 3px solid var(--border-color);
+}
+
 .cell {
+  align-items: center;
   background-color: white;
-  /* outline: 1px solid var(--border-color); */
+  border: 0.5px solid var(--border-color);
+  display: flex;
+  justify-content: center;
+}
+.cell.ibb {
+  border-bottom: var(--game-inner-border);
+}
+.cell.ibr {
+  border-right: var(--game-inner-border);
+}
+.cell.obt {
+  border-top: var(--game-border);
+}
+.cell.obb {
+  border-bottom: var(--game-border);
+}
+.cell.obl {
+  border-left: var(--game-border);
+}
+.cell.obr {
+  border-right: var(--game-border);
 }

@@ -1,17 +1,8 @@
-:root {
-  --tbd: 1px solid var(--border-color);
-  --game-inner-border: 2px solid var(--border-color);
-  --game-border: 3px solid var(--border-color);
-}
-
 .game {
-  display: flex;
-  flex-wrap: wrap;
-  /* outline: 3px solid var(--border-color); */
+  background-color: var(--border-color);
 }
 
-.set {
-  display: flex;
-  flex-wrap: wrap;
-  /* outline: 2px solid var(--border-color); */
+aside {
+  background-color: var(--aside-color);
+  border-radius: 2px;
 }

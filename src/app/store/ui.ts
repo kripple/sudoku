@@ -19,9 +19,9 @@ class Ui {
     const availableGameSize = shouldWrap
       ? gameSizeMax
       : gameSizeMax - this.padding - asideSize;
-    const cellSize = Math.floor(availableGameSize / store.cellsPerSet);
-    const setSize = cellSize * store.setSize;
-    const gameSize = cellSize * store.cellsPerSet;
+    const cellSizeOuter = Math.floor(availableGameSize / store.cellsPerSet);
+    const cellSizeInner = cellSizeOuter - 6;
+    const gameSize = cellSizeOuter * store.cellsPerSet;
     const offset = (availableGameSize - gameSize) / 2;
 
     return {
@@ -32,8 +32,8 @@ class Ui {
       gameSizeMax,
       shouldWrap,
       gameSize,
-      cellSize,
-      setSize,
+      cellSizeOuter,
+      cellSizeInner,
       offset,
     };
   }
@@ -88,19 +88,17 @@ class Ui {
     } as const;
   }
 
-  get set(): CSSProperties {
+  get borderedCell(): CSSProperties {
     return {
-      display: 'flex',
-      flexWrap: 'wrap',
-      height: this.derivedValue.setSize,
-      width: this.derivedValue.setSize,
+      height: this.derivedValue.cellSizeOuter,
+      width: this.derivedValue.cellSizeOuter,
     } as const;
   }
 
   get cell(): CSSProperties {
     return {
-      height: this.derivedValue.cellSize,
-      width: this.derivedValue.cellSize,
+      height: this.derivedValue.cellSizeInner,
+      width: this.derivedValue.cellSizeInner,
     } as const;
   }
 

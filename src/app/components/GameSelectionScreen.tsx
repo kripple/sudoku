@@ -16,12 +16,12 @@ export function GameSelectionScreen({
   const list = Object.keys(difficulties) as Difficulty[];
 
   return (
-    <main>
+    <>
       {list.map((difficulty) => (
         <button key={difficulty} onClick={() => setDifficulty(difficulty)}>
           {difficulty}
         </button>
       ))}
-    </main>
+    </>
   );
 }

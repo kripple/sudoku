@@ -2,12 +2,11 @@ import { useEffect } from 'react';
 
 import { ui } from '@/app/store/ui';
 
-export function useUi() {
+export function useEventListeners() {
   useEffect(() => {
     ui.addListeners();
     return () => {
       ui.removeListeners();
     };
   }, []);
-  return ui;
 }

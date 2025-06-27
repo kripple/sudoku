@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { Difficulty } from 'sudoku-gen/dist/types/difficulty.type';
 
 import { Candidates } from '@/app/components/Candidates';
-import { Cell } from '@/app/components/Cell';
+import { Cell } from '@/app/components/Cell.old';
 import { Option } from '@/app/components/Option';
 import { Token } from '@/app/components/Token';
 import { useEffectOnFirstChange } from '@/app/hooks/useEffectOnFirstChange';

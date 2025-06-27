@@ -30,7 +30,7 @@ export const App = observer(() => {
       </header>
       <main style={ui.main}>
         {difficulty ? (
-          <Game difficulty={difficulty} />
+          <Game />
         ) : (
           <GameSelectionScreen setDifficulty={setDifficulty} />
         )}

@@ -1,4 +1,5 @@
 import type {
+  CSSProperties,
   ChangeEvent,
   Dispatch,
   FormEvent,
@@ -22,3 +23,5 @@ export type ReactKeyboardEvent = KeyboardEvent<HTMLBodyElement>;
 export type SetState<T> = Dispatch<SetStateAction<T>>;
 
 export type Ref<T> = RefObject<T | null>;
+
+export type ReactCSSProperties = CSSProperties;

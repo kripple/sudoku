@@ -1,17 +1,6 @@
-import { useState } from 'react';
-import type { Difficulty } from 'sudoku-gen/dist/types/difficulty.type';
-
-import { Candidates } from '@/app/components/Candidates';
 import { Cell } from '@/app/components/Cell';
-import { Option } from '@/app/components/Option';
-import { Token } from '@/app/components/Token';
-import { useEffectOnFirstChange } from '@/app/hooks/useEffectOnFirstChange';
-// import { useKeyboard } from '@/app/hooks/useKeyboard';
-import { type Cell as CellType, useSudoku } from '@/app/hooks/useSudoku';
 import { store } from '@/app/store/store';
 import { ui } from '@/app/store/ui';
-import { emptyCell, gameSize } from '@/utils/game';
-import { tokenKeys } from '@/utils/tokens';
 
 import '@/app/components/Game.css';
 

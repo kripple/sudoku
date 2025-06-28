@@ -41,7 +41,7 @@ class Ui {
     };
   }
 
-  get header(): CSSProperties {
+  get header() {
     return {
       height: this.derivedValue.headerHeight,
       padding: this.padding + this.derivedValue.offset,
@@ -49,7 +49,7 @@ class Ui {
     } as const;
   }
 
-  get main(): CSSProperties {
+  get main() {
     return {
       alignItems: this.derivedValue.shouldWrap ? 'center' : 'flex-start',
       display: 'flex',
@@ -62,7 +62,7 @@ class Ui {
     } as const;
   }
 
-  get aside(): CSSProperties {
+  get aside() {
     return {
       flexGrow: 1,
       flexShrink: 0,
@@ -81,7 +81,7 @@ class Ui {
     } as const;
   }
 
-  get game(): CSSProperties {
+  get game() {
     return {
       display: 'flex',
       flexWrap: 'wrap',
@@ -92,21 +92,21 @@ class Ui {
     } as const;
   }
 
-  get borderedCell(): CSSProperties {
+  get borderedCell() {
     return {
       height: this.derivedValue.cellSizeOuter,
       width: this.derivedValue.cellSizeOuter,
     } as const;
   }
 
-  get cell(): CSSProperties {
+  get cell() {
     return {
       height: this.derivedValue.cellSizeInner,
       width: this.derivedValue.cellSizeInner,
     } as const;
   }
 
-  get button(): CSSProperties {
+  get button() {
     return {
       minHeight: this.buttonHeight,
       minWidth: this.buttonHeight,

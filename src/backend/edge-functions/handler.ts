@@ -37,7 +37,8 @@ export default async function handler(request: Request) {
     const connectionString = Netlify.env.get('DATABASE_URL');
     if (!connectionString) throw Error('missing DATABASE_URL');
     const db = getDb(connectionString);
-    const data = await getOrCreateGame({ db });
+    const { date, game } = await getOrCreateGame({ db });
+    const data = { game, date: toDatetime(date) };
 
     return new Response(JSON.stringify(data), {
       status: 200,

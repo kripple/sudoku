@@ -1,3 +1,5 @@
+import { observer } from 'mobx-react-lite';
+
 import { Button } from '@/app/components/Button';
 import { useSudoku } from '@/app/hooks/useSudoku';
 import { sudoku } from '@/app/store/sudoku';
@@ -5,7 +7,7 @@ import { ui } from '@/app/store/ui';
 
 import '@/app/components/GameSelectionScreen.css';
 
-export function GameSelectionScreen() {
+export const GameSelectionScreen = observer(() => {
   const { data } = useSudoku();
 
   return (
@@ -40,4 +42,4 @@ export function GameSelectionScreen() {
       </section>
     </main>
   );
-}
+});

@@ -1,3 +1,5 @@
+import { observer } from 'mobx-react-lite';
+
 import { Cell } from '@/app/components/Cell';
 import { sudoku } from '@/app/store/sudoku';
 import { ui } from '@/app/store/ui';
@@ -5,7 +7,7 @@ import { getColId, getRowId } from '@/utils/game';
 
 import '@/app/components/GridCell.css';
 
-export function GridCell({ cellId }: { cellId: number }) {
+export const GridCell = observer(({ cellId }: { cellId: number }) => {
   const rowId = getRowId(cellId);
   const colId = getColId(cellId);
 
@@ -36,4 +38,4 @@ export function GridCell({ cellId }: { cellId: number }) {
       <Cell cellId={cellId}></Cell>
     </div>
   );
-}
+});

@@ -1,10 +1,12 @@
+import { observer } from 'mobx-react-lite';
+
 import { GridCell } from '@/app/components/GridCell';
 import { sudoku } from '@/app/store/sudoku';
 import { ui } from '@/app/store/ui';
 
 import '@/app/components/Game.css';
 
-export function Game() {
+export const Game = observer(() => {
   return (
     <main style={ui.main}>
       <div className="game" style={ui.game}>
@@ -15,4 +17,4 @@ export function Game() {
       <aside className="aside" style={ui.aside}></aside>
     </main>
   );
-}
+});

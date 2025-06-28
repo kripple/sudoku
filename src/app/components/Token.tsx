@@ -1,24 +1,29 @@
+import { observer } from 'mobx-react-lite';
+
 import { SvgIcon } from '@/app/components/SvgIcon';
+import { color } from '@/app/store/color';
 import { type Token as TokenKey, tokens } from '@/utils/tokens';
 
-export function Token({
-  children,
-  className,
-  token,
-  onClick,
-}: {
-  children?: ReactNode;
-  className?: string;
-  token: TokenKey | string;
-  onClick?: () => void;
-}) {
-  const icon = token in tokens ? tokens[token as TokenKey] : undefined;
-  const color = icon ? `var(--token-${icon})` : undefined;
-  const optionalStyle = color ? { style: { color } } : {};
+import '@/app/components/Token.css';
 
-  return (
-    <div onClick={onClick} {...optionalStyle}>
-      {/* {icon ? <SvgIcon color={color} icon={icon} /> : children} */}
-    </div>
-  );
-}
+export const Token = observer(
+  ({
+    children,
+    token = '',
+    onClick,
+  }: {
+    children?: ReactNode;
+    token?: TokenKey | string;
+    onClick?: () => void;
+  }) => {
+    const icon = token in tokens ? tokens[token as TokenKey] : undefined;
+    const tokenColor = icon ? color[icon] : undefined;
+    const optionalStyle = color ? { style: { color: tokenColor } } : {};
+
+    return (
+      <div onClick={onClick} {...optionalStyle} className="token">
+        {icon ? <SvgIcon color={tokenColor} icon={icon} /> : children}
+      </div>
+    );
+  },
+);

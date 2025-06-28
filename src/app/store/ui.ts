@@ -17,13 +17,18 @@ class Ui {
     const asideSize = Math.floor(controlsSize * this.goldenRatio);
     const mainHeight = this.height - headerHeight;
     const mainWidth = this.width;
-    const gameSizeMax = Math.min(mainHeight, mainWidth) - padding;
-    const shouldWrap = mainHeight >= this.padding * 3 + gameSizeMax + asideSize;
+    const shouldWrap = mainWidth < 500;
+
     const availableGameSize = shouldWrap
-      ? gameSizeMax
-      : gameSizeMax - this.padding - asideSize;
+      ? mainWidth - padding
+      : Math.min(
+          mainHeight - padding,
+          mainWidth - asideSize - this.padding * 3,
+        );
+
     const cellSizeOuter = Math.floor(availableGameSize / sudoku.cellsPerSet);
-    const cellSizeInner = cellSizeOuter - 6;
+    const cellSizeInner = cellSizeOuter - 4; // max border size adjustment
+
     const gameSize = cellSizeOuter * sudoku.cellsPerSet;
     const offset = (availableGameSize - gameSize) / 2;
 
@@ -32,12 +37,11 @@ class Ui {
       asideSize,
       mainHeight,
       mainWidth,
-      gameSizeMax,
       shouldWrap,
-      gameSize,
-      cellSizeOuter,
-      cellSizeInner,
-      offset,
+      gameSize: gameSize < 333 ? 333 : gameSize,
+      cellSizeOuter: gameSize < 333 ? 37 : cellSizeOuter,
+      cellSizeInner: gameSize < 333 ? 33 : cellSizeInner,
+      offset: gameSize < 333 ? 0 : offset,
     };
   }
 
@@ -57,6 +61,7 @@ class Ui {
       gap: this.padding - this.derivedValue.offset,
       height: this.derivedValue.mainHeight,
       justifyContent: this.derivedValue.shouldWrap ? 'flex-start' : 'center',
+      minHeight: 500,
       padding: this.padding,
       width: this.derivedValue.mainWidth,
     } as const;

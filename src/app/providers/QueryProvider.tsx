@@ -5,6 +5,8 @@ import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client
 import { Devtools } from '@/app/providers/Devtools';
 import { MS_PER_DAY } from '@/utils/time';
 
+const debug = false;
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -24,7 +26,7 @@ export function QueryProvider({ children }: { children: ReactNode }) {
       persistOptions={{ persister }}
     >
       {children}
-      {import.meta.env.DEV ? <Devtools /> : null}
+      {import.meta.env.DEV && debug ? <Devtools /> : null}
     </PersistQueryClientProvider>
   );
 }

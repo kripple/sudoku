@@ -1,0 +1,9 @@
+.token {
+  padding: 4px;
+}
+
+.token svg {
+  overflow: visible;
+  stroke: var(--stroke-color);
+  stroke-width: 1px;
+}

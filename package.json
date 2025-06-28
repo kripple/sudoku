@@ -20,7 +20,7 @@
     "db:deploy": "drizzle-kit migrate --config config/drizzle.config.ts",
     "api:login": "netlify login",
     "api:start": "dotenvx run -f .env.development -- netlify dev",
-    "api:build": "rm -rf netlify/edge-functions && tsc -p tsconfig.api.json && tsx vite.api-config.ts",
+    "api:build": "rm -rf netlify/edge-functions && tsc -p tsconfig.api.json && vite build --config vite.api-config.ts",
     "api:deploy": "netlify env:import .env && netlify deploy --prod"
   },
   "dependencies": {

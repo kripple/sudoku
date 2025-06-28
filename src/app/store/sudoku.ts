@@ -1,7 +1,18 @@
 import { makeAutoObservable } from 'mobx';
 import type { Difficulty } from 'sudoku-gen/dist/types/difficulty.type';
+import type { Sudoku as Game } from 'sudoku-gen/dist/types/sudoku.type';
 
-import type { Data } from '@/types/data';
+type Cell = {
+  index: number;
+  rowId: number;
+  colId: number;
+  setId: number;
+  solution: string;
+  value: string;
+  locked: boolean;
+  userCandidates: string;
+  excludedAutoCandidates: string;
+};
 
 // https://mobx.js.org/defining-data-stores.html#domain-stores
 class Sudoku {
@@ -14,15 +25,31 @@ class Sudoku {
     'hard',
     'expert',
   ] as const;
-  data: Data | undefined;
   difficulty: Difficulty | undefined;
+  puzzle: string | undefined;
+  solution: string | undefined;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  setDifficulty(value: Difficulty | undefined) {
-    this.difficulty = value;
+  selectDifficulty({ difficulty, puzzle, solution }: Game) {
+    this.difficulty = difficulty;
+    this.puzzle = puzzle;
+    this.solution = solution;
+  }
+
+  unselectDifficulty() {
+    this.difficulty = undefined;
+    this.puzzle = undefined;
+    this.solution = undefined;
+  }
+
+  getCell(id: number) {
+    return {
+      value: this.puzzle?.[id],
+      solution: this.solution?.[id],
+    };
   }
 }
 

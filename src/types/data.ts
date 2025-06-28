@@ -10,3 +10,5 @@ export type DTO = {
   solution: string;
   date: string;
 };
+
+export type Metadata = { date: string; ttl: number };

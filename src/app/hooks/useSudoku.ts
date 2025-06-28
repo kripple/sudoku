@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
+import { useRef } from 'react';
 
-import type { DTO } from '@/types/data';
 import { msUntilEndOfDay, toDate } from '@/utils/time';
 
 const fetchBaseQuery = async () => {
@@ -9,14 +9,19 @@ const fetchBaseQuery = async () => {
 };
 
 export const useSudoku = () => {
-  const date = toDate(Date.now());
-  const ttl = msUntilEndOfDay();
-
-  return useQuery<DTO>({
-    queryKey: ['sudoku', date],
-    queryFn: fetchBaseQuery,
-    staleTime: ttl,
+  const ref = useRef({
+    date: toDate(Date.now()),
+    ttl: msUntilEndOfDay(),
   });
 
-  // TODO: include metadata in response (date, ttl)
+  const { data } = useQuery<{ value: string }, Error | unknown>({
+    queryKey: ['sudoku', ref.current.date],
+    queryFn: fetchBaseQuery,
+    staleTime: ref.current.ttl,
+  });
+
+  return {
+    data: data ? JSON.parse(data.value) : undefined,
+    meta: { date: ref.current.date, ttl: ref.current.ttl },
+  };
 };

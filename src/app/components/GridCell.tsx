@@ -33,7 +33,7 @@ export function GridCell({ cellId }: { cellId: number }) {
 
   return (
     <div className={classNames} style={ui.borderedCell}>
-      <Cell cellId={cellId} colId={colId} rowId={rowId}></Cell>
+      <Cell cellId={cellId}></Cell>
     </div>
   );
 }

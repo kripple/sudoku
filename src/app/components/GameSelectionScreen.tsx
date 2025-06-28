@@ -1,10 +1,13 @@
 import { Button } from '@/app/components/Button';
+import { useSudoku } from '@/app/hooks/useSudoku';
 import { sudoku } from '@/app/store/sudoku';
 import { ui } from '@/app/store/ui';
 
 import '@/app/components/GameSelectionScreen.css';
 
 export function GameSelectionScreen() {
+  const { data } = useSudoku();
+
   return (
     <main
       className="game-selection-screen"
@@ -18,8 +21,15 @@ export function GameSelectionScreen() {
         <div className="button-set">
           {sudoku.difficultyOptions.map((difficulty) => (
             <Button
+              disabled={!data}
               key={difficulty}
-              onClick={() => sudoku.setDifficulty(difficulty)}
+              onClick={() => {
+                if (!data) {
+                  console.warn('missing data');
+                  return;
+                }
+                sudoku.selectDifficulty(data[difficulty]);
+              }}
               variant="difficulty"
             >
               {difficulty}

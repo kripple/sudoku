@@ -1,82 +1,9 @@
 {
-  "id": "be9e0091-a961-452c-b853-62be4dbc4425",
+  "id": "f16b2858-55bb-4e8e-a15c-fe032af6f76a",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.games": {
-      "name": "games",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": true,
-          "notNull": true,
-          "identity": {
-            "type": "always",
-            "name": "games_id_seq",
-            "schema": "public",
-            "increment": "1",
-            "startWith": "1",
-            "minValue": "1",
-            "maxValue": "2147483647",
-            "cache": "1",
-            "cycle": false
-          }
-        },
-        "solution_id": {
-          "name": "solution_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp with time zone",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        }
-      },
-      "indexes": {
-        "game_solution_idx": {
-          "name": "game_solution_idx",
-          "columns": [
-            {
-              "expression": "solution_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        }
-      },
-      "foreignKeys": {
-        "games_solution_id_solutions_id_fk": {
-          "name": "games_solution_id_solutions_id_fk",
-          "tableFrom": "games",
-          "tableTo": "solutions",
-          "columnsFrom": [
-            "solution_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
     "public.solutions": {
       "name": "solutions",
       "schema": "",
@@ -120,8 +47,8 @@
         }
       },
       "indexes": {
-        "game_solution_date_idx": {
-          "name": "game_solution_date_idx",
+        "solution_date_idx": {
+          "name": "solution_date_idx",
           "columns": [
             {
               "expression": "date",
@@ -139,13 +66,6 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "solutions_value_unique": {
-          "name": "solutions_value_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "value"
-          ]
-        },
         "solutions_date_unique": {
           "name": "solutions_date_unique",
           "nullsNotDistinct": false,

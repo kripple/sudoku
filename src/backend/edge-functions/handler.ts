@@ -1,7 +1,7 @@
 import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 
-import { getOrCreateGame } from '@/backend/db/adapters/games';
+import { getOrCreateSolution } from '@/backend/db/adapter';
 import { toDatetime } from '@/utils/time';
 
 function getDb(connectionString: string): AppDatabase {
@@ -37,8 +37,8 @@ export default async function handler(request: Request) {
     const connectionString = Netlify.env.get('DATABASE_URL');
     if (!connectionString) throw Error('missing DATABASE_URL');
     const db = getDb(connectionString);
-    const { date, game } = await getOrCreateGame({ db });
-    const data = { game, date: toDatetime(date) };
+    const { date, ...solution } = await getOrCreateSolution({ db });
+    const data = { ...solution, date: toDatetime(date) };
 
     return new Response(JSON.stringify(data), {
       status: 200,

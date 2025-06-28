@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useEventListener } from '@/app/hooks/useEventListener';
 // import { useOnKeyDown } from '@/app/hooks/useOnKeyDown';
 
-import '@/app/components/ModalProvider.css';
+import '@/app/providers/ModalProvider.css';
 
 export function ModalProvider({
   children,

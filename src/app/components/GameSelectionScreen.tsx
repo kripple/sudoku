@@ -1,37 +1,25 @@
-import type { Difficulty } from 'sudoku-gen/dist/types/difficulty.type';
-
 import { Button } from '@/app/components/Button';
+import { sudoku } from '@/app/store/sudoku';
 import { ui } from '@/app/store/ui';
 
 import '@/app/components/GameSelectionScreen.css';
 
-export function GameSelectionScreen({
-  setDifficulty,
-}: {
-  setDifficulty: SetState<Difficulty | undefined>;
-}) {
-  const difficulties: {
-    [key in Difficulty]: true;
-  } = {
-    easy: true,
-    medium: true,
-    hard: true,
-    expert: true,
-  };
-  const list = Object.keys(difficulties) as Difficulty[];
-
+export function GameSelectionScreen() {
   return (
-    <main className="game-selection-screen" style={{ minHeight: ui.main.height }}>
+    <main
+      className="game-selection-screen"
+      style={{ minHeight: ui.main.height }}
+    >
       <section className="section">
         <div className="logo"></div>
         <div className="heading">Sudoku</div>
         <div className="tagline">Tagline goes here.</div>
         <div className="text">Choose Your Puzzle:</div>
         <div className="button-set">
-          {list.map((difficulty) => (
+          {sudoku.difficultyOptions.map((difficulty) => (
             <Button
               key={difficulty}
-              onClick={() => setDifficulty(difficulty)}
+              onClick={() => sudoku.setDifficulty(difficulty)}
               variant="difficulty"
             >
               {difficulty}

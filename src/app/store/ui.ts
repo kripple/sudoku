@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 
-import { store } from '@/app/store/store';
+import { sudoku } from '@/app/store/sudoku';
 
 // https://mobx.js.org/defining-data-stores.html#ui-stores
 class Ui {
@@ -22,9 +22,9 @@ class Ui {
     const availableGameSize = shouldWrap
       ? gameSizeMax
       : gameSizeMax - this.padding - asideSize;
-    const cellSizeOuter = Math.floor(availableGameSize / store.cellsPerSet);
+    const cellSizeOuter = Math.floor(availableGameSize / sudoku.cellsPerSet);
     const cellSizeInner = cellSizeOuter - 6;
-    const gameSize = cellSizeOuter * store.cellsPerSet;
+    const gameSize = cellSizeOuter * sudoku.cellsPerSet;
     const offset = (availableGameSize - gameSize) / 2;
 
     return {

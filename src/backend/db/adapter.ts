@@ -2,6 +2,7 @@ import { sql } from 'drizzle-orm';
 import { getSudoku } from 'sudoku-gen';
 
 import { Solution } from '@/backend/db/schema';
+import type { Solutions } from '@/types/data';
 
 async function createNewSolution({
   db,
@@ -14,7 +15,8 @@ async function createNewSolution({
   const medium = getSudoku('medium');
   const hard = getSudoku('hard');
   const expert = getSudoku('expert');
-  const value = JSON.stringify({ easy, medium, hard, expert });
+  const json: Solutions = { easy, medium, hard, expert };
+  const value = JSON.stringify(json);
 
   const solutions = await db
     .insert(Solution)

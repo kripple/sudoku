@@ -9,7 +9,7 @@ export const Cell = observer(({ cellId }: { cellId: number }) => {
 
   return (
     <div style={ui.cell}>
-      <Token token={cell.value} />
+      <Token token={cell?.value} />
     </div>
   );
 });

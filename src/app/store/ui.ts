@@ -26,10 +26,10 @@ class Ui {
           mainWidth - asideSize - this.padding * 3,
         );
 
-    const cellSizeOuter = Math.floor(availableGameSize / sudoku.cellsPerSet);
+    const cellSizeOuter = Math.floor(availableGameSize / 9);
     const cellSizeInner = cellSizeOuter - 4; // max border size adjustment
 
-    const gameSize = cellSizeOuter * sudoku.cellsPerSet;
+    const gameSize = cellSizeOuter * 9;
     const offset = (availableGameSize - gameSize) / 2;
 
     return {

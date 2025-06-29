@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite';
 
 import { Cell } from '@/app/components/Cell';
-import { sudoku } from '@/app/store/sudoku';
 import { ui } from '@/app/store/ui';
 import { getColId, getRowId } from '@/utils/game';
 
@@ -13,13 +12,13 @@ export const GridCell = observer(({ cellId }: { cellId: number }) => {
 
   // outer borders
   const outerBorderLeft = colId === 1;
-  const outerBorderRight = colId === sudoku.cellsPerSet;
+  const outerBorderRight = colId === 9;
   const outerBorderTop = rowId === 1;
-  const outerBorderBottom = rowId === sudoku.cellsPerSet;
+  const outerBorderBottom = rowId === 9;
 
   // inner borders
-  const innerBorderRight = colId % sudoku.setSize === 0;
-  const innerBorderBottom = rowId % sudoku.setSize === 0;
+  const innerBorderRight = colId % 3 === 0;
+  const innerBorderBottom = rowId % 3 === 0;
 
   const classNames = [
     'cell',

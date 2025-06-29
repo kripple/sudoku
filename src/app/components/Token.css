@@ -1,5 +1,7 @@
 .token {
-  padding: 4px;
+  height: inherit;
+  padding: 6px;
+  width: inherit;
 }
 
 .token svg {

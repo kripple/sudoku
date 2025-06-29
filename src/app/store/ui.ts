@@ -47,7 +47,7 @@ class Ui {
 
   get header() {
     return {
-      height: this.derivedValue.headerHeight,
+      height: this.derivedValue.headerHeight + this.derivedValue.offset * 2,
       padding: this.padding + this.derivedValue.offset,
       width: this.width,
     } as const;

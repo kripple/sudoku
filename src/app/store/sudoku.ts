@@ -46,6 +46,7 @@ class Sudoku {
   difficulty: Difficulty | undefined;
   puzzle: string | undefined;
   solution: string | undefined;
+  selected: Cell['index'] | undefined;
 
   constructor() {
     makeAutoObservable(this);
@@ -55,6 +56,7 @@ class Sudoku {
     this.difficulty = difficulty;
     this.puzzle = puzzle;
     this.solution = solution;
+    // TODO: autoselect first empty cell
   }
 
   unselectDifficulty() {
@@ -63,13 +65,21 @@ class Sudoku {
     this.solution = undefined;
   }
 
+  toggleSelectCell(id: number | undefined) {
+    this.selected = this.selected === id ? undefined : id;
+  }
+
   getCell(id: number) {
+    // save cell instances ?
     return this.difficulty
-      ? new Cell({
-          index: id,
-          value: this.puzzle![id],
-          solution: this.solution![id],
-        })
+      ? {
+          ...new Cell({
+            index: id,
+            value: this.puzzle![id],
+            solution: this.solution![id],
+          }),
+          selected: this.selected === id,
+        }
       : undefined;
   }
 }

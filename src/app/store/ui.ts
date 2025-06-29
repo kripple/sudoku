@@ -1,7 +1,5 @@
 import { makeAutoObservable } from 'mobx';
 
-import { sudoku } from '@/app/store/sudoku';
-
 // https://mobx.js.org/defining-data-stores.html#ui-stores
 class Ui {
   width = 0;

@@ -28,3 +28,7 @@
 .cell.obr {
   border-right: var(--game-border);
 }
+
+.active {
+  background-color: var(--accent-color);
+}

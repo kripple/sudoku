@@ -1,12 +1,14 @@
 import { observer } from 'mobx-react-lite';
 
 import { Cell } from '@/app/components/Cell';
+import { sudoku } from '@/app/store/sudoku';
 import { ui } from '@/app/store/ui';
 import { getColId, getRowId } from '@/utils/game';
 
 import '@/app/components/GridCell.css';
 
 export const GridCell = observer(({ cellId }: { cellId: number }) => {
+  const selected = sudoku.selected === cellId;
   const rowId = getRowId(cellId);
   const colId = getColId(cellId);
 
@@ -28,12 +30,17 @@ export const GridCell = observer(({ cellId }: { cellId: number }) => {
     outerBorderBottom ? 'obb' : false,
     innerBorderRight ? 'ibr' : false,
     innerBorderBottom ? 'ibb' : false,
+    selected ? 'active' : false,
   ]
     .filter(Boolean)
     .join(' ');
 
   return (
-    <div className={classNames} style={ui.borderedCell}>
+    <div
+      className={classNames}
+      onClick={() => sudoku.toggleSelectCell(cellId)}
+      style={ui.borderedCell}
+    >
       <Cell cellId={cellId}></Cell>
     </div>
   );

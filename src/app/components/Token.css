@@ -1,14 +1,18 @@
 .token {
+  aspect-ratio: 1;
+  border-radius: 50%;
   height: inherit;
-  padding: 6px;
+  padding: var(--token-padding);
   width: inherit;
 }
 
-/* .token svg {
-  overflow: visible;
-  stroke: var(--stroke-color);
-  stroke-linecap: round;
-  stroke-linejoin: miter;
-  stroke-miterlimit: 1px;
-  stroke-width: 1px;
-} */
+.token-background {
+  background-color: white;
+  border-radius: inherit;
+  bottom: 0;
+  left: 0;
+  margin: calc(var(--token-padding) + 3px);
+  position: absolute;
+  right: 0;
+  top: 0;
+}

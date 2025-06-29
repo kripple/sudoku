@@ -67,6 +67,8 @@ class Ui {
 
   get aside() {
     return {
+      display: 'flex',
+      flexDirection: this.derivedValue.shouldWrap ? 'row' : 'column',
       flexGrow: 1,
       flexShrink: 0,
       ...(this.derivedValue.shouldWrap
@@ -113,6 +115,14 @@ class Ui {
     return {
       minHeight: this.buttonHeight,
       minWidth: this.buttonHeight,
+    } as const;
+  }
+
+  get tokenOption() {
+    const size = this.derivedValue.gameSize / 9;
+    return {
+      height: size,
+      width: size,
     } as const;
   }
 

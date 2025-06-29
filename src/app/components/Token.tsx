@@ -18,11 +18,18 @@ export const Token = observer(
   }) => {
     const icon = token in tokens ? tokens[token as TokenKey] : undefined;
     const tokenColor = icon ? color[icon] : undefined;
-    const optionalStyle = color ? { style: { color: tokenColor } } : {};
+    const optionalStyle = tokenColor ? { style: { color: tokenColor } } : {};
 
     return (
       <div onClick={onClick} {...optionalStyle} className="token">
-        {icon ? <SvgIcon color={tokenColor} icon={icon} /> : children}
+        {icon ? (
+          <>
+            <span className="token-background" />
+            <SvgIcon color={tokenColor} icon={icon} />
+          </>
+        ) : (
+          children
+        )}
       </div>
     );
   },

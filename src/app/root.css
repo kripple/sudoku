@@ -25,6 +25,10 @@ body {
   all: inherit;
 }
 
+.stroke {
+  color: var(--stroke-color);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

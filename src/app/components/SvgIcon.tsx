@@ -46,6 +46,10 @@ export function SvgIcon({
       xmlns="http://www.w3.org/2000/svg"
     >
       <path d={icon.dataPath}></path>
+      {/* TODO: remove check once all the svgs have stroke paths, also update svg type */}
+      {'strokePath' in icon ? (
+        <path className="stroke" d={icon.strokePath}></path>
+      ) : null}
     </svg>
   );
 }

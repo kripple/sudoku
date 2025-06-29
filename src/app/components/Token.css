@@ -4,8 +4,11 @@
   width: inherit;
 }
 
-.token svg {
+/* .token svg {
   overflow: visible;
   stroke: var(--stroke-color);
+  stroke-linecap: round;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 1px;
   stroke-width: 1px;
-}
+} */

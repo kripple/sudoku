@@ -1,3 +1,5 @@
+import { log } from '@/utils/log';
+
 function match(svgString: string, data: SvgProps): boolean {
   const parser = new DOMParser();
   const doc = parser.parseFromString(svgString, 'image/svg+xml');
@@ -26,8 +28,8 @@ export function validateSvg(
 ): void {
   const valid = match(svgString, data);
   if (!valid) {
-    console.warn(
-      `SVG data does not match. Please update ${name}.svg or ${name}.ts`,
+    log.once(
+      `[${name.toUpperCase()}] SVG data does not match. Please update ${name}.svg or ${name}.ts`,
     );
   }
 }

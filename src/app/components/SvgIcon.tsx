@@ -31,11 +31,10 @@ export function SvgIcon({
   const icon = icons[key];
 
   (async () => {
-    if (import.meta.env.DEV) {
-      const svg = await import(`@/app/assets/${key}.svg?raw`);
-      const validateSvg = (await import('@/utils/svg-validate')).validateSvg;
-      validateSvg(key, svg.default, icon);
-    }
+    if (!import.meta.env.DEV) return;
+    const svg = await import(`@/app/assets/${key}.svg?raw`);
+    const validateSvg = (await import('@/utils/svg-validate')).validateSvg;
+    validateSvg(key, svg.default, icon);
   })();
 
   return (

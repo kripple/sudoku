@@ -1,25 +1,28 @@
-function match(
-  svgString: string,
-  data: { viewBox: string; dataPath: string },
-): boolean {
+function match(svgString: string, data: SvgProps): boolean {
   const parser = new DOMParser();
   const doc = parser.parseFromString(svgString, 'image/svg+xml');
 
   const svg = doc.querySelector('svg');
-  const path = svg?.querySelector('path');
+  const fill = svg?.querySelector('path.fill');
+  const stroke = svg?.querySelector('path.stroke');
 
-  if (!svg || !path) return false;
+  if (!svg || !fill || !stroke) return false;
 
   const viewBox = svg.getAttribute('viewBox')?.trim();
-  const d = path.getAttribute('d')?.trim();
+  const fillPath = fill.getAttribute('d')?.trim();
+  const strokePath = stroke.getAttribute('d')?.trim();
 
-  return viewBox === data.viewBox && d === data.dataPath;
+  return (
+    viewBox === data.viewBox &&
+    fillPath === data.dataPath &&
+    strokePath === data.strokePath
+  );
 }
 
 export function validateSvg(
   name: string,
   svgString: string,
-  data: { viewBox: string; dataPath: string },
+  data: SvgProps,
 ): void {
   const valid = match(svgString, data);
   if (!valid) {

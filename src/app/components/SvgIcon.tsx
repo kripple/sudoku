@@ -45,11 +45,8 @@ export function SvgIcon({
       viewBox={icon.viewBox}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d={icon.dataPath}></path>
-      {/* TODO: remove check once all the svgs have stroke paths, also update svg type */}
-      {'strokePath' in icon ? (
-        <path className="stroke" d={icon.strokePath}></path>
-      ) : null}
+      <path className="fill" d={icon.dataPath}></path>
+      <path className="stroke" d={icon.strokePath}></path>
     </svg>
   );
 }

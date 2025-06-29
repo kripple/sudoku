@@ -1,5 +1,5 @@
 declare type SvgProps = {
   viewBox: string;
   dataPath: string;
-  strokePath: string; // FIXME: flying svg
+  strokePath: string;
 };

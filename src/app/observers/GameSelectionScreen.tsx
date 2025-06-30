@@ -54,7 +54,7 @@ export const GameSelectionScreen = observer(() => {
         </div>
         <time>
           {sudoku.displayDate || (
-            <span className="placeholder">Mmm dd, yyyy</span>
+            <span className="placeholder">Month dd, yyyy</span>
           )}
         </time>
       </section>

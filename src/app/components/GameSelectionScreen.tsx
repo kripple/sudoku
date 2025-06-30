@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
-import { useEffect } from 'react';
 
+import { BackgroundColor } from '@/app/components/BackgroundColor';
 import { Button } from '@/app/components/Button';
 import { useSudoku } from '@/app/hooks/useSudoku';
 import { sudoku } from '@/app/store/sudoku';
@@ -16,16 +16,9 @@ export const GameSelectionScreen = observer(() => {
   const style = { fill: '#fff', stroke: '#000', strokeWidth: 2 };
   const accentColor = 'var(--accent-color)' as const;
 
-  useEffect(() => {
-    const bgcolor = 'background-color' as const;
-    document.documentElement.style.setProperty(bgcolor, accentColor);
-    return () => {
-      document.documentElement.style.removeProperty(bgcolor);
-    };
-  }, []);
-
-  return (
+  return sudoku.show ? null : (
     <main className="game-selection-screen" style={{ minHeight: ui.height }}>
+      <BackgroundColor color={accentColor} />
       <section className="section">
         <div className="logo">
           <svg

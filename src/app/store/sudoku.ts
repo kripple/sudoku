@@ -35,6 +35,15 @@ class Cell {
   }
 }
 
+//   const disabled =
+//     sudoku.reduce((count, cell) => {
+//       if (cell.value === key && cell.value === cell.solution) {
+//         return count + 1;
+//       } else {
+//         return count;
+//       }
+//     }, 0) === gameSize;
+
 // https://mobx.js.org/defining-data-stores.html#domain-stores
 class Sudoku {
   difficultyOptions: Difficulty[] = [
@@ -48,6 +57,7 @@ class Sudoku {
   solution: string | undefined;
   selected: Cell['index'] | undefined;
   date: string | undefined;
+  show: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -65,6 +75,7 @@ class Sudoku {
     this.solution = solution;
     this.date = date;
     // TODO: autoselect first empty cell
+    this.show = true;
   }
 
   unselectDifficulty() {
@@ -72,6 +83,8 @@ class Sudoku {
     this.puzzle = undefined;
     this.solution = undefined;
     this.date = undefined;
+
+    this.show = false;
   }
 
   toggleSelectCell(id: number | undefined) {

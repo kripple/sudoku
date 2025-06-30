@@ -7,6 +7,7 @@ class Ui {
   padding = 16 as const;
   buttonHeight = 24 as const;
   goldenRatio = 1.618 as const;
+  candidateScale = 0.1 as const;
 
   get derivedValue() {
     const padding = this.padding * 2;
@@ -69,7 +70,6 @@ class Ui {
     return {
       display: 'flex',
       flexDirection: this.derivedValue.shouldWrap ? 'row' : 'column',
-      flexGrow: 1,
       flexShrink: 0,
       ...(this.derivedValue.shouldWrap
         ? {
@@ -83,6 +83,7 @@ class Ui {
             width: this.derivedValue.asideSize,
           }),
       margin: this.derivedValue.offset,
+      padding: this.padding / 2,
     } as const;
   }
 
@@ -118,11 +119,15 @@ class Ui {
     } as const;
   }
 
-  get tokenOption() {
-    const size = this.derivedValue.gameSize / 9;
+  get option() {
     return {
-      height: size,
-      width: size,
+      display: 'flex',
+      height: this.derivedValue.shouldWrap
+        ? this.derivedValue.asideSize - this.padding
+        : this.derivedValue.gameSize / 9,
+      width: this.derivedValue.shouldWrap
+        ? this.derivedValue.gameSize / 9
+        : this.derivedValue.asideSize - this.padding,
     } as const;
   }
 

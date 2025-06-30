@@ -1,0 +1,7 @@
+.stroke {
+  color: var(--stroke-color);
+}
+
+.token-background {
+  fill: white;
+}

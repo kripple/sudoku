@@ -14,13 +14,16 @@ export function toDate(value: string | number) {
   return (typeof value === 'number' ? toIso(value) : value).slice(0, 10);
 }
 
-export const format = (utcDateTime: string) =>
-  new Date(utcDateTime).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    // timeZone: 'UTC',
-  });
+export const formatDate = (utcDateTime?: string) =>
+  (utcDateTime ? new Date(utcDateTime) : new Date()).toLocaleDateString(
+    'en-US',
+    {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      // timeZone: 'UTC',
+    },
+  );
 
 // expects array of length 2 (not optimized for large arrays)
 export const isSameDate = (timestamps: number[]) =>

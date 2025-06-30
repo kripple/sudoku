@@ -1,28 +1,30 @@
-button.token-option {
+button.candidate-option {
+  --gap: 4px;
   aspect-ratio: 1;
   background-color: transparent;
   border: none;
   /* border-radius: 50%; */
   filter: drop-shadow(0 0 0 #00000033);
+  margin-left: var(--gap);
   max-height: 100%;
-  max-width: calc(100% / var(--golden-ratio));
+  max-width: calc(100% - (100% / var(--golden-ratio)) - var(--gap));
   transition:
     filter 150ms ease,
     transform 150ms ease;
 }
 
-button.token-option:not(:disabled):hover {
+button.candidate-option:not(:disabled):hover {
   filter: drop-shadow(2.5px 4px 2px #00000099);
   transform: translateX(-2px) translateY(-2px);
 }
 
-button.token-option:hover:active {
+button.candidate-option:hover:active {
   filter: drop-shadow(1.5px 2.5px 2px #00000099);
   transform: translateX(-1px) translateY(-1px);
   transition-duration: 75ms;
 }
 
-button.token-option:disabled .token svg {
+button.candidate-option:disabled .token svg {
   filter: brightness(0.5);
   opacity: 0.5;
 }

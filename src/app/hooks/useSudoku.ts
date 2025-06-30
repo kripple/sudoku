@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
+import { sudoku } from '@/app/store/sudoku';
+import { DTO } from '@/types/data';
 import { msUntilEndOfDay, toDate } from '@/utils/time';
 
 const fetchBaseQuery = async () => {
@@ -14,14 +16,15 @@ export const useSudoku = () => {
     ttl: msUntilEndOfDay(),
   });
 
-  const { data } = useQuery<{ value: string }, Error | unknown>({
+  const { data } = useQuery<DTO, Error | unknown>({
     queryKey: ['sudoku', ref.current.date],
     queryFn: fetchBaseQuery,
     staleTime: ref.current.ttl,
   });
 
-  return {
-    data: data ? JSON.parse(data.value) : undefined,
-    meta: { date: ref.current.date, ttl: ref.current.ttl },
-  };
+  useEffect(() => {
+    if (!data) return;
+    sudoku.sync({ ...JSON.parse(data.value), date: ref.current.date });
+    // sudoku.sync({ ...JSON.parse(data.solution), date: data.date });
+  }, [data]);
 };

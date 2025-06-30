@@ -1,5 +1,5 @@
 declare type SvgProps = {
-  viewBox: string;
-  dataPath: string;
+  size: number;
+  fillPath: string;
   strokePath: string;
 };

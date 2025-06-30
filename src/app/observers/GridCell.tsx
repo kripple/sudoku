@@ -1,11 +1,11 @@
 import { observer } from 'mobx-react-lite';
 
-import { Cell } from '@/app/components/Cell';
+import { Cell } from '@/app/observers/Cell';
 import { sudoku } from '@/app/store/sudoku';
 import { ui } from '@/app/store/ui';
 import { getColId, getRowId } from '@/utils/game';
 
-import '@/app/components/GridCell.css';
+import '@/app/observers/GridCell.css';
 
 export const GridCell = observer(({ cellId }: { cellId: number }) => {
   const selected = sudoku.selected === cellId;
@@ -23,7 +23,7 @@ export const GridCell = observer(({ cellId }: { cellId: number }) => {
   const innerBorderBottom = rowId % 3 === 0;
 
   const classNames = [
-    'cell',
+    'gc',
     outerBorderLeft ? 'obl' : false,
     outerBorderRight ? 'obr' : false,
     outerBorderTop ? 'obt' : false,

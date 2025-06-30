@@ -3,29 +3,29 @@
   --game-border: 3px solid var(--border-color);
 }
 
-.cell {
+.gc {
   align-items: center;
   background-color: white;
   border: 0.5px solid var(--border-color);
   display: flex;
   justify-content: center;
 }
-.cell.ibb {
+.gc.ibb {
   border-bottom: var(--game-inner-border);
 }
-.cell.ibr {
+.gc.ibr {
   border-right: var(--game-inner-border);
 }
-.cell.obt {
+.gc.obt {
   border-top: var(--game-border);
 }
-.cell.obb {
+.gc.obb {
   border-bottom: var(--game-border);
 }
-.cell.obl {
+.gc.obl {
   border-left: var(--game-border);
 }
-.cell.obr {
+.gc.obr {
   border-right: var(--game-border);
 }
 

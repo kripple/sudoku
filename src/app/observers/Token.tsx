@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite';
 
-import { SvgIcon } from '@/app/components/SvgIcon';
+import { TokenSvg } from '@/app/components/TokenSvg';
 import { color } from '@/app/store/color';
 import { type Token as TokenKey, tokens } from '@/utils/tokens';
 
-import '@/app/components/Token.css';
+import '@/app/observers/Token.css';
 
 export const Token = observer(
   ({
@@ -22,14 +22,7 @@ export const Token = observer(
 
     return (
       <div onClick={onClick} {...optionalStyle} className="token">
-        {icon ? (
-          <>
-            <span className="token-background" />
-            <SvgIcon color={tokenColor} icon={icon} />
-          </>
-        ) : (
-          children
-        )}
+        {icon ? <TokenSvg color={tokenColor} icon={icon} /> : children}
       </div>
     );
   },

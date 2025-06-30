@@ -2,6 +2,12 @@ import { makeAutoObservable } from 'mobx';
 import type { Difficulty } from 'sudoku-gen/dist/types/difficulty.type';
 import type { Sudoku as Game } from 'sudoku-gen/dist/types/sudoku.type';
 
+import { formatDate as format } from '@/utils/time';
+
+type Games = {
+  [difficulty in Difficulty]: Game;
+};
+
 class Cell {
   index: number;
   rowId: number;
@@ -53,38 +59,45 @@ class Sudoku {
     'expert',
   ] as const;
   difficulty: Difficulty | undefined;
-  puzzle: string | undefined;
-  solution: string | undefined;
   selected: Cell['index'] | undefined;
   date: string | undefined;
-  show: boolean = false;
+  games: {
+    [date: string]: Games;
+  } = {};
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  selectDifficulty({
-    game: { difficulty, puzzle, solution },
-    date,
-  }: {
-    game: Game;
-    date: string;
-  }) {
-    this.difficulty = difficulty;
-    this.puzzle = puzzle;
-    this.solution = solution;
-    this.date = date;
-    // TODO: autoselect first empty cell
-    this.show = true;
+  get game(): Game | undefined {
+    if (!this.show) return undefined;
+    return this.games[this.date!][this.difficulty!];
   }
 
-  unselectDifficulty() {
-    this.difficulty = undefined;
-    this.puzzle = undefined;
-    this.solution = undefined;
-    this.date = undefined;
+  get puzzle(): string | undefined {
+    return this.game?.puzzle;
+  }
 
-    this.show = false;
+  get solution(): string | undefined {
+    return this.game?.solution;
+  }
+
+  get show(): boolean {
+    return Boolean(this.difficulty && this.date && this.date in this.games);
+  }
+
+  get displayDate(): string | undefined {
+    return this.date ? format(this.date) : undefined;
+  }
+
+  sync({ date, ...games }: Games & { date: string }) {
+    this.games[date] = games;
+    this.date = date;
+  }
+
+  selectDifficulty(difficulty: Difficulty | undefined) {
+    this.difficulty = difficulty;
+    // TODO: autoselect first empty cell
   }
 
   toggleSelectCell(id: number | undefined) {
@@ -93,12 +106,13 @@ class Sudoku {
 
   getCell(id: number) {
     // save cell instances ?
-    return this.difficulty
+
+    return this.puzzle && this.solution
       ? {
           ...new Cell({
             index: id,
-            value: this.puzzle![id],
-            solution: this.solution![id],
+            value: this.puzzle[id],
+            solution: this.solution[id],
           }),
           selected: this.selected === id,
         }

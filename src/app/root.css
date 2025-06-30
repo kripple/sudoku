@@ -8,7 +8,8 @@
 }
 
 :root {
-  --token-padding: 6px;
+  --padding: 16px;
+  --golden-ratio: 1.618;
 }
 
 html {
@@ -29,8 +30,8 @@ body {
   all: inherit;
 }
 
-.stroke {
-  color: var(--stroke-color);
+time {
+  white-space: nowrap;
 }
 
 * {

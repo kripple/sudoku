@@ -2,17 +2,12 @@ import { observer } from 'mobx-react-lite';
 
 import { BackgroundColor } from '@/app/components/BackgroundColor';
 import { Button } from '@/app/components/Button';
-import { useSudoku } from '@/app/hooks/useSudoku';
 import { sudoku } from '@/app/store/sudoku';
 import { ui } from '@/app/store/ui';
 
-import '@/app/components/GameSelectionScreen.css';
+import '@/app/observers/GameSelectionScreen.css';
 
 export const GameSelectionScreen = observer(() => {
-  const {
-    data,
-    meta: { date },
-  } = useSudoku();
   const style = { fill: '#fff', stroke: '#000', strokeWidth: 2 };
   const accentColor = 'var(--accent-color)' as const;
 
@@ -44,14 +39,9 @@ export const GameSelectionScreen = observer(() => {
         <div className="button-set">
           {sudoku.difficultyOptions.map((difficulty) => (
             <Button
-              disabled={!data}
               key={difficulty}
               onClick={() => {
-                if (!data) {
-                  console.warn('missing data');
-                  return;
-                }
-                sudoku.selectDifficulty({ game: data[difficulty], date });
+                sudoku.selectDifficulty(difficulty);
               }}
               variant="difficulty"
             >
@@ -59,7 +49,11 @@ export const GameSelectionScreen = observer(() => {
             </Button>
           ))}
         </div>
-        <div className="text">June 27, 2025</div>
+        <time className="text">
+          {sudoku.displayDate || (
+            <span className="placeholder-text">Mmm dd, yyyy</span>
+          )}
+        </time>
       </section>
     </main>
   );

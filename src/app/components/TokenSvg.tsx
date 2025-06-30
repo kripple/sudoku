@@ -9,6 +9,8 @@ import { poison } from '@/app/assets/poison';
 import { water } from '@/app/assets/water';
 import { type TokenIcon } from '@/utils/tokens';
 
+import '@/app/components/TokenSvg.css';
+
 const icons: { [token in TokenIcon]: SvgProps } = {
   fairy,
   fire,
@@ -21,7 +23,7 @@ const icons: { [token in TokenIcon]: SvgProps } = {
   ghost,
 };
 
-export function SvgIcon({
+export function TokenSvg({
   icon: key,
   color,
 }: {
@@ -40,11 +42,18 @@ export function SvgIcon({
   return (
     <svg
       fill="currentColor"
+      shapeRendering="geometricPrecision"
       style={{ color }}
-      viewBox={icon.viewBox}
+      viewBox={`0 0 ${icon.size} ${icon.size}`}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path className="fill" d={icon.dataPath}></path>
+      <circle
+        className="token-background"
+        cx={icon.size / 2}
+        cy={icon.size / 2}
+        r={icon.size / 2 - 1}
+      />
+      <path className="fill" d={icon.fillPath}></path>
       <path className="stroke" d={icon.strokePath}></path>
     </svg>
   );

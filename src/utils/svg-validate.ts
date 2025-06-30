@@ -15,8 +15,8 @@ function match(svgString: string, data: SvgProps): boolean {
   const strokePath = stroke.getAttribute('d')?.trim();
 
   return (
-    viewBox === data.viewBox &&
-    fillPath === data.dataPath &&
+    viewBox === `0 0 ${data.size} ${data.size}` &&
+    fillPath === data.fillPath &&
     strokePath === data.strokePath
   );
 }

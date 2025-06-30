@@ -6,17 +6,16 @@ import { MdSettings as SettingsIcon } from 'react-icons/md';
 import { Button } from '@/app/components/Button';
 import { sudoku } from '@/app/store/sudoku';
 import { ui } from '@/app/store/ui';
-import { format } from '@/utils/time';
 
 export const Header = observer(() => {
   return !sudoku.show ? null : (
     <header className="header" style={ui.header}>
-      <Button onClick={() => sudoku.unselectDifficulty()} variant="icon">
+      <Button onClick={() => sudoku.selectDifficulty(undefined)} variant="icon">
         <BackIcon />
       </Button>
       <div className="header-text">
         <div className="title">Sudoku</div>
-        <div className="date">{format(sudoku.date!)}</div>
+        <time className="date">{sudoku.displayDate}</time>
         <div className="difficulty">{sudoku.difficulty!}</div>
       </div>
       <div className="expand" />

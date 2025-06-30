@@ -1,3 +1,5 @@
+import { makeAutoObservable } from 'mobx';
+
 export class Cell {
   index: number;
   rowId: number;
@@ -8,7 +10,7 @@ export class Cell {
   locked: boolean;
   userCandidates: string = '';
   excludedAutoCandidates: string = '';
-  private empty = '-' as const;
+  static empty = '-' as const;
   private getColId = (index: number) => (index % 9) + 1;
   private getRowId = (index: number) => Math.floor(index / 9) + 1;
   private getSetId = (index: number) => {
@@ -20,12 +22,13 @@ export class Cell {
   };
 
   constructor(cell: { index: number; value: string; solution: string }) {
+    makeAutoObservable(this);
     this.index = cell.index;
     this.value = cell.value;
     this.solution = cell.solution;
     this.rowId = this.getRowId(cell.index);
     this.colId = this.getColId(cell.index);
     this.setId = this.getSetId(cell.index);
-    this.locked = cell.value !== this.empty;
+    this.locked = cell.value !== Cell.empty;
   }
 }

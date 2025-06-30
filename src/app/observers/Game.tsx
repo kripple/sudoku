@@ -23,7 +23,11 @@ export const Game = observer(() => {
       <aside className="aside" style={ui.aside}>
         {tokenKeys.map((key) => (
           <div className="option" key={key} style={ui.option}>
-            <Option token={key} type="token" />
+            <Option
+              onClick={() => sudoku.toggleSetCellValue(key)}
+              token={key}
+              type="token"
+            />
             <Option token={key} type="candidate" />
           </div>
         ))}

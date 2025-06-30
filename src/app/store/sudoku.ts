@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import type { Difficulty } from 'sudoku-gen/dist/types/difficulty.type';
 import type { Sudoku as Game } from 'sudoku-gen/dist/types/sudoku.type';
 
-import { Cell } from '@/app/models/cell';
+import { Cell } from '@/app/store/cell';
 import { formatDate as format } from '@/utils/time';
 
 type Cells = {
@@ -99,6 +99,26 @@ class Sudoku {
     if (!cell) return undefined;
     return { cell, selected: this.selected === id };
   }
+
+  setCellValue(value: string | undefined) {
+    if (!this.selected) return;
+    if (!this.game?.cells?.[this.selected]) return;
+    this.game.cells[this.selected].value =
+      value !== undefined ? value : Cell.empty;
+  }
+
+  toggleSetCellValue(value: string | undefined) {
+    if (!this.selected) return;
+    const currentValue = this.game?.cells?.[this.selected].value;
+
+    if (value === undefined || value === currentValue) {
+      this.setCellValue(undefined);
+    } else {
+      this.setCellValue(value);
+    }
+  }
+
+  toggleSetCellCandidate() {}
 }
 
 export const sudoku = new Sudoku();

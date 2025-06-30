@@ -5,7 +5,9 @@ declare type ReactFormEvent =
 
 declare type ReactChangeEvent = import('@/types/react').ReactChangeEvent;
 
-declare type ReactClickEvent = import('@/types/react').ReactMouseEvent;
+declare type ReactClickEvent = import('@/types/react').ReactClickEvent;
+
+declare type ClickEventHandler = import('@/types/react').ReactClickEventHandler;
 
 declare type ReactKeyboardEvent = import('@/types/react').ReactKeyboardEvent;
 

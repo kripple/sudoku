@@ -5,6 +5,7 @@ import type {
   FormEvent,
   KeyboardEvent,
   MouseEvent,
+  MouseEventHandler,
   ReactNode as ReactNodeType,
   RefObject,
   SetStateAction,
@@ -17,6 +18,10 @@ export type ReactChangeEvent = ChangeEvent<HTMLInputElement>;
 export type ReactFormEvent = FormEvent;
 
 export type ReactMouseEvent = MouseEvent<HTMLInputElement, MouseEvent>;
+
+export type ReactClickEvent = MouseEvent<HTMLButtonElement, MouseEvent>;
+
+export type ReactClickEventHandler = MouseEventHandler<HTMLButtonElement>;
 
 export type ReactKeyboardEvent = KeyboardEvent<HTMLBodyElement>;
 

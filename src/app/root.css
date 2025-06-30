@@ -30,8 +30,24 @@ body {
   all: inherit;
 }
 
-time {
+/* TODO: fade-in date text */
+time,
+time > .placeholder {
+  font-family: serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
   white-space: nowrap;
+}
+
+/* FIXME: we don't need all of these */
+time > .placeholder {
+  color: transparent;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  white-space: nowrap;
+  z-index: -1;
 }
 
 * {

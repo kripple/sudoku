@@ -38,7 +38,7 @@ export const GameSelectionScreen = observer(() => {
         </div>
         <div className="heading">Sudoku</div>
         <div className="tagline">Evolve your brain.</div>
-        <div className="text">Choose Your Puzzle:</div>
+        <div className="text">Choose Your Adventure:</div>
         <div className="button-set">
           {sudoku.difficultyOptions.map((difficulty) => (
             <Button
@@ -52,9 +52,9 @@ export const GameSelectionScreen = observer(() => {
             </Button>
           ))}
         </div>
-        <time className="text">
+        <time>
           {sudoku.displayDate || (
-            <span className="placeholder-text">Mmm dd, yyyy</span>
+            <span className="placeholder">Mmm dd, yyyy</span>
           )}
         </time>
       </section>

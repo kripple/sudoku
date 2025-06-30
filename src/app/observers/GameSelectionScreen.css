@@ -55,22 +55,10 @@
   text-align: center;
 }
 
-/* TODO: fade-in date text */
-.text,
-.placeholder-text {
+.text {
   font-family: sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   text-align: center;
-}
-
-/* FIXME: we don't need all of these */
-.placeholder-text {
-  color: transparent;
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  white-space: nowrap;
-  z-index: -1;
 }

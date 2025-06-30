@@ -1,9 +1,9 @@
 import { useEventListener } from '@/app/hooks/useEventListener';
 import { useSudoku } from '@/app/hooks/useSudoku';
-import { ui } from '@/app/store/ui';
+import { screen } from '@/app/store/screen';
 
 export function AppLoader({ children }: { children: ReactNode }) {
   useSudoku(); // fetch immediately
-  useEventListener('resize', ui.handleResize);
+  useEventListener('resize', screen.handleResize); // add observer?
   return <>{children}</>;
 }

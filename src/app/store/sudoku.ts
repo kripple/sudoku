@@ -5,8 +5,14 @@ import type { Sudoku as Game } from 'sudoku-gen/dist/types/sudoku.type';
 import { Cell } from '@/app/models/cell';
 import { formatDate as format } from '@/utils/time';
 
+type Cells = {
+  [id: number]: Cell;
+};
+
 type Games = {
-  [difficulty in Difficulty]: Game;
+  [difficulty in Difficulty]: Game & {
+    cells?: Cells;
+  };
 };
 
 //   const disabled =
@@ -37,7 +43,7 @@ class Sudoku {
     makeAutoObservable(this);
   }
 
-  get game(): Game | undefined {
+  get game(): Games[Difficulty] | undefined {
     if (!this.show) return undefined;
     return this.games[this.date!][this.difficulty!];
   }
@@ -61,8 +67,22 @@ class Sudoku {
   sync({ date, ...games }: Games & { date: string }) {
     this.games[date] = games;
     this.date = date;
+    let difficulty: Difficulty;
 
-    // async create cell objects
+    for (difficulty in games) {
+      const cells = {} as Cells;
+
+      for (let i = 0; i < 81; i++) {
+        const game = this.games[date][difficulty];
+
+        cells[i] = new Cell({
+          index: i,
+          value: game.puzzle[i],
+          solution: game.solution[i],
+        });
+      }
+      this.games[date][difficulty].cells = cells;
+    }
   }
 
   selectDifficulty(difficulty: Difficulty | undefined) {
@@ -74,19 +94,10 @@ class Sudoku {
     this.selected = this.selected === id ? undefined : id;
   }
 
-  getCell(id: number) {
-    // save cell instances ?
-
-    return this.puzzle && this.solution
-      ? {
-          ...new Cell({
-            index: id,
-            value: this.puzzle[id],
-            solution: this.solution[id],
-          }),
-          selected: this.selected === id,
-        }
-      : undefined;
+  getCell(id: number): { cell: Cell; selected: boolean } | undefined {
+    const cell = this.game?.cells?.[id];
+    if (!cell) return undefined;
+    return { cell, selected: this.selected === id };
   }
 }
 

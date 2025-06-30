@@ -7,7 +7,8 @@ import { ui } from '@/app/store/ui';
 import '@/app/observers/Cell.css';
 
 export const Cell = observer(({ cellId }: { cellId: number }) => {
-  const cell = sudoku.getCell(cellId); // FIXME: we're only using the value here
+  const data = sudoku.getCell(cellId);
+  const cell = data?.cell;
 
   return (
     <div className="cell" style={ui.cell}>

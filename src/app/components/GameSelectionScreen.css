@@ -32,7 +32,6 @@
 }
 
 .logo {
-  border: 3px solid black;
   flex-shrink: 0;
   height: 64px;
   width: 64px;

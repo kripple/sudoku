@@ -1,8 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import type { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 
-import styles from '@/app/components/Button.module.css';
-import { ui } from '@/app/store/ui';
+// import { ui } from '@/app/store/ui';
+
+import '@/app/components/Button.css';
 
 export const Button = observer(
   ({
@@ -12,15 +13,18 @@ export const Button = observer(
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > & {
-    variant?: 'default' | 'difficulty';
+    variant?: 'default' | 'difficulty' | 'icon';
   }) => {
     const classNames = [
-      styles.button,
-      variant === 'difficulty' ? styles.difficulty : false,
+      'button',
+      variant === 'difficulty' ? 'difficulty-button' : false,
+      variant === 'icon' ? 'icon-button' : false,
     ]
       .filter(Boolean)
       .join(' ');
 
-    return <button className={classNames} style={ui.button} {...props} />;
+    // style={ui.button}
+
+    return <button className={classNames} {...props} />;
   },
 );

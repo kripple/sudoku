@@ -39,3 +39,7 @@ body {
   padding: 0;
   position: relative;
 }
+
+button:not(:disabled) {
+  cursor: pointer;
+}

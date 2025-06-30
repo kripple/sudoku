@@ -47,15 +47,23 @@ class Sudoku {
   puzzle: string | undefined;
   solution: string | undefined;
   selected: Cell['index'] | undefined;
+  date: string | undefined;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  selectDifficulty({ difficulty, puzzle, solution }: Game) {
+  selectDifficulty({
+    game: { difficulty, puzzle, solution },
+    date,
+  }: {
+    game: Game;
+    date: string;
+  }) {
     this.difficulty = difficulty;
     this.puzzle = puzzle;
     this.solution = solution;
+    this.date = date;
     // TODO: autoselect first empty cell
   }
 
@@ -63,6 +71,7 @@ class Sudoku {
     this.difficulty = undefined;
     this.puzzle = undefined;
     this.solution = undefined;
+    this.date = undefined;
   }
 
   toggleSelectCell(id: number | undefined) {

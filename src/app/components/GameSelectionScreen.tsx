@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 
 import { Button } from '@/app/components/Button';
 import { useSudoku } from '@/app/hooks/useSudoku';
@@ -8,17 +9,44 @@ import { ui } from '@/app/store/ui';
 import '@/app/components/GameSelectionScreen.css';
 
 export const GameSelectionScreen = observer(() => {
-  const { data } = useSudoku();
+  const {
+    data,
+    meta: { date },
+  } = useSudoku();
+  const style = { fill: '#fff', stroke: '#000', strokeWidth: 2 };
+  const accentColor = 'var(--accent-color)' as const;
+
+  useEffect(() => {
+    const bgcolor = 'background-color' as const;
+    document.documentElement.style.setProperty(bgcolor, accentColor);
+    return () => {
+      document.documentElement.style.removeProperty(bgcolor);
+    };
+  }, []);
 
   return (
-    <main
-      className="game-selection-screen"
-      style={{ minHeight: ui.main.height }}
-    >
+    <main className="game-selection-screen" style={{ minHeight: ui.height }}>
       <section className="section">
-        <div className="logo"></div>
+        <div className="logo">
+          <svg
+            fill="none"
+            height="57.735"
+            width="57.736"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1 1h27.736v27.736H1zm0 27.998h27.736v27.736H1z"
+              style={style}
+            />
+            <path
+              d="M29 1h27.736v27.736H29z"
+              style={{ ...style, fill: accentColor }}
+            />
+            <path d="M29 28.998h27.736v27.736H29z" style={style} />
+          </svg>
+        </div>
         <div className="heading">Sudoku</div>
-        <div className="tagline">Tagline goes here.</div>
+        <div className="tagline">Evolve your brain.</div>
         <div className="text">Choose Your Puzzle:</div>
         <div className="button-set">
           {sudoku.difficultyOptions.map((difficulty) => (
@@ -30,7 +58,7 @@ export const GameSelectionScreen = observer(() => {
                   console.warn('missing data');
                   return;
                 }
-                sudoku.selectDifficulty(data[difficulty]);
+                sudoku.selectDifficulty({ game: data[difficulty], date });
               }}
               variant="difficulty"
             >

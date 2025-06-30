@@ -1,24 +1,31 @@
 .button {
   align-items: center;
   display: flex;
-  font-family: monospace;
-  font-size: inherit;
   justify-content: center;
-  line-height: 1;
 }
 
-.button:not(:disabled) {
-  cursor: pointer;
+.icon-button {
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 2px;
 }
 
-.difficulty {
+.icon-button svg {
+  height: 24px;
+  position: absolute;
+  width: 24px;
+}
+
+.difficulty-button {
   background: var(--text-color);
   border: none;
   border-radius: 42px;
   color: var(--background-color);
   font-family: sans-serif;
+  font-size: inherit;
   height: 42px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.64px;
+  line-height: 1;
   padding: 1px 16px;
   text-transform: capitalize;
   width: 150px;

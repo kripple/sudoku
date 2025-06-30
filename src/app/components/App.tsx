@@ -1,5 +1,7 @@
 import { observer } from 'mobx-react-lite';
-import { IoArrowBack as ArrowBackIcon } from 'react-icons/io5';
+import { BsPatchQuestion as QuestionIcon } from 'react-icons/bs';
+import { IoChevronBack as BackIcon } from 'react-icons/io5';
+import { MdSettings as SettingsIcon } from 'react-icons/md';
 
 import { Button } from '@/app/components/Button';
 import { Game } from '@/app/components/Game';
@@ -7,6 +9,7 @@ import { GameSelectionScreen } from '@/app/components/GameSelectionScreen';
 import { AppProviders } from '@/app/providers/AppProviders';
 import { sudoku } from '@/app/store/sudoku';
 import { ui } from '@/app/store/ui';
+import { format } from '@/utils/time';
 
 import '@/app/components/App.css';
 
@@ -16,20 +19,39 @@ export const App = observer(() => {
   //   setAuto(event.currentTarget.checked);
   // };
 
-  // console.log('!!', sudoku.response);
-
   return (
     <AppProviders>
-      <header className="header" style={ui.header}>
-        {sudoku.difficulty !== undefined ? (
-          <Button onClick={() => sudoku.unselectDifficulty()}>
-            <ArrowBackIcon />
-          </Button>
-        ) : null}
+      {sudoku.difficulty ? (
+        <>
+          <header className="header" style={ui.header}>
+            {sudoku.difficulty !== undefined ? (
+              <Button
+                onClick={() => sudoku.unselectDifficulty()}
+                variant="icon"
+              >
+                <BackIcon />
+              </Button>
+            ) : null}
+            <div className="header-text">
+              <div className="title">Sudoku</div>
+              <div className="date">{format(sudoku.date!)}</div>
+              <div className="difficulty">{sudoku.difficulty}</div>
+            </div>
+            <div className="expand" />
+            <Button variant="icon">
+              <QuestionIcon />
+            </Button>
+            <Button variant="icon">
+              <SettingsIcon />
+            </Button>
 
-        {/* <button onClick={() => toggleAuto}>Auto</button> */}
-      </header>
-      {sudoku.difficulty ? <Game /> : <GameSelectionScreen />}
+            {/* <button onClick={() => toggleAuto}>Auto</button> */}
+          </header>
+          <Game />
+        </>
+      ) : (
+        <GameSelectionScreen />
+      )}
     </AppProviders>
   );
 });

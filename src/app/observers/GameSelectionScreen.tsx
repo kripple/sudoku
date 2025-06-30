@@ -52,6 +52,7 @@ export const GameSelectionScreen = observer(() => {
             </Button>
           ))}
         </div>
+        {/* FIXME: the size (width) of this element is not stable */}
         <time>
           {sudoku.displayDate || (
             <span className="placeholder">Month dd, yyyy</span>

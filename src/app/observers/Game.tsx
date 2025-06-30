@@ -1,8 +1,7 @@
 import { observer } from 'mobx-react-lite';
 
-import { CandidateOption } from '@/app/components/CandidateOption';
 import { Grid } from '@/app/components/Grid';
-import { TokenOption } from '@/app/components/TokenOption';
+import { Option } from '@/app/components/Option';
 import { sudoku } from '@/app/store/sudoku';
 import { ui } from '@/app/store/ui';
 import { tokenKeys } from '@/utils/tokens';
@@ -24,8 +23,8 @@ export const Game = observer(() => {
       <aside className="aside" style={ui.aside}>
         {tokenKeys.map((key) => (
           <div className="option" key={key} style={ui.option}>
-            <TokenOption token={key} />
-            <CandidateOption token={key} />
+            <Option token={key} type="token" />
+            <Option token={key} type="candidate" />
           </div>
         ))}
       </aside>

@@ -2,8 +2,8 @@ import { observer } from 'mobx-react-lite';
 
 import { BackgroundColor } from '@/app/components/BackgroundColor';
 import { Button } from '@/app/components/Button';
+import { screen } from '@/app/store/screen';
 import { sudoku } from '@/app/store/sudoku';
-import { ui } from '@/app/store/ui';
 
 import '@/app/observers/GameSelectionScreen.css';
 
@@ -12,7 +12,10 @@ export const GameSelectionScreen = observer(() => {
   const accentColor = 'var(--accent-color)' as const;
 
   return sudoku.show ? null : (
-    <main className="game-selection-screen" style={{ minHeight: ui.height }}>
+    <main
+      className="game-selection-screen"
+      style={{ minHeight: screen.height }}
+    >
       <BackgroundColor color={accentColor} />
       <section className="section">
         <div className="logo">

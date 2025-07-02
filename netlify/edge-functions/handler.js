@@ -10844,12 +10844,12 @@ async function hl({
   db: i
 }) {
   console.info("create new solution");
-  const e = Ut.getSudoku("easy"), t = Ut.getSudoku("medium"), r = Ut.getSudoku("hard"), s = Ut.getSudoku("expert"), n = JSON.stringify({ easy: e, medium: t, hard: r, expert: s }), a = (await i.insert(Br).values({
-    value: n
+  const e = Ut.getSudoku("easy"), t = Ut.getSudoku("medium"), r = Ut.getSudoku("hard"), s = Ut.getSudoku("expert"), u = JSON.stringify({ easy: e, medium: t, hard: r, expert: s }), d = (await i.insert(Br).values({
+    value: u
   }).returning()).pop();
-  if (!a)
+  if (!d)
     throw Error("failed to create new solution");
-  return a;
+  return d;
 }
 async function fl({
   db: i
@@ -10888,7 +10888,9 @@ async function Wl(i) {
       });
     const t = Netlify.env.get("DATABASE_URL");
     if (!t) throw Error("missing DATABASE_URL");
-    const r = gl(t), { date: s, ...n } = await dl({ db: r }), u = { ...n, date: pl(s) };
+    const r = gl(t), { date: s, value: n } = await dl({
+      db: r
+    }), u = { value: n, date: pl(s) };
     return new Response(JSON.stringify(u), {
       status: 200,
       headers: Ui(e)

@@ -31,4 +31,8 @@ export class Cell {
     this.setId = this.getSetId(cell.index);
     this.locked = cell.value !== Cell.empty;
   }
+
+  get empty() {
+    return Cell.empty === this.value;
+  }
 }

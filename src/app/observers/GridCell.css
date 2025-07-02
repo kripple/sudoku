@@ -3,12 +3,17 @@
   --game-border: 3px solid var(--border-color);
 }
 
+.cell {
+  padding: 5px;
+}
+
 .gc {
   align-items: center;
   background-color: white;
   border: 0.5px solid var(--border-color);
   display: flex;
   justify-content: center;
+  overflow: clip;
 }
 .gc.ibb {
   border-bottom: var(--game-inner-border);
@@ -31,4 +36,15 @@
 
 .active {
   background-color: var(--accent-color);
+}
+
+.gc.icr::after {
+  background-color: var(--error-color);
+  content: '';
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  width: 150%;
 }

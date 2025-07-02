@@ -103,6 +103,7 @@ class Sudoku {
   setCellValue(value: string | undefined) {
     if (!this.selected) return;
     if (!this.game?.cells?.[this.selected]) return;
+    if (this.game.cells[this.selected].locked) return;
     this.game.cells[this.selected].value =
       value !== undefined ? value : Cell.empty;
   }

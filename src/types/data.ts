@@ -7,7 +7,7 @@ export type Solutions = {
 export type Data = Solutions & { date: string };
 
 export type DTO = {
-  solution: string;
+  value: string;
   date: string;
 };
 

@@ -25,6 +25,5 @@ export const useSudoku = () => {
   useEffect(() => {
     if (!data) return;
     sudoku.sync({ ...JSON.parse(data.value), date: ref.current.date });
-    // sudoku.sync({ ...JSON.parse(data.solution), date: data.date });
   }, [data]);
 };

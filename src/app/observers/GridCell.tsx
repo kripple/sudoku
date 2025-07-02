@@ -11,13 +11,12 @@ export const GridCell = observer(({ cellId }: { cellId: number }) => {
   const data = sudoku.getCell(cellId);
   const cell = data?.cell;
   const value = cell?.value;
-  const selected = sudoku.selected === cellId;
+  const selected = sudoku.game?.selected === cellId;
   const incorrect =
     cell !== undefined &&
     !cell.locked &&
     !cell.empty &&
     value !== cell.solution;
-  console.log({ value, incorrect });
 
   const rowId = getRowId(cellId);
   const colId = getColId(cellId);
@@ -49,7 +48,7 @@ export const GridCell = observer(({ cellId }: { cellId: number }) => {
   return (
     <div
       className={classNames}
-      onClick={() => sudoku.toggleSelectCell(cellId)}
+      onClick={() => sudoku.selectCell(cellId)}
       style={ui.borderedCell}
     >
       <div className="cell" style={ui.cell}>

@@ -11,7 +11,8 @@ type Cells = {
 
 type Games = {
   [difficulty in Difficulty]: Game & {
-    cells?: Cells;
+    cells: Cells;
+    selected: number;
   };
 };
 
@@ -33,11 +34,11 @@ class Sudoku {
     'expert',
   ] as const;
   difficulty: Difficulty | undefined;
-  selected: Cell['index'] | undefined;
   date: string | undefined;
   games: {
     [date: string]: Games;
   } = {};
+  private defaultSelected = -1;
 
   constructor() {
     makeAutoObservable(this);
@@ -46,6 +47,19 @@ class Sudoku {
   get game(): Games[Difficulty] | undefined {
     if (!this.show) return undefined;
     return this.games[this.date!][this.difficulty!];
+  }
+
+  get selected(): number {
+    const selected = this.game?.selected;
+    return selected === undefined ? this.defaultSelected : selected;
+  }
+  set selected(value: number) {
+    if (!this.game) return;
+    this.game.selected = value;
+  }
+
+  get cells(): Cells | undefined {
+    return this.game?.cells;
   }
 
   get puzzle(): string | undefined {
@@ -64,53 +78,62 @@ class Sudoku {
     return this.date ? format(this.date) : undefined;
   }
 
-  sync({ date, ...games }: Games & { date: string }) {
-    this.games[date] = games;
+  sync({
+    date,
+    ...games
+  }: {
+    [difficulty in Difficulty]: Game;
+  } & { date: string }) {
     this.date = date;
     let difficulty: Difficulty;
+    const draft = {} as Games;
 
     for (difficulty in games) {
+      const game = games[difficulty];
       const cells = {} as Cells;
+      let selected = this.defaultSelected;
 
       for (let i = 0; i < 81; i++) {
-        const game = this.games[date][difficulty];
+        const value = game.puzzle[i];
+        const solution = game.solution[i];
 
+        // Autoselect first empty cell
+        if (selected === this.defaultSelected && value === Cell.empty) {
+          selected = i;
+        }
         cells[i] = new Cell({
           index: i,
-          value: game.puzzle[i],
-          solution: game.solution[i],
+          value,
+          solution,
         });
       }
-      this.games[date][difficulty].cells = cells;
+      draft[difficulty] = { ...game, cells, selected };
     }
+    this.games[date] = draft;
   }
 
   selectDifficulty(difficulty: Difficulty | undefined) {
     this.difficulty = difficulty;
-    // TODO: autoselect first empty cell
   }
 
-  toggleSelectCell(id: number | undefined) {
-    this.selected = this.selected === id ? undefined : id;
+  selectCell(id: number) {
+    this.selected = id;
   }
 
   getCell(id: number): { cell: Cell; selected: boolean } | undefined {
-    const cell = this.game?.cells?.[id];
-    if (!cell) return undefined;
+    const cell = this.cells?.[id];
+    if (!this.game || !cell) return undefined;
     return { cell, selected: this.selected === id };
   }
 
   setCellValue(value: string | undefined) {
-    if (!this.selected) return;
-    if (!this.game?.cells?.[this.selected]) return;
-    if (this.game.cells[this.selected].locked) return;
-    this.game.cells[this.selected].value =
-      value !== undefined ? value : Cell.empty;
+    if (!this.cells?.[this.selected]) return;
+    if (this.cells[this.selected].locked) return;
+    this.cells[this.selected].value = value !== undefined ? value : Cell.empty;
   }
 
   toggleSetCellValue(value: string | undefined) {
-    if (!this.selected) return;
-    const currentValue = this.game?.cells?.[this.selected].value;
+    const currentValue = this.cells?.[this.selected].value;
 
     if (value === undefined || value === currentValue) {
       this.setCellValue(undefined);

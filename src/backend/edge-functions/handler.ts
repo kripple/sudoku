@@ -41,7 +41,7 @@ export default async function handler(request: Request) {
     const { date, value } = await getOrCreateSolution({
       db,
     });
-    const data: DTO = { solution: value, date: toDatetime(date) };
+    const data: DTO = { value, date: toDatetime(date) };
 
     return new Response(JSON.stringify(data), {
       status: 200,

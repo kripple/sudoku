@@ -1,5 +1,9 @@
 import { makeAutoObservable } from 'mobx';
 
+export type Cells = {
+  [id: number]: Cell;
+};
+
 export class Cell {
   index: number;
   rowId: number;

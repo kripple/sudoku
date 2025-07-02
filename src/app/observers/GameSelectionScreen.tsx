@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite';
+import type { Difficulty } from 'sudoku-gen/dist/types/difficulty.type';
 
 import { BackgroundColor } from '@/app/components/BackgroundColor';
 import { Button } from '@/app/components/Button';
@@ -40,17 +41,19 @@ export const GameSelectionScreen = observer(() => {
         <div className="tagline">Evolve your brain.</div>
         <div className="text">Choose Your Adventure:</div>
         <div className="button-set">
-          {sudoku.difficultyOptions.map((difficulty) => (
-            <Button
-              key={difficulty}
-              onClick={() => {
-                sudoku.selectDifficulty(difficulty);
-              }}
-              variant="difficulty"
-            >
-              {difficulty}
-            </Button>
-          ))}
+          {(['easy', 'medium', 'hard', 'expert'] as Difficulty[]).map(
+            (difficulty) => (
+              <Button
+                key={difficulty}
+                onClick={() => {
+                  sudoku.selectDifficulty(difficulty);
+                }}
+                variant="difficulty"
+              >
+                {difficulty}
+              </Button>
+            ),
+          )}
         </div>
         {/* FIXME: the size (width) of this element is not stable */}
         <time>

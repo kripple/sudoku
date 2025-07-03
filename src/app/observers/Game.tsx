@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 
 import { Grid } from '@/app/components/Grid';
 import { Option } from '@/app/components/Option';
+import { useEventListener } from '@/app/hooks/useEventListener';
 import { sudoku } from '@/app/store/sudoku';
 import { ui } from '@/app/store/ui';
 import { tokenKeys } from '@/utils/tokens';
@@ -9,6 +10,8 @@ import { tokenKeys } from '@/utils/tokens';
 import '@/app/observers/Game.css';
 
 export const Game = observer(() => {
+  useEventListener('keydown', sudoku.handleKeyDown);
+
   const { display, ...styles } = ui.main;
   const style = {
     ...styles,

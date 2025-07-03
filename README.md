@@ -6,9 +6,6 @@ https://sudokutodo.com/
 
 ## TODO
 
-- use arrow keys to navigate cells
-- backspace clears cell value
-- number keys may be used to toggle-set cell values
 - add candidates
 - add settings
 - add how to play modal (no checkboxes this time)

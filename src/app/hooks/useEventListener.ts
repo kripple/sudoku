@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 
-export function useEventListener(
+export function useEventListener<K extends keyof WindowEventMap>(
   ...props: [
-    type: keyof WindowEventMap,
-    listener: EventListenerOrEventListenerObject,
+    type: K,
+    listener: (event: WindowEventMap[K]) => void,
     options?: boolean | AddEventListenerOptions,
   ]
 ) {

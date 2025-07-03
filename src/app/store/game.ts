@@ -50,22 +50,22 @@ export class Game implements SudokuType {
     return format(this.date);
   }
 
-  selectCell(id: number) {
+  selectCell = (id: number) => {
     this.selected = id;
-  }
+  };
 
-  getCell(id: number): { cell: Cell; selected: boolean } | undefined {
+  getCell = (id: number): { cell: Cell; selected: boolean } | undefined => {
     const cell = this.cells[id];
     return { cell, selected: this.selected === id };
-  }
+  };
 
-  setCellValue(value: string | undefined) {
+  setCellValue = (value: string | undefined) => {
     if (!this.cells[this.selected]) return;
     if (this.cells[this.selected].locked) return;
     this.cells[this.selected].value = value !== undefined ? value : Cell.empty;
-  }
+  };
 
-  toggleSetCellValue(value: string | undefined) {
+  toggleSetCellValue = (value: string | undefined) => {
     const currentValue = this.cells?.[this.selected].value;
 
     if (value === undefined || value === currentValue) {
@@ -73,7 +73,7 @@ export class Game implements SudokuType {
     } else {
       this.setCellValue(value);
     }
-  }
+  };
 
-  toggleSetCellCandidate(value: string | undefined) {}
+  toggleSetCellCandidate = (value: string | undefined) => {};
 }
